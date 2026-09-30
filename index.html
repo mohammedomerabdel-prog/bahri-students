@@ -1,1 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>منصة طلاب كلية العلوم الإدارية - دفعة 023</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Tahoma, sans-serif;
+            background: #f4f7fb;
+            color: #173b60;
+        }
+
+        /* الهيدر */
+        header {
+            background: linear-gradient(135deg, #173b60, #245f8f);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        /* المحتوى */
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 0;
+        }
+
+        /* البحث */
+        .search-box {
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        /* العناوين */
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 22px;
+        }
+
+        /* البطاقات */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 22px 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #173b60;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+
+        .card .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* آخر التحديثات */
+        .updates {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .update {
+            padding: 15px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .update:last-child {
+            border-bottom: none;
+        }
+
+        .update strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .update span {
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* الفوتر */
+        footer {
+            margin-top: 40px;
+            background: #173b60;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer p {
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        /* الكمبيوتر */
+        @media (min-width: 700px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            header h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 منصة طلاب كلية العلوم الإدارية</h1>
+    <p>دفعة 023 — جامعة بحري</p>
+</header>
+
+<main class="container">
+
+    <!-- البحث -->
+    <div class="search-box">
+        <input
+            type="search"
+            placeholder="🔎 ابحث في المنصة..."
+        >
+    </div>
+
+    <!-- الأقسام الأساسية -->
+    <h2 class="section-title">📚 الأكاديمية</h2>
+
+    <div class="grid">
+
+        <a href="#" class="card">
+            <div class="icon">📚</div>
+            <h3>المواد الدراسية</h3>
+            <p>المحاضرات والملفات والملخصات</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">📝</div>
+            <h3>الامتحانات</h3>
+            <p>امتحانات السنوات السابقة</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">📖</div>
+            <h3>الملخصات</h3>
+            <p>مراجعات سريعة للمواد</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">📂</div>
+            <h3>مكتبة الملفات</h3>
+            <p>ملفات ومراجع الدفعة</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">📅</div>
+            <h3>الجدول</h3>
+            <p>المحاضرات والامتحانات</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">📢</div>
+            <h3>الإعلانات</h3>
+            <p>آخر أخبار وإعلانات الدفعة</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">🧠</div>
+            <h3>الاختبارات</h3>
+            <p>اختبارات إلكترونية</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">🧮</div>
+            <h3>حاسبة GPA</h3>
+            <p>احسب معدلك الدراسي</p>
+        </a>
+
+    </div>
+
+    <!-- خدمات الطالب -->
+    <h2 class="section-title">🛠️ خدمات الطالب</h2>
+
+    <div class="grid">
+
+        <a href="#" class="card">
+            <div class="icon">📋</div>
+            <h3>الواجبات</h3>
+            <p>التكاليف والمواعيد</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">⏱️</div>
+            <h3>أدوات الدراسة</h3>
+            <p>مؤقت ومساعدات دراسية</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">🤝</div>
+            <h3>مجتمع الطلاب</h3>
+            <p>تواصل وأسئلة الطلاب</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">💼</div>
+            <h3>وظائف وتدريب</h3>
+            <p>فرص العمل والتدريب</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">🎓</div>
+            <h3>منح ودورات</h3>
+            <p>فرص تعليمية وتطويرية</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon">📚</div>
+            <h3>دليل الطالب</h3>
+            <p>دليل وإرشادات الجامعة</p>
+        </a>
+
+    </div>
+
+    <!-- آخر التحديثات -->
+    <h2 class="section-title">🔔 آخر التحديثات</h2>
+
+    <div class="updates">
+
+        <div class="update">
+            <strong>📄 سيتم إضافة الامتحانات السابقة</strong>
+            <span>آخر التحديثات</span>
+        </div>
+
+        <div class="update">
+            <strong>📚 سيتم إضافة المواد الدراسية</strong>
+            <span>آخر التحديثات</span>
+        </div>
+
+        <div class="update">
+            <strong>📅 سيتم إضافة الجدول الدراسي</strong>
+            <span>آخر التحديثات</span>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>🎓 منصة طلاب كلية العلوم الإدارية</p>
+    <p>دفعة 023 — جامعة بحري</p>
+    <p>جميع الحقوق محفوظة © 2026</p>
+</footer>
+
+</body>
+  </html>
