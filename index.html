@@ -7,7 +7,6 @@
 <title>Student Hub | دفعة 023</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -18,7 +17,7 @@
     --primary:#173b60;
     --primary2:#245b8f;
     --light:#f4f7fa;
-    --white:#ffffff;
+    --white:#fff;
     --text:#243447;
     --muted:#718096;
     --border:#e2e8f0;
@@ -42,8 +41,6 @@ button,input,select,textarea{
 button{
     cursor:pointer;
 }
-
-/* HEADER */
 
 header{
     background:linear-gradient(135deg,var(--primary),var(--primary2));
@@ -89,10 +86,7 @@ header{
     border-radius:14px;
     outline:none;
     font-size:16px;
-    box-shadow:0 6px 20px rgba(0,0,0,.12);
 }
-
-/* NAVIGATION */
 
 nav{
     background:white;
@@ -118,7 +112,6 @@ nav{
     padding:10px 14px;
     border-radius:10px;
     white-space:nowrap;
-    font-size:14px;
 }
 
 .nav-btn:hover,
@@ -126,8 +119,6 @@ nav{
     background:var(--primary);
     color:white;
 }
-
-/* MAIN */
 
 main{
     max-width:1200px;
@@ -154,26 +145,33 @@ main{
     margin-bottom:25px;
 }
 
-/* HERO */
+.hero,
+.card,
+.subject-card,
+.tool,
+.form-box,
+.file-card,
+.announcement,
+.update,
+.assignment-card{
+    background:white;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
 
 .hero{
-    background:white;
     border-radius:20px;
     padding:30px;
-    box-shadow:var(--shadow);
     margin-bottom:25px;
 }
 
 .hero h1{
     color:var(--primary);
-    margin-bottom:8px;
 }
 
 .hero p{
     color:var(--muted);
 }
-
-/* CARDS */
 
 .cards{
     display:grid;
@@ -182,11 +180,8 @@ main{
 }
 
 .card{
-    background:white;
-    border:1px solid var(--border);
     border-radius:16px;
     padding:20px;
-    box-shadow:var(--shadow);
     transition:.2s;
 }
 
@@ -199,9 +194,10 @@ main{
     margin-bottom:10px;
 }
 
-.card h3{
+.card h3,
+.subject-card h3,
+.tool h3{
     color:var(--primary);
-    margin-bottom:6px;
 }
 
 .card p{
@@ -212,8 +208,6 @@ main{
 .card button{
     margin-top:15px;
 }
-
-/* BUTTONS */
 
 .btn{
     border:0;
@@ -245,8 +239,6 @@ main{
     background:var(--yellow);
 }
 
-/* SUBJECTS */
-
 .subject-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -254,11 +246,8 @@ main{
 }
 
 .subject-card{
-    background:white;
     border-radius:18px;
     padding:22px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
 }
 
 .subject-number{
@@ -274,9 +263,8 @@ main{
     margin-bottom:12px;
 }
 
-.subject-card h3{
-    color:var(--primary);
-    margin-bottom:8px;
+.subject-card p{
+    color:var(--muted);
 }
 
 .subject-links{
@@ -292,15 +280,7 @@ main{
     color:var(--primary);
     padding:7px 10px;
     border-radius:8px;
-    font-size:12px;
 }
-
-.subject-links button:hover{
-    background:var(--primary);
-    color:white;
-}
-
-/* TABLE */
 
 .table-wrap{
     overflow-x:auto;
@@ -326,15 +306,11 @@ th{
     color:var(--primary);
 }
 
-/* ANNOUNCEMENTS */
-
 .announcement{
-    background:white;
     border-radius:15px;
     padding:20px;
     margin-bottom:15px;
     border-right:5px solid var(--primary);
-    box-shadow:var(--shadow);
 }
 
 .announcement.urgent{
@@ -349,16 +325,14 @@ th{
     border-right-color:var(--yellow);
 }
 
-.announcement-date{
+.announcement-date,
+.file-info p,
+.muted{
     color:var(--muted);
     font-size:13px;
 }
 
-/* FILES */
-
 .file-card{
-    background:white;
-    border:1px solid var(--border);
     padding:18px;
     border-radius:14px;
     display:flex;
@@ -368,22 +342,9 @@ th{
     margin-bottom:12px;
 }
 
-.file-info h3{
-    color:var(--primary);
-}
-
-.file-info p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* FORMS */
-
 .form-box{
-    background:white;
     padding:22px;
     border-radius:16px;
-    box-shadow:var(--shadow);
     margin-bottom:20px;
 }
 
@@ -412,10 +373,7 @@ th{
 
 .form-group textarea{
     min-height:100px;
-    resize:vertical;
 }
-
-/* GPA */
 
 .gpa-result{
     background:#edf7f1;
@@ -431,8 +389,6 @@ th{
     color:var(--green);
 }
 
-/* QUIZ */
-
 .quiz-question{
     background:white;
     padding:20px;
@@ -447,22 +403,7 @@ th{
     margin-top:8px;
     background:#f5f7fa;
     border-radius:8px;
-    cursor:pointer;
 }
-
-.quiz-option:hover{
-    background:#e8eef5;
-}
-
-.quiz-result{
-    padding:20px;
-    border-radius:15px;
-    background:#edf7f1;
-    text-align:center;
-    margin-top:15px;
-}
-
-/* TOOLS */
 
 .tools-grid{
     display:grid;
@@ -471,15 +412,8 @@ th{
 }
 
 .tool{
-    background:white;
     padding:22px;
     border-radius:16px;
-    box-shadow:var(--shadow);
-}
-
-.tool h3{
-    color:var(--primary);
-    margin-bottom:12px;
 }
 
 .tool input{
@@ -490,36 +424,18 @@ th{
     border-radius:8px;
 }
 
-/* UPDATES */
-
-.update{
-    background:white;
-    border-radius:13px;
-    padding:15px;
-    margin-bottom:10px;
-    border-right:4px solid var(--primary);
+.assignment-card{
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:12px;
 }
-
-.update small{
-    color:var(--muted);
-}
-
-/* FOOTER */
 
 footer{
     background:var(--primary);
     color:white;
     text-align:center;
     padding:30px 15px;
-    margin-top:30px;
 }
-
-footer p{
-    opacity:.85;
-    margin-top:5px;
-}
-
-/* MODAL */
 
 .modal{
     position:fixed;
@@ -546,26 +462,24 @@ footer p{
     padding:25px;
 }
 
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
 .close{
     border:0;
-    background:#f1f1f1;
+    background:#eee;
     width:35px;
     height:35px;
     border-radius:50%;
     font-size:20px;
 }
 
-/* RESPONSIVE */
+.empty{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    color:var(--muted);
+}
 
 @media(max-width:900px){
-
     .cards{
         grid-template-columns:repeat(2,1fr);
     }
@@ -580,17 +494,12 @@ footer p{
 }
 
 @media(max-width:600px){
-
     .logo{
         font-size:23px;
     }
 
     main{
         padding:18px 10px 40px;
-    }
-
-    .hero{
-        padding:20px;
     }
 
     .cards,
@@ -601,27 +510,19 @@ footer p{
     }
 
     .file-card{
-        align-items:flex-start;
         flex-direction:column;
-    }
-
-    .section-title{
-        font-size:21px;
+        align-items:flex-start;
     }
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
 <div class="header-content">
 
-<div class="logo">
-🎓 Student Hub
-</div>
+<div class="logo">🎓 Student Hub</div>
 
 <div class="subtitle">
 منصة طلاب كلية العلوم الإدارية
@@ -632,84 +533,38 @@ footer p{
 </div>
 
 <div class="search-area">
-
 <input
-type="text"
 id="globalSearch"
-placeholder="🔎 ابحث عن مادة، ملف، امتحان، إعلان..."
+type="text"
+placeholder="🔎 ابحث عن مادة، ملف، إعلان..."
 oninput="globalSearch()"
 >
-
 </div>
 
 </div>
-
 </header>
 
-
 <nav>
-
 <div class="nav-container">
 
-<button class="nav-btn active" onclick="showPage('home',this)">
-الرئيسية
-</button>
-
-<button class="nav-btn" onclick="showPage('subjects',this)">
-📚 المواد
-</button>
-
-<button class="nav-btn" onclick="showPage('exams',this)">
-📝 الامتحانات
-</button>
-
-<button class="nav-btn" onclick="showPage('library',this)">
-📂 المكتبة
-</button>
-
-<button class="nav-btn" onclick="showPage('schedule',this)">
-📅 الجدول
-</button>
-
-<button class="nav-btn" onclick="showPage('announcements',this)">
-📢 الإعلانات
-</button>
-
-<button class="nav-btn" onclick="showPage('quiz',this)">
-🧠 الاختبارات
-</button>
-
-<button class="nav-btn" onclick="showPage('gpa',this)">
-🧮 GPA
-</button>
-
-<button class="nav-btn" onclick="showPage('assignments',this)">
-📋 الواجبات
-</button>
-
-<button class="nav-btn" onclick="showPage('tools',this)">
-⏱️ الأدوات
-</button>
-
-<button class="nav-btn" onclick="showPage('opportunities',this)">
-💼 الفرص
-</button>
-
-<button class="nav-btn" onclick="showPage('guide',this)">
-🎓 دليل الطالب
-</button>
-
-<button class="nav-btn" onclick="showPage('community',this)">
-🤝 المجتمع
-</button>
+<button class="nav-btn active" onclick="showPage('home',this)">الرئيسية</button>
+<button class="nav-btn" onclick="showPage('subjects',this)">📚 المواد</button>
+<button class="nav-btn" onclick="showPage('exams',this)">📝 الامتحانات</button>
+<button class="nav-btn" onclick="showPage('library',this)">📂 المكتبة</button>
+<button class="nav-btn" onclick="showPage('schedule',this)">📅 الجدول</button>
+<button class="nav-btn" onclick="showPage('announcements',this)">📢 الإعلانات</button>
+<button class="nav-btn" onclick="showPage('quiz',this)">🧠 الاختبارات</button>
+<button class="nav-btn" onclick="showPage('gpa',this)">🧮 GPA</button>
+<button class="nav-btn" onclick="showPage('assignments',this)">📋 الواجبات</button>
+<button class="nav-btn" onclick="showPage('tools',this)">⏱️ الأدوات</button>
+<button class="nav-btn" onclick="showPage('opportunities',this)">💼 الفرص</button>
+<button class="nav-btn" onclick="showPage('guide',this)">🎓 دليل الطالب</button>
+<button class="nav-btn" onclick="showPage('community',this)">🤝 المجتمع</button>
 
 </div>
-
 </nav>
 
-
 <main>
-
 
 <!-- HOME -->
 
@@ -717,170 +572,82 @@ oninput="globalSearch()"
 
 <div class="hero">
 
-<h1>
-🎓 مرحباً بك في Student Hub
-</h1>
+<h1>🎓 مرحباً بك في Student Hub</h1>
 
 <p>
 المنصة الرقمية لطلاب دفعة 023 — جامعة بحري
 </p>
 
 <p style="margin-top:10px">
-مكان واحد للمحاضرات والملخصات والامتحانات والجدول والإعلانات
-وأدوات الدراسة والفرص الأكاديمية والمهنية.
+مكان واحد للمواد والمحاضرات والملخصات والامتحانات
+والجدول والإعلانات وأدوات الدراسة.
 </p>
 
 </div>
-
 
 <div class="cards">
 
 <div class="card">
-
 <div class="card-icon">📚</div>
-
 <h3>المواد الدراسية</h3>
-
-<p>
-الوصول إلى المواد التسع وتنظيم موارد كل مادة.
-</p>
-
-<button class="btn" onclick="goTo('subjects')">
-فتح المواد
-</button>
-
+<p>الوصول إلى المواد التسع وتنظيم موارد كل مادة.</p>
+<button class="btn" onclick="goTo('subjects')">فتح المواد</button>
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">📝</div>
-
 <h3>بنك الامتحانات</h3>
-
-<p>
-الامتحانات السابقة والمراجعات والأسئلة.
-</p>
-
-<button class="btn" onclick="goTo('exams')">
-فتح الامتحانات
-</button>
-
+<p>الامتحانات السابقة والمراجعات والأسئلة.</p>
+<button class="btn" onclick="goTo('exams')">فتح الامتحانات</button>
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">📅</div>
-
 <h3>الجدول</h3>
-
-<p>
-جدول المحاضرات والامتحانات والمواعيد المهمة.
-</p>
-
-<button class="btn" onclick="goTo('schedule')">
-فتح الجدول
-</button>
-
+<p>جدول المحاضرات والمواعيد المهمة.</p>
+<button class="btn" onclick="goTo('schedule')">فتح الجدول</button>
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">🧮</div>
-
 <h3>حاسبة GPA</h3>
-
-<p>
-احسب المعدل الفصلي والتراكمي بسهولة.
-</p>
-
-<button class="btn" onclick="goTo('gpa')">
-حساب GPA
-</button>
-
+<p>احسب المعدل الدراسي.</p>
+<button class="btn" onclick="goTo('gpa')">حساب GPA</button>
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">🧠</div>
-
 <h3>اختبارات إلكترونية</h3>
-
-<p>
-اختبر معلوماتك واحصل على النتيجة مباشرة.
-</p>
-
-<button class="btn" onclick="goTo('quiz')">
-ابدأ اختبار
-</button>
-
+<p>اختبر معلوماتك واحصل على النتيجة.</p>
+<button class="btn" onclick="goTo('quiz')">ابدأ اختبار</button>
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">📢</div>
-
-<h3>آخر الإعلانات</h3>
-
-<p>
-تابع تحديثات الدفعة المهمة.
-</p>
-
-<button class="btn" onclick="goTo('announcements')">
-الإعلانات
-</button>
-
+<h3>الإعلانات</h3>
+<p>تابع تحديثات الدفعة.</p>
+<button class="btn" onclick="goTo('announcements')">الإعلانات</button>
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">📂</div>
-
 <h3>المكتبة</h3>
-
-<p>
-ملفات PDF وWord والمحاضرات والمراجع.
-</p>
-
-<button class="btn" onclick="goTo('library')">
-فتح المكتبة
-</button>
-
+<p>ملفات ومراجع ومحاضرات.</p>
+<button class="btn" onclick="goTo('library')">فتح المكتبة</button>
 </div>
-
 
 <div class="card">
-
-<div class="card-icon">💼</div>
-
-<h3>فرص الطلاب</h3>
-
-<p>
-تدريب ودورات ومنح وفرص مهنية.
-</p>
-
-<button class="btn" onclick="goTo('opportunities')">
-استكشاف
-</button>
-
+<div class="card-icon">🤝</div>
+<h3>مجتمع الدفعة</h3>
+<p>الوصول إلى مجتمع الطلاب.</p>
+<button class="btn green" onclick="openCommunity()">دخول المجتمع</button>
 </div>
 
 </div>
-
 
 <div style="margin-top:30px">
-
-<h2 class="section-title">
-🔔 آخر التحديثات
-</h2>
-
+<h2 class="section-title">🔔 آخر التحديثات</h2>
 <div id="homeUpdates"></div>
-
 </div>
 
 </section>
@@ -890,15 +657,38 @@ oninput="globalSearch()"
 
 <section id="subjects" class="page">
 
-<h2 class="section-title">
-📚 المواد الدراسية
-</h2>
+<h2 class="section-title">📚 المواد الدراسية</h2>
 
 <p class="section-description">
-المواد التسع لطلاب الدفعة، ويمكن إضافة المحاضرات والملخصات والامتحانات لكل مادة.
+المواد التسع لطلاب دفعة 023.
 </p>
 
 <div class="subject-grid" id="subjectsContainer"></div>
+
+</section>
+
+
+<!-- SUBJECT DETAILS -->
+
+<section id="subjectDetails" class="page">
+
+<button class="btn secondary" onclick="goTo('subjects')">
+← العودة إلى المواد
+</button>
+
+<h2 id="subjectTitle" class="section-title" style="margin-top:20px"></h2>
+
+<div class="form-box">
+
+<h3>📚 موارد المادة</h3>
+
+<p class="muted" style="margin:8px 0 20px">
+من هنا يمكنك الوصول إلى ملفات المادة.
+</p>
+
+<div id="subjectFiles"></div>
+
+</div>
 
 </section>
 
@@ -907,55 +697,43 @@ oninput="globalSearch()"
 
 <section id="exams" class="page">
 
-<h2 class="section-title">
-📝 بنك الامتحانات
-</h2>
-
-<p class="section-description">
-نظم الامتحانات حسب المادة والسنة والفصل.
-</p>
+<h2 class="section-title">📝 بنك الامتحانات</h2>
 
 <div class="form-box">
+
+<h3 style="color:var(--primary);margin-bottom:15px">
+إضافة امتحان
+</h3>
 
 <div class="form-grid">
 
 <div class="form-group">
-
 <label>المادة</label>
-
-<select id="examSubject">
-
-<option>محاسبة</option>
-<option>اقتصاد</option>
-<option>إدارة</option>
-<option>رياضيات</option>
-<option>حاسوب</option>
-<option>دراسات مصرفية</option>
-<option>دراسات جامعية</option>
-<option>لغة إنجليزية</option>
-<option>مادة اختيارية</option>
-
-</select>
-
+<select id="examSubject"></select>
 </div>
-
 
 <div class="form-group">
-
 <label>السنة</label>
+<input id="examYear" type="number" value="2026">
+</div>
 
-<select id="examYear">
+<div class="form-group">
+<label>اسم الامتحان</label>
+<input id="examName" placeholder="مثال: امتحان نصف الفصل">
+</div>
 
-<option>2026</option>
-<option>2025</option>
-<option>2024</option>
-<option>2023</option>
-
-</select>
-
+<div class="form-group">
+<label>رابط الامتحان</label>
+<input id="examLink" placeholder="ضع رابط الملف هنا">
 </div>
 
 </div>
+
+<br>
+
+<button class="btn" onclick="addExam()">
++ إضافة الامتحان
+</button>
 
 </div>
 
@@ -968,49 +746,59 @@ oninput="globalSearch()"
 
 <section id="library" class="page">
 
-<h2 class="section-title">
-📂 المكتبة الأكاديمية
-</h2>
-
-<p class="section-description">
-المكتبة الرئيسية للملفات والمراجع والمحاضرات.
-</p>
+<h2 class="section-title">📂 المكتبة الأكاديمية</h2>
 
 <div class="form-box">
+
+<h3 style="color:var(--primary);margin-bottom:15px">
+إضافة ملف أو رابط
+</h3>
 
 <div class="form-grid">
 
 <div class="form-group">
-
-<label>ابحث في المكتبة</label>
-
-<input
-type="text"
-id="librarySearch"
-placeholder="مثال: محاسبة، اقتصاد، ملخص..."
-oninput="filterLibrary()"
->
-
+<label>اسم الملف</label>
+<input id="fileName" placeholder="مثال: محاضرة المحاسبة">
 </div>
 
+<div class="form-group">
+<label>المادة</label>
+<select id="fileSubject"></select>
+</div>
 
 <div class="form-group">
+<label>رابط الملف</label>
+<input id="fileUrl" placeholder="رابط Google Drive أو الملف">
+</div>
 
+<div class="form-group">
 <label>نوع الملف</label>
-
-<select id="libraryType" onchange="filterLibrary()">
-
-<option value="all">الكل</option>
+<select id="fileType">
 <option value="pdf">PDF</option>
 <option value="word">Word</option>
 <option value="video">فيديو</option>
 <option value="link">رابط</option>
-
 </select>
-
 </div>
 
 </div>
+
+<br>
+
+<button class="btn" onclick="addLibraryFile()">
++ إضافة للمكتبة
+</button>
+
+</div>
+
+<div class="form-box">
+
+<input
+id="librarySearch"
+placeholder="🔎 ابحث في المكتبة..."
+oninput="renderLibrary()"
+style="width:100%;padding:12px;border:1px solid var(--border);border-radius:9px"
+>
 
 </div>
 
@@ -1023,20 +811,13 @@ oninput="filterLibrary()"
 
 <section id="schedule" class="page">
 
-<h2 class="section-title">
-📅 الجدول الذكي
-</h2>
-
-<p class="section-description">
-جدول المحاضرات والمواعيد المهمة للدفعة.
-</p>
+<h2 class="section-title">📅 جدول الدفعة</h2>
 
 <div class="table-wrap">
 
 <table>
 
 <thead>
-
 <tr>
 <th>اليوم</th>
 <th>الوقت</th>
@@ -1044,52 +825,9 @@ oninput="filterLibrary()"
 <th>النوع</th>
 <th>المكان</th>
 </tr>
-
 </thead>
 
-<tbody>
-
-<tr>
-<td>السبت</td>
-<td>09:00</td>
-<td>محاسبة</td>
-<td>محاضرة</td>
-<td>القاعة</td>
-</tr>
-
-<tr>
-<td>الأحد</td>
-<td>10:00</td>
-<td>اقتصاد</td>
-<td>محاضرة</td>
-<td>القاعة</td>
-</tr>
-
-<tr>
-<td>الإثنين</td>
-<td>09:00</td>
-<td>إدارة</td>
-<td>محاضرة</td>
-<td>القاعة</td>
-</tr>
-
-<tr>
-<td>الثلاثاء</td>
-<td>11:00</td>
-<td>دراسات مصرفية</td>
-<td>محاضرة</td>
-<td>القاعة</td>
-</tr>
-
-<tr>
-<td>الأربعاء</td>
-<td>10:00</td>
-<td>دراسات جامعية</td>
-<td>محاضرة</td>
-<td>القاعة</td>
-</tr>
-
-</tbody>
+<tbody id="scheduleBody"></tbody>
 
 </table>
 
@@ -1102,9 +840,39 @@ oninput="filterLibrary()"
 
 <section id="announcements" class="page">
 
-<h2 class="section-title">
-📢 مركز الإعلانات
-</h2>
+<h2 class="section-title">📢 مركز الإعلانات</h2>
+
+<div class="form-box">
+
+<h3 style="color:var(--primary);margin-bottom:15px">
+إضافة إعلان
+</h3>
+
+<div class="form-group">
+
+<label>عنوان الإعلان</label>
+
+<input id="announcementTitle" placeholder="عنوان الإعلان">
+
+</div>
+
+<br>
+
+<div class="form-group">
+
+<label>نص الإعلان</label>
+
+<textarea id="announcementText"></textarea>
+
+</div>
+
+<br>
+
+<button class="btn" onclick="addAnnouncement()">
++ نشر الإعلان
+</button>
+
+</div>
 
 <div id="announcementList"></div>
 
@@ -1115,15 +883,15 @@ oninput="filterLibrary()"
 
 <section id="quiz" class="page">
 
-<h2 class="section-title">
-🧠 الاختبارات الإلكترونية
-</h2>
-
-<p class="section-description">
-اختبارات تجريبية بسيطة مع ظهور النتيجة مباشرة.
-</p>
+<h2 class="section-title">🧠 اختبار تجريبي</h2>
 
 <div id="quizContainer"></div>
+
+<button class="btn green" onclick="calculateQuiz()">
+إظهار النتيجة
+</button>
+
+<div id="quizResult"></div>
 
 </section>
 
@@ -1132,13 +900,7 @@ oninput="filterLibrary()"
 
 <section id="gpa" class="page">
 
-<h2 class="section-title">
-🧮 حاسبة GPA
-</h2>
-
-<p class="section-description">
-أدخل ساعات المادة والدرجة لحساب المعدل.
-</p>
+<h2 class="section-title">🧮 حاسبة GPA</h2>
 
 <div class="form-box">
 
@@ -1147,38 +909,18 @@ oninput="filterLibrary()"
 <div class="form-grid gpa-row">
 
 <div class="form-group">
-
 <label>المادة</label>
-
 <input type="text" placeholder="اسم المادة">
-
 </div>
 
 <div class="form-group">
-
 <label>الساعات</label>
-
-<input
-type="number"
-class="hours"
-min="1"
-value="3"
->
-
+<input type="number" class="hours" value="3">
 </div>
 
 <div class="form-group">
-
 <label>الدرجة من 100</label>
-
-<input
-type="number"
-class="grade"
-min="0"
-max="100"
-value="80"
->
-
+<input type="number" class="grade" value="80">
 </div>
 
 </div>
@@ -1206,45 +948,25 @@ value="80"
 
 <section id="assignments" class="page">
 
-<h2 class="section-title">
-📋 الواجبات والتكاليف
-</h2>
+<h2 class="section-title">📋 الواجبات والتكاليف</h2>
 
 <div class="form-box">
 
 <div class="form-grid">
 
 <div class="form-group">
-
 <label>المادة</label>
-
-<input
-id="assignmentSubject"
-placeholder="اسم المادة"
->
-
+<input id="assignmentSubject" placeholder="اسم المادة">
 </div>
 
 <div class="form-group">
-
 <label>الواجب</label>
-
-<input
-id="assignmentName"
-placeholder="اسم الواجب"
->
-
+<input id="assignmentName" placeholder="اسم الواجب">
 </div>
 
 <div class="form-group">
-
 <label>آخر موعد</label>
-
-<input
-id="assignmentDate"
-type="date"
->
-
+<input id="assignmentDate" type="date">
 </div>
 
 </div>
@@ -1252,7 +974,7 @@ type="date"
 <br>
 
 <button class="btn" onclick="addAssignment()">
-إضافة الواجب
++ إضافة الواجب
 </button>
 
 </div>
@@ -1266,35 +988,19 @@ type="date"
 
 <section id="tools" class="page">
 
-<h2 class="section-title">
-⏱️ أدوات الطالب
-</h2>
+<h2 class="section-title">⏱️ أدوات الطالب</h2>
 
 <div class="tools-grid">
 
-
 <div class="tool">
-
 <h3>🧮 النسبة المئوية</h3>
 
-<input
-id="percentValue"
-type="number"
-placeholder="القيمة"
->
+<input id="percentValue" type="number" placeholder="القيمة">
+<input id="percentTotal" type="number" placeholder="من">
 
-<input
-id="percentTotal"
-type="number"
-placeholder="من"
->
+<button class="btn" onclick="calculatePercent()">احسب</button>
 
-<button class="btn" onclick="calculatePercent()">
-احسب
-</button>
-
-<p id="percentResult" style="margin-top:10px"></p>
-
+<p id="percentResult"></p>
 </div>
 
 
@@ -1302,29 +1008,13 @@ placeholder="من"
 
 <h3>💰 الفائدة البسيطة</h3>
 
-<input
-id="principal"
-type="number"
-placeholder="رأس المال"
->
+<input id="principal" type="number" placeholder="رأس المال">
+<input id="rate" type="number" placeholder="نسبة الفائدة %">
+<input id="years" type="number" placeholder="السنوات">
 
-<input
-id="rate"
-type="number"
-placeholder="نسبة الفائدة %"
->
+<button class="btn" onclick="calculateInterest()">احسب</button>
 
-<input
-id="years"
-type="number"
-placeholder="السنوات"
->
-
-<button class="btn" onclick="calculateInterest()">
-احسب
-</button>
-
-<p id="interestResult" style="margin-top:10px"></p>
+<p id="interestResult"></p>
 
 </div>
 
@@ -1333,28 +1023,14 @@ placeholder="السنوات"
 
 <h3>⏱️ مؤقت الدراسة</h3>
 
-<p
-id="timerDisplay"
-style="font-size:35px;text-align:center;margin:15px"
->
+<p id="timerDisplay"
+style="font-size:35px;text-align:center;margin:15px">
 25:00
 </p>
 
-<div style="display:flex;gap:8px;flex-wrap:wrap">
-
-<button class="btn" onclick="startTimer()">
-▶️ بدء
-</button>
-
-<button class="btn yellow" onclick="pauseTimer()">
-⏸️ إيقاف
-</button>
-
-<button class="btn secondary" onclick="resetTimer()">
-🔄 إعادة
-</button>
-
-</div>
+<button class="btn" onclick="startTimer()">▶️ بدء</button>
+<button class="btn yellow" onclick="pauseTimer()">⏸️ إيقاف</button>
+<button class="btn secondary" onclick="resetTimer()">🔄 إعادة</button>
 
 </div>
 
@@ -1372,17 +1048,11 @@ style="font-size:35px;text-align:center;margin:15px"
 
 <h3>🔢 محول الساعات</h3>
 
-<input
-id="hoursInput"
-type="number"
-placeholder="عدد الساعات"
->
+<input id="hoursInput" type="number">
 
-<button class="btn" onclick="convertHours()">
-تحويل
-</button>
+<button class="btn" onclick="convertHours()">تحويل</button>
 
-<p id="hoursResult" style="margin-top:10px"></p>
+<p id="hoursResult"></p>
 
 </div>
 
@@ -1391,16 +1061,11 @@ placeholder="عدد الساعات"
 
 <h3>📊 متوسط الدرجات</h3>
 
-<input
-id="gradesInput"
-placeholder="مثال: 80,75,90"
->
+<input id="gradesInput" placeholder="80,75,90">
 
-<button class="btn" onclick="calculateAverage()">
-احسب
-</button>
+<button class="btn" onclick="calculateAverage()">احسب</button>
 
-<p id="averageResult" style="margin-top:10px"></p>
+<p id="averageResult"></p>
 
 </div>
 
@@ -1413,73 +1078,35 @@ placeholder="مثال: 80,75,90"
 
 <section id="opportunities" class="page">
 
-<h2 class="section-title">
-💼 فرص الطلاب
-</h2>
-
-<p class="section-description">
-مساحة مستقبلية للتدريب والدورات والمنح والفرص المهنية.
-</p>
+<h2 class="section-title">💼 فرص الطلاب</h2>
 
 <div class="cards">
 
 <div class="card">
-
 <div class="card-icon">🎓</div>
-
 <h3>منح دراسية</h3>
-
-<p>
-ستتم إضافة المنح المتاحة هنا.
-</p>
-
-<button
-class="btn"
-onclick="showMessage('سيتم إضافة المنح لاحقاً')"
->
-عرض الفرص
+<p>مساحة لإضافة المنح.</p>
+<button class="btn" onclick="showMessage('سيتم إضافة المنح هنا')">
+عرض
 </button>
-
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">💼</div>
-
 <h3>تدريب</h3>
-
-<p>
-فرص تدريب للطلاب والخريجين.
-</p>
-
-<button
-class="btn"
-onclick="showMessage('سيتم إضافة فرص التدريب لاحقاً')"
->
+<p>مساحة لفرص التدريب.</p>
+<button class="btn" onclick="showMessage('سيتم إضافة فرص التدريب هنا')">
 استكشاف
 </button>
-
 </div>
 
-
 <div class="card">
-
 <div class="card-icon">📚</div>
-
 <h3>دورات</h3>
-
-<p>
-دورات تساعد على تطوير مهارات الطالب.
-</p>
-
-<button
-class="btn"
-onclick="showMessage('سيتم إضافة الدورات لاحقاً')"
->
+<p>مساحة للدورات.</p>
+<button class="btn" onclick="showMessage('سيتم إضافة الدورات هنا')">
 استكشاف
 </button>
-
 </div>
 
 </div>
@@ -1491,15 +1118,122 @@ onclick="showMessage('سيتم إضافة الدورات لاحقاً')"
 
 <section id="guide" class="page">
 
-<h2 class="section-title">
-🎓 دليل الطالب
-</h2>
+<h2 class="section-title">🎓 دليل الطالب</h2>
 
 <div class="form-box">
 
-<h3 style="color:var(--primary);margin-bottom:15px">
+<h3 style="color:var(--primary)">
 كيف تستخدم المنصة؟
 </h3>
 
 <p>
-📚 من قسم ال
+📚 افتح المواد للوصول إلى المواد التسع.
+</p>
+
+<p>
+📂 استخدم المكتبة للوصول إلى الملفات.
+</p>
+
+<p>
+📝 استخدم بنك الامتحانات لمراجعة الامتحانات السابقة.
+</p>
+
+<p>
+📅 تابع الجدول والمواعيد المهمة.
+</p>
+
+<p>
+📢 تابع الإعلانات الجديدة.
+</p>
+
+<p>
+🧮 استخدم حاسبة GPA لمعرفة معدلك.
+</p>
+
+<p>
+🤝 استخدم المجتمع للوصول إلى مجموعة الدفعة.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- COMMUNITY -->
+
+<section id="community" class="page">
+
+<h2 class="section-title">🤝 مجتمع الدفعة</h2>
+
+<div class="hero">
+
+<h2>مجتمع دفعة 023</h2>
+
+<p>
+تواصل مع زملائك وتابع أخبار الدفعة.
+</p>
+
+<br>
+
+<button class="btn green" onclick="openCommunity()">
+💬 فتح مجموعة الواتساب
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<strong>🎓 Student Hub</strong>
+
+<p>
+دفعة 023 • جامعة بحري
+</p>
+
+<p>
+منصة طلابية لتنظيم الدراسة والموارد الأكاديمية
+</p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   البيانات
+========================= */
+
+const subjects = [
+"محاسبة",
+"اقتصاد",
+"إدارة",
+"رياضيات",
+"حاسوب",
+"دراسات مصرفية",
+"دراسات جامعية",
+"لغة إنجليزية",
+"مادة اختيارية"
+];
+
+const defaultSchedule = [
+["السبت","09:00","محاسبة","محاضرة","القاعة"],
+["الأحد","10:00","اقتصاد","محاضرة","القاعة"],
+["الإثنين","09:00","إدارة","محاضرة","القاعة"],
+["الثلاثاء","11:00","دراسات مصرفية","محاضرة","القاعة"],
+["الأربعاء","10:00","دراسات جامعية","محاضرة","القاعة"]
+];
+
+
+/* =========================
+   التخزين
+========================= */
+
+function getData(key, fallback=[]){
+    try{
+        return JSON.parse(localStorage.getItem(key)) || fallback;
+    }catch(e){
+        
