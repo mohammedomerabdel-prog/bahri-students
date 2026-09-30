@@ -1,307 +1,1296 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>منصة طلاب كلية العلوم الإدارية - دفعة 023</title>
+<title>Student Hub | دفعة 023</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        body {
-            font-family: Arial, Tahoma, sans-serif;
-            background: #f4f7fb;
-            color: #173b60;
-        }
+:root{
+    --primary:#173b60;
+    --primary2:#245b8f;
+    --light:#f4f7fa;
+    --white:#ffffff;
+    --text:#243447;
+    --muted:#718096;
+    --border:#e2e8f0;
+    --green:#198754;
+    --red:#dc3545;
+    --yellow:#f59e0b;
+    --shadow:0 8px 25px rgba(23,59,96,.08);
+}
 
-        /* الهيدر */
-        header {
-            background: linear-gradient(135deg, #173b60, #245f8f);
-            color: white;
-            padding: 35px 20px;
-            text-align: center;
-        }
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:var(--light);
+    color:var(--text);
+    line-height:1.7;
+}
 
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+button,
+input,
+select{
+    font-family:inherit;
+}
 
-        header p {
-            font-size: 17px;
-            opacity: 0.9;
-        }
+button{
+    cursor:pointer;
+}
 
-        /* المحتوى */
-        .container {
-            width: 92%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 30px 0;
-        }
+/* =========================
+   HEADER
+========================= */
 
-        /* البحث */
-        .search-box {
-            margin-bottom: 30px;
-        }
+header{
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    padding:28px 20px;
+    box-shadow:0 4px 18px rgba(0,0,0,.12);
+}
 
-        .search-box input {
-            width: 100%;
-            padding: 16px 20px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-        }
+.header-content{
+    max-width:1200px;
+    margin:auto;
+    text-align:center;
+}
 
-        /* العناوين */
-        .section-title {
-            margin: 30px 0 15px;
-            font-size: 22px;
-        }
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
 
-        /* البطاقات */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+.subtitle{
+    opacity:.9;
+    margin-top:5px;
+}
 
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 22px 15px;
-            text-align: center;
-            text-decoration: none;
-            color: #173b60;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-            transition: 0.2s;
-        }
+.badge{
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    padding:5px 14px;
+    border-radius:30px;
+    margin-top:10px;
+    font-size:14px;
+}
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-        }
+/* =========================
+   SEARCH
+========================= */
 
-        .card .icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
+.search-area{
+    max-width:850px;
+    margin:25px auto 0;
+    position:relative;
+}
 
-        .card h3 {
-            font-size: 17px;
-            margin-bottom: 5px;
-        }
+.search-area input{
+    width:100%;
+    padding:16px 20px;
+    border:none;
+    border-radius:14px;
+    outline:none;
+    font-size:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
 
-        .card p {
-            font-size: 13px;
-            color: #777;
-        }
+/* =========================
+   NAVIGATION
+========================= */
 
-        /* آخر التحديثات */
-        .updates {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-        }
+nav{
+    background:white;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-        .update {
-            padding: 15px 5px;
-            border-bottom: 1px solid #eee;
-        }
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    gap:5px;
+    overflow-x:auto;
+    padding:8px;
+}
 
-        .update:last-child {
-            border-bottom: none;
-        }
+.nav-btn{
+    background:white;
+    color:var(--primary);
+    border:0;
+    padding:10px 14px;
+    border-radius:10px;
+    white-space:nowrap;
+    font-size:14px;
+}
 
-        .update strong {
-            display: block;
-            margin-bottom: 5px;
-        }
+.nav-btn:hover,
+.nav-btn.active{
+    background:var(--primary);
+    color:white;
+}
 
-        .update span {
-            font-size: 13px;
-            color: #777;
-        }
+/* =========================
+   MAIN
+========================= */
 
-        /* الفوتر */
-        footer {
-            margin-top: 40px;
-            background: #173b60;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-        }
+main{
+    max-width:1200px;
+    margin:auto;
+    padding:25px 15px 50px;
+}
 
-        footer p {
-            margin: 5px;
-            font-size: 14px;
-        }
+.page{
+    display:none;
+}
 
-        /* الكمبيوتر */
-        @media (min-width: 700px) {
-            .grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+.page.active{
+    display:block;
+}
 
-            header h1 {
-                font-size: 34px;
-            }
-        }
-    </style>
+.section-title{
+    color:var(--primary);
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+.section-description{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+}
+
+.hero h1{
+    color:var(--primary);
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:var(--muted);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:var(--shadow);
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.card-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:var(--primary);
+    margin-bottom:6px;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.card button{
+    margin-top:15px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:10px 16px;
+    background:var(--primary);
+    color:white;
+    font-size:14px;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.btn.secondary{
+    background:#e8eef5;
+    color:var(--primary);
+}
+
+.btn.green{
+    background:var(--green);
+}
+
+.btn.red{
+    background:var(--red);
+}
+
+.btn.yellow{
+    background:var(--yellow);
+    color:white;
+}
+
+/* =========================
+   SUBJECTS
+========================= */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.subject-card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.subject-number{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#eaf1f8;
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.subject-card h3{
+    color:var(--primary);
+    margin-bottom:8px;
+}
+
+.subject-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:14px;
+}
+
+.subject-links button{
+    border:1px solid var(--border);
+    background:white;
+    color:var(--primary);
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+.subject-links button:hover{
+    background:var(--primary);
+    color:white;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+    overflow-x:auto;
+    background:white;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+th,
+td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+}
+
+th{
+    background:#edf3f8;
+    color:var(--primary);
+}
+
+/* =========================
+   ANNOUNCEMENTS
+========================= */
+
+.announcement{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
+    border-right:5px solid var(--primary);
+    box-shadow:var(--shadow);
+}
+
+.announcement.urgent{
+    border-right-color:var(--red);
+}
+
+.announcement.academic{
+    border-right-color:var(--green);
+}
+
+.announcement.important{
+    border-right-color:var(--yellow);
+}
+
+.announcement-date{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   FILES
+========================= */
+
+.file-card{
+    background:white;
+    border:1px solid var(--border);
+    padding:18px;
+    border-radius:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:12px;
+}
+
+.file-info h3{
+    color:var(--primary);
+}
+
+.file-info p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-box{
+    background:white;
+    padding:22px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* =========================
+   GPA
+========================= */
+
+.gpa-result{
+    background:#edf7f1;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    margin-top:20px;
+}
+
+.gpa-number{
+    font-size:40px;
+    font-weight:bold;
+    color:var(--green);
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-question{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:var(--shadow);
+}
+
+.quiz-option{
+    display:block;
+    padding:10px;
+    margin-top:8px;
+    background:#f5f7fa;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quiz-option:hover{
+    background:#e8eef5;
+}
+
+.quiz-result{
+    padding:20px;
+    border-radius:15px;
+    background:#edf7f1;
+    text-align:center;
+}
+
+/* =========================
+   TOOLS
+========================= */
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.tool{
+    background:white;
+    padding:22px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
+
+.tool h3{
+    color:var(--primary);
+    margin-bottom:12px;
+}
+
+.tool input{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid var(--border);
+    border-radius:8px;
+}
+
+/* =========================
+   UPDATES
+========================= */
+
+.update{
+    background:white;
+    border-radius:13px;
+    padding:15px;
+    margin-bottom:10px;
+    border-right:4px solid var(--primary);
+}
+
+.update small{
+    color:var(--muted);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:var(--primary);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    margin-top:30px;
+}
+
+footer p{
+    opacity:.85;
+    margin-top:5px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    background:white;
+    width:100%;
+    max-width:650px;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:18px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    border:0;
+    background:#f1f1f1;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    font-size:20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .subject-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tools-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .logo{
+        font-size:23px;
+    }
+
+    main{
+        padding:18px 10px 40px;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .cards,
+    .subject-grid,
+    .tools-grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .file-card{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .section-title{
+        font-size:21px;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
-    <h1>🎓 منصة طلاب كلية العلوم الإدارية</h1>
-    <p>دفعة 023 — جامعة بحري</p>
+    <div class="header-content">
+
+        <div class="logo">
+            🎓 Student Hub
+        </div>
+
+        <div class="subtitle">
+            منصة طلاب كلية العلوم الإدارية
+        </div>
+
+        <div class="badge">
+            دفعة 023 • جامعة بحري
+        </div>
+
+        <div class="search-area">
+            <input
+                type="text"
+                id="globalSearch"
+                placeholder="🔎 ابحث عن مادة، ملف، امتحان، إعلان..."
+                oninput="globalSearch()"
+            >
+        </div>
+
+    </div>
 </header>
 
-<main class="container">
 
-    <!-- البحث -->
-    <div class="search-box">
-        <input
-            type="search"
-            placeholder="🔎 ابحث في المنصة..."
-        >
-    </div>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-    <!-- الأقسام الأساسية -->
-    <h2 class="section-title">📚 الأكاديمية</h2>
+<nav>
 
-    <div class="grid">
+<div class="nav-container">
 
-        <a href="#" class="card">
-            <div class="icon">📚</div>
-            <h3>المواد الدراسية</h3>
-            <p>المحاضرات والملفات والملخصات</p>
-        </a>
+<button class="nav-btn active" onclick="showPage('home',this)">
+الرئيسية
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">📝</div>
-            <h3>الامتحانات</h3>
-            <p>امتحانات السنوات السابقة</p>
-        </a>
+<button class="nav-btn" onclick="showPage('subjects',this)">
+📚 المواد
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">📖</div>
-            <h3>الملخصات</h3>
-            <p>مراجعات سريعة للمواد</p>
-        </a>
+<button class="nav-btn" onclick="showPage('exams',this)">
+📝 الامتحانات
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">📂</div>
-            <h3>مكتبة الملفات</h3>
-            <p>ملفات ومراجع الدفعة</p>
-        </a>
+<button class="nav-btn" onclick="showPage('library',this)">
+📂 المكتبة
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">📅</div>
-            <h3>الجدول</h3>
-            <p>المحاضرات والامتحانات</p>
-        </a>
+<button class="nav-btn" onclick="showPage('schedule',this)">
+📅 الجدول
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">📢</div>
-            <h3>الإعلانات</h3>
-            <p>آخر أخبار وإعلانات الدفعة</p>
-        </a>
+<button class="nav-btn" onclick="showPage('announcements',this)">
+📢 الإعلانات
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">🧠</div>
-            <h3>الاختبارات</h3>
-            <p>اختبارات إلكترونية</p>
-        </a>
+<button class="nav-btn" onclick="showPage('quiz',this)">
+🧠 الاختبارات
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">🧮</div>
-            <h3>حاسبة GPA</h3>
-            <p>احسب معدلك الدراسي</p>
-        </a>
+<button class="nav-btn" onclick="showPage('gpa',this)">
+🧮 GPA
+</button>
 
-    </div>
+<button class="nav-btn" onclick="showPage('assignments',this)">
+📋 الواجبات
+</button>
 
-    <!-- خدمات الطالب -->
-    <h2 class="section-title">🛠️ خدمات الطالب</h2>
+<button class="nav-btn" onclick="showPage('tools',this)">
+⏱️ الأدوات
+</button>
 
-    <div class="grid">
+<button class="nav-btn" onclick="showPage('opportunities',this)">
+💼 الفرص
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">📋</div>
-            <h3>الواجبات</h3>
-            <p>التكاليف والمواعيد</p>
-        </a>
+<button class="nav-btn" onclick="showPage('guide',this)">
+🎓 دليل الطالب
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">⏱️</div>
-            <h3>أدوات الدراسة</h3>
-            <p>مؤقت ومساعدات دراسية</p>
-        </a>
+<button class="nav-btn" onclick="showPage('community',this)">
+🤝 المجتمع
+</button>
 
-        <a href="#" class="card">
-            <div class="icon">🤝</div>
-            <h3>مجتمع الطلاب</h3>
-            <p>تواصل وأسئلة الطلاب</p>
-        </a>
+</div>
 
-        <a href="#" class="card">
-            <div class="icon">💼</div>
-            <h3>وظائف وتدريب</h3>
-            <p>فرص العمل والتدريب</p>
-        </a>
+</nav>
 
-        <a href="#" class="card">
-            <div class="icon">🎓</div>
-            <h3>منح ودورات</h3>
-            <p>فرص تعليمية وتطويرية</p>
-        </a>
 
-        <a href="#" class="card">
-            <div class="icon">📚</div>
-            <h3>دليل الطالب</h3>
-            <p>دليل وإرشادات الجامعة</p>
-        </a>
+<main>
 
-    </div>
+<!-- =========================
+     HOME
+========================= -->
 
-    <!-- آخر التحديثات -->
-    <h2 class="section-title">🔔 آخر التحديثات</h2>
+<section id="home" class="page active">
 
-    <div class="updates">
+<div class="hero">
 
-        <div class="update">
-            <strong>📄 سيتم إضافة الامتحانات السابقة</strong>
-            <span>آخر التحديثات</span>
-        </div>
+<h1>
+🎓 مرحباً بك في Student Hub
+</h1>
 
-        <div class="update">
-            <strong>📚 سيتم إضافة المواد الدراسية</strong>
-            <span>آخر التحديثات</span>
-        </div>
+<p>
+المنصة الرقمية لطلاب دفعة 023 — جامعة بحري
+</p>
 
-        <div class="update">
-            <strong>📅 سيتم إضافة الجدول الدراسي</strong>
-            <span>آخر التحديثات</span>
-        </div>
+<p style="margin-top:10px">
+مكان واحد للمحاضرات والملخصات والامتحانات والجدول والإعلانات
+وأدوات الدراسة والفرص الأكاديمية والمهنية.
+</p>
 
-    </div>
+</div>
 
-</main>
 
-<footer>
-    <p>🎓 منصة طلاب كلية العلوم الإدارية</p>
-    <p>دفعة 023 — جامعة بحري</p>
-    <p>جميع الحقوق محفوظة © 2026</p>
-</footer>
+<div class="cards">
 
-</body>
-  </html>
+<div class="card">
+<div class="card-icon">📚</div>
+<h3>المواد الدراسية</h3>
+<p>الوصول إلى المواد التسع وتنظيم موارد كل مادة.</p>
+<button class="btn" onclick="goTo('subjects')">
+فتح المواد
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">📝</div>
+<h3>بنك الامتحانات</h3>
+<p>الامتحانات السابقة والمراجعات والأسئلة.</p>
+<button class="btn" onclick="goTo('exams')">
+فتح الامتحانات
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">📅</div>
+<h3>الجدول</h3>
+<p>جدول المحاضرات والامتحانات والمواعيد المهمة.</p>
+<button class="btn" onclick="goTo('schedule')">
+فتح الجدول
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">🧮</div>
+<h3>حاسبة GPA</h3>
+<p>احسب المعدل الفصلي والتراكمي بسهولة.</p>
+<button class="btn" onclick="goTo('gpa')">
+حساب GPA
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">🧠</div>
+<h3>اختبارات إلكترونية</h3>
+<p>اختبر معلوماتك واحصل على النتيجة مباشرة.</p>
+<button class="btn" onclick="goTo('quiz')">
+ابدأ اختبار
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">📢</div>
+<h3>آخر الإعلانات</h3>
+<p>تابع تحديثات الدفعة المهمة.</p>
+<button class="btn" onclick="goTo('announcements')">
+الإعلانات
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">📂</div>
+<h3>المكتبة</h3>
+<p>ملفات PDF وWord والمحاضرات والمراجع.</p>
+<button class="btn" onclick="goTo('library')">
+فتح المكتبة
+</button>
+</div>
+
+
+<div class="card">
+<div class="card-icon">💼</div>
+<h3>فرص الطلاب</h3>
+<p>تدريب ودورات ومنح وفرص مهنية.</p>
+<button class="btn" onclick="goTo('opportunities')">
+استكشاف
+</button>
+</div>
+
+</div>
+
+
+<div style="margin-top:30px">
+
+<h2 class="section-title">
+🔔 آخر التحديثات
+</h2>
+
+<div id="homeUpdates"></div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SUBJECTS
+========================= -->
+
+<section id="subjects" class="page">
+
+<h2 class="section-title">
+📚 المواد الدراسية
+</h2>
+
+<p class="section-description">
+المواد التسع لطلاب الدفعة، ويمكن لاحقاً إضافة المحاضرات والملخصات
+والامتحانات لكل مادة بشكل مستقل.
+</p>
+
+<div class="subject-grid" id="subjectsContainer"></div>
+
+</section>
+
+
+<!-- =========================
+     EXAMS
+========================= -->
+
+<section id="exams" class="page">
+
+<h2 class="section-title">
+📝 بنك الامتحانات
+</h2>
+
+<p class="section-description">
+هنا سيتم تنظيم الامتحانات حسب المادة والسنة والفصل ونوع الامتحان.
+</p>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>المادة</label>
+
+<select id="examSubject">
+
+<option>محاسبة</option>
+<option>اقتصاد</option>
+<option>إدارة</option>
+<option>رياضيات</option>
+<option>حاسوب</option>
+<option>دراسات مصرفية</option>
+<option>دراسات جامعية</option>
+<option>لغة إنجليزية</option>
+<option>مادة اختيارية</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>السنة</label>
+
+<select id="examYear">
+
+<option>2026</option>
+<option>2025</option>
+<option>2024</option>
+<option>2023</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="examList"></div>
+
+</section>
+
+
+<!-- =========================
+     LIBRARY
+========================= -->
+
+<section id="library" class="page">
+
+<h2 class="section-title">
+📂 المكتبة الأكاديمية
+</h2>
+
+<p class="section-description">
+المكتبة الرئيسية للملفات والمراجع والمحاضرات.
+</p>
+
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>ابحث في المكتبة</label>
+
+<input
+type="text"
+id="librarySearch"
+placeholder="مثال: محاسبة، اقتصاد، ملخص..."
+oninput="filterLibrary()"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>نوع الملف</label>
+
+<select id="libraryType" onchange="filterLibrary()">
+
+<option value="all">الكل</option>
+<option value="pdf">PDF</option>
+<option value="word">Word</option>
+<option value="video">فيديو</option>
+<option value="link">رابط</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="libraryList"></div>
+
+</section>
+
+
+<!-- =========================
+     SCHEDULE
+========================= -->
+
+<section id="schedule" class="page">
+
+<h2 class="section-title">
+📅 الجدول الذكي
+</h2>
+
+<p class="section-description">
+جدول المحاضرات والمواعيد المهمة للدفعة.
+</p>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>اليوم</th>
+<th>الوقت</th>
+<th>المادة</th>
+<th>النوع</th>
+<th>المكان</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>السبت</td>
+<td>09:00</td>
+<td>محاسبة</td>
+<td>محاضرة</td>
+<td>القاعة</td>
+</tr>
+
+<tr>
+<td>الأحد</td>
+<td>10:00</td>
+<td>اقتصاد</td>
+<td>محاضرة</td>
+<td>القاعة</td>
+</tr>
+
+<tr>
+<td>الإثنين</td>
+<td>09:00</td>
+<td>إدارة</td>
+<td>محاضرة</td>
+<td>القاعة</td>
+</tr>
+
+<tr>
+<td>الثلاثاء</td>
+<td>11:00</td>
+<td>دراسات مصرفية</td>
+<td>محاضرة</td>
+<td>القاعة</td>
+</tr>
+
+<tr>
+<td>الأربعاء</td>
+<td>10:00</td>
+<td>دراسات جامعية</td>
+<td>محاضرة</td>
+<td>القاعة</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ANNOUNCEMENTS
+========================= -->
+
+<section id="announcements" class="page">
+
+<h2 class="section-title">
+📢 مركز الإعلانات
+</h2>
+
+<div id="announcementList"></div>
+
+</section>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section id="quiz" class="page">
+
+<h2 class="section-title">
+🧠 الاختبارات الإلكترونية
+</h2>
+
+<p class="section-description">
+اختبار تجريبي بسيط. سنوسع بنك الأسئلة لاحقاً ليشمل جميع المواد.
+</p>
+
+<div id="quizContainer"></div>
+
+</section>
+
+
+<!-- =========================
+     GPA
+========================= -->
+
+<section id="gpa" class="page">
+
+<h2 class="section-title">
+🧮 حاسبة GPA
+</h2>
+
+<p class="section-description">
+أدخل ساعات المادة والدرجة أو التقدير لحساب المعدل.
+</p>
+
+
+<div class="form-box">
+
+<div id="gpaRows">
+
+<div class="form-grid gpa-row">
+
+<div class="form-group">
+<label>المادة</label>
+<input type="text" placeholder="اسم المادة">
+</div>
+
+<div class="form-group">
+<label>الساعات</label>
+<input type="number" class="hours" min="1" value="3">
+</div>
+
+<div class="form-group">
+<label>الدرجة من 100</label>
+<input type="number" class="grade" min="0" max="100" value="80">
+</div>
+
+</div>
+
+</div>
+
+
+<button class="btn secondary" onclick="addGPARow()">
++ إضافة مادة
+</button>
+
+<button class="btn" onclick="calculateGPA()">
+احسب GPA
+</button>
+
+
+<div id="gpaResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     ASSIGNMENTS
+========================= -->
+
+<section id="assignments" class="page">
+
+<h2 class="section-title">
+📋 الواجبات والتكاليف
+</h2>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>المادة</label>
+<input id="assignmentSubject" placeholder="اسم المادة">
+</div>
+
+<div class="form-group">
+<label>الواجب</label>
+<input id="assignmentName" placeholder="اسم الواجب">
+</div>
+
+<div class="form-group">
+<label>آخر موعد</label>
+<input id="assignmentDate" type="date">
+</div>
+
+</div>
+
+<br>
+
+<button class="btn" onclick="addAssignment()">
+إضافة الواجب
+</button>
+
+</div>
+
+
+<div id="assignmentList"></div>
+
+</section>
+
+
+<!-- =========================
+     TOOLS
+========================= -->
+
+<section id="tools" class="page">
+
+<h2 class="section-title">
+⏱️ أدوات الطالب
+</h2>
+
+<div class="tools-grid">
+
+
+<div class="tool">
+
+<h3>🧮 النسبة المئوية</h3>
+
+<input id="percentValue" type="number" placeholder="القيمة">
+
+<input id="percentTotal" type="number" placeholder="من">
+
+<button class="btn" onclick="calculatePercent()">
+احسب
+</button>
+
+<p id="percentResult"></p>
+
+</div>
+
+
+<div class="tool">
+
+<h3>💰 الفائدة البسيطة</h3>
+
+<input id="principal" type="number" placeholder="رأس المال">
+
+<input id="rate" type="number" placeholder="نسبة الفائدة %">
+
+<input id="years" type="number" placeholder="السنوات">
+
+<button class="btn" onclick="calculateInterest()">
+احسب
+</button>
+
+<p id="interestResult"></p>
+
+</div>
+
+
+<div class="tool">
+
+<h3>⏱️ مؤقت الدراسة</h3>
+
+<p id="timerDisplay" style="font-size:35px;text-align:center;margin:15px">
+25:00
+</p>
+
+<button class="btn" onclick="startTimer()">
+اب
