@@ -147,7 +147,7 @@ section{margin-bottom:45px;}
 .section-title h2{color:var(--primary);font-size:28px;font-weight:800;margin-bottom:5px;}
 .section-title p{color:var(--muted);font-size:15px;}
 
-/* صندوق العداد التنازلي للأقسام */
+/* صندوق العداد التنازلي */
 .countdown-box{
     background:linear-gradient(135deg, var(--primary), var(--primary2));
     color: white;border-radius: 24px;padding: 30px;text-align: center;margin-bottom: 25px;
@@ -162,7 +162,7 @@ section{margin-bottom:45px;}
 .time-card span{display: block;font-size: 26px;font-weight: 800;color: var(--gold);}
 .time-card label{font-size: 13px;color: #cbd5e1;}
 
-/* تنسيق بطاقة عمر المنصة المستقلة */
+/* صندوق عمر المنصة */
 .platform-age-box {
     background: var(--white);
     border: 1px solid var(--border);
@@ -379,10 +379,10 @@ footer{background:var(--primary);color:white;text-align:center;padding:45px 20px
         <h4>🌐 عمر المنصة منذ الانطلاق</h4>
         <p>موعد الإطلاق الرسمي: 1 أكتوبر 2026</p>
         <div class="platform-age-timers">
-            <div class="age-card"><span id="age-days">0</span><label>يوم</label></div>
-            <div class="age-card"><span id="age-hours">0</span><label>ساعة</label></div>
-            <div class="age-card"><span id="age-minutes">0</span><label>دقيقة</label></div>
-            <div class="age-card"><span id="age-seconds">0</span><label>ثانية</label></div>
+            <div class="age-card"><span id="age-days">00</span><label>يوم</label></div>
+            <div class="age-card"><span id="age-hours">00</span><label>ساعة</label></div>
+            <div class="age-card"><span id="age-minutes">00</span><label>دقيقة</label></div>
+            <div class="age-card"><span id="age-seconds">00</span><label>ثانية</label></div>
         </div>
     </div>
 </section>
@@ -414,7 +414,7 @@ footer{background:var(--primary);color:white;text-align:center;padding:45px 20px
 
     <div class="cards">
         <div class="card">
-            <div class="icon">🏛️</div>
+            <div class="icon">🏛️️</div>
             <h3>عن الكلية</h3>
             <p>تعرف على نبذة تفصيلية عن كلية العلوم الإدارية وأهدافها الأكاديمية.</p>
             <a class="btn" href="about.html">استعراض النبذة</a>
@@ -533,4 +533,138 @@ footer{background:var(--primary);color:white;text-align:center;padding:45px 20px
 <button id="backToTop" title="العودة للأعلى">⬆</button>
 
 <div class="modal" id="aboutModal">
- 
+    <div class="modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <h3>من نحن 🎓</h3>
+        <p>منصة الريان هي منصة طلابية تعليمية متكاملة تهدف إلى تسهيل الوصول للملفات والمراجع وخدمة طلاب دفعة 023 بكلية العلوم الإدارية.</p>
+        <div class="creators-box">
+            <p>✨ <strong>المؤسس:</strong> عمر عبد المنعم محمد احمد</p>
+            <p>✨ <strong>الزميلة المشاركة:</strong> ريان عبد المطلب البشير</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // 1. الوضع الليلي والصباحي
+    const themeBtn = document.getElementById('themeToggleBtn');
+    if (themeBtn) {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.innerText = '☀️ الوضع الصباحي';
+        }
+
+        themeBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeBtn.innerText = '☀️ الوضع الصباحي';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeBtn.innerText = '🌙 الوضع الليلي';
+            }
+        });
+    }
+
+    // 2. نافذة "من نحن"
+    const aboutBtn = document.getElementById('aboutUsBtn');
+    const aboutModal = document.getElementById('aboutModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    if (aboutBtn && aboutModal) {
+        aboutBtn.addEventListener('click', function() {
+            aboutModal.style.display = 'flex';
+        });
+    }
+
+    if (closeBtn && aboutModal) {
+        closeBtn.addEventListener('click', function() {
+            aboutModal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(e) {
+        if (e.target === aboutModal) {
+            aboutModal.style.display = 'none';
+        }
+    });
+
+    // 3. العداد التنازلي لبداية الامتحانات (9 يناير 2027)
+    const examDate = new Date("January 9, 2027 00:00:00").getTime();
+    function updateExamCountdown() {
+        const now = new Date().getTime();
+        const diff = examDate - now;
+
+        if (diff > 0) {
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (document.getElementById("days")) document.getElementById("days").innerText = String(d).padStart(2, '0');
+            if (document.getElementById("hours")) document.getElementById("hours").innerText = String(h).padStart(2, '0');
+            if (document.getElementById("minutes")) document.getElementById("minutes").innerText = String(m).padStart(2, '0');
+            if (document.getElementById("seconds")) document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+        }
+    }
+    setInterval(updateExamCountdown, 1000);
+    updateExamCountdown();
+
+    // 4. العداد التصاعدي المستقل لعمر المنصة (منذ 1 أكتوبر 2026)
+    const launchDate = new Date("October 1, 2026 00:00:00").getTime();
+    function updatePlatformAge() {
+        const now = new Date().getTime();
+        const diff = now - launchDate;
+
+        if (diff > 0) {
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (document.getElementById("age-days")) document.getElementById("age-days").innerText = String(d).padStart(2, '0');
+            if (document.getElementById("age-hours")) document.getElementById("age-hours").innerText = String(h).padStart(2, '0');
+            if (document.getElementById("age-minutes")) document.getElementById("age-minutes").innerText = String(m).padStart(2, '0');
+            if (document.getElementById("age-seconds")) document.getElementById("age-seconds").innerText = String(s).padStart(2, '0');
+        }
+    }
+    setInterval(updatePlatformAge, 1000);
+    updatePlatformAge();
+
+    // 5. زر العودة للأعلى
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 6. مشاركة الموقع
+    const shareBtn = document.getElementById('shareSiteBtn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'منصة الريان',
+                    text: 'تفضل بزيارة منصة الريان الطلابية لدفعة 023',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('تم نسخ رابط المنصة بنجاح!');
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>
