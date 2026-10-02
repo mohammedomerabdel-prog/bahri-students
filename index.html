@@ -1,1239 +1,3910 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Student Hub | دفعة 023</title>
+<title>الريان | المنصة الطلابية - دفعة 023</title>
+
+<meta name="description" content="منصة الريان الطلابية - كلية العلوم الإدارية - دفعة 023">
+<meta name="theme-color" content="#0f172a">
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-:root{
-    --primary:#173b60;
-    --primary2:#245b8f;
-    --light:#f4f7fa;
-    --white:#fff;
-    --text:#243447;
-    --muted:#718096;
-    --border:#e2e8f0;
-    --green:#198754;
-    --red:#dc3545;
-    --yellow:#f59e0b;
-    --shadow:0 8px 25px rgba(23,59,96,.08);
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Tahoma,Arial,sans-serif;
-    background:var(--light);
-    color:var(--text);
-    line-height:1.7;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:#f0f4f8;
+    color:#1e293b;
+    line-height:1.8;
+    transition:.3s;
 }
 
-button,input,select,textarea{
-    font-family:inherit;
+:root{
+    --primary:#0f172a;
+    --primary2:#1e3a8a;
+    --accent:#3b82f6;
+    --gold:#f59e0b;
+    --green:#10b981;
+    --red:#ef4444;
+    --white:#ffffff;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --soft:#eff6ff;
+    --shadow:
+        0 10px 25px -5px rgba(15,23,42,.08),
+        0 8px 10px -6px rgba(15,23,42,.08);
 }
 
-button{
-    cursor:pointer;
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark-mode{
+    background:#0b0f19;
+    color:#f1f5f9;
+
+    --primary:#f8fafc;
+    --primary2:#38bdf8;
+    --white:#111827;
+    --muted:#94a3b8;
+    --border:#1f2937;
+    --soft:#1e293b;
+
+    --shadow:
+        0 10px 25px -5px rgba(0,0,0,.5);
 }
+
+body.dark-mode nav{
+    background:rgba(17,24,39,.96);
+}
+
+body.dark-mode .nav-container a{
+    color:#e2e8f0;
+}
+
+body.dark-mode .nav-container a:hover,
+body.dark-mode .nav-container a.active{
+    background:#0284c7;
+    color:#fff;
+}
+
+body.dark-mode .stat strong{
+    color:#38bdf8;
+}
+
+body.dark-mode .card .icon{
+    background:#1e293b;
+}
+
+body.dark-mode table th{
+    background:#1e293b;
+}
+
+body.dark-mode .creators-box,
+body.dark-mode .announcement,
+body.dark-mode .calendar-card,
+body.dark-mode .question-box,
+body.dark-mode .gpa-box,
+body.dark-mode .search-box{
+    background:#111827;
+}
+
+body.dark-mode .modal-content{
+    background:#111827;
+    color:#fff;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header{
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
-    color:white;
-    padding:28px 20px;
-    box-shadow:0 4px 18px rgba(0,0,0,.12);
-}
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary) 0%,
+            var(--primary2) 100%
+        );
 
-.header-content{
-    max-width:1200px;
-    margin:auto;
+    color:#fff;
+    padding:35px 20px;
     text-align:center;
+    position:relative;
+    overflow:hidden;
 }
 
 .logo{
-    font-size:30px;
-    font-weight:bold;
+    font-size:46px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-shadow:0 2px 10px rgba(0,0,0,.3);
 }
 
 .subtitle{
-    opacity:.9;
-    margin-top:5px;
+    color:#93c5fd;
+    margin-top:6px;
+    font-size:16px;
+    font-weight:500;
 }
 
 .badge{
     display:inline-block;
-    background:rgba(255,255,255,.15);
-    padding:5px 14px;
+    margin-top:14px;
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #d97706
+        );
+
+    color:#fff;
+    padding:6px 22px;
     border-radius:30px;
-    margin-top:10px;
+    font-weight:bold;
     font-size:14px;
+    box-shadow:0 4px 12px rgba(245,158,11,.3);
 }
 
-.search-area{
-    max-width:850px;
-    margin:25px auto 0;
+/* =========================================================
+   THEME BUTTON
+========================================================= */
+
+.theme-toggle-btn{
+    position:absolute;
+    top:20px;
+    left:20px;
+
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+
+    color:#fff;
+    padding:8px 14px;
+    border-radius:12px;
+
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+
+    backdrop-filter:blur(5px);
+    transition:.2s;
+    z-index:10;
 }
 
-.search-area input{
-    width:100%;
-    padding:16px 20px;
-    border:none;
-    border-radius:14px;
-    outline:none;
-    font-size:16px;
+.theme-toggle-btn:hover{
+    background:rgba(255,255,255,.25);
 }
+
+/* =========================================================
+   TICKER
+========================================================= */
+
+.ticker-container{
+    background:#1e293b;
+    color:#f8fafc;
+
+    padding:10px 20px;
+    font-size:14px;
+
+    overflow:hidden;
+    white-space:nowrap;
+
+    border-bottom:2px solid var(--gold);
+
+    display:flex;
+    align-items:center;
+}
+
+.ticker-title{
+    background:var(--gold);
+    color:#78350f;
+
+    padding:2px 10px;
+    border-radius:6px;
+
+    font-weight:bold;
+    margin-left:15px;
+    font-size:13px;
+
+    flex-shrink:0;
+}
+
+.ticker-text{
+    display:inline-block;
+    animation:tickerAnim 28s linear infinite;
+}
+
+@keyframes tickerAnim{
+    0%{
+        transform:translateX(100%);
+    }
+
+    100%{
+        transform:translateX(-100%);
+    }
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 nav{
-    background:white;
-    border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+
     position:sticky;
     top:0;
     z-index:100;
+
+    box-shadow:0 4px 20px rgba(0,0,0,.05);
+    border-bottom:1px solid var(--border);
+
+    transition:.3s;
 }
 
 .nav-container{
     max-width:1200px;
     margin:auto;
+
     display:flex;
-    gap:5px;
+    gap:10px;
+
+    padding:12px 15px;
+
     overflow-x:auto;
-    padding:8px;
 }
 
-.nav-btn{
-    background:white;
+.nav-container::-webkit-scrollbar{
+    height:4px;
+}
+
+.nav-container a{
+    text-decoration:none;
     color:var(--primary);
-    border:0;
-    padding:10px 14px;
-    border-radius:10px;
+
+    padding:8px 16px;
+    border-radius:12px;
+
     white-space:nowrap;
+
+    font-weight:600;
+    font-size:14px;
+
+    transition:.3s;
 }
 
-.nav-btn:hover,
-.nav-btn.active{
-    background:var(--primary);
-    color:white;
+.nav-container a:hover,
+.nav-container a.active{
+    background:var(--primary2);
+    color:#fff;
 }
 
-main{
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
     max-width:1200px;
     margin:auto;
-    padding:25px 15px 50px;
+    padding:35px 20px;
 }
 
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
+section{
+    margin-bottom:45px;
 }
 
 .section-title{
-    color:var(--primary);
-    margin-bottom:18px;
-    font-size:24px;
-}
-
-.section-description{
-    color:var(--muted);
+    text-align:center;
     margin-bottom:25px;
 }
 
-.hero,
-.card,
-.subject-card,
-.tool,
-.form-box,
-.file-card,
-.announcement,
-.update,
-.assignment-card{
-    background:white;
+.section-title h2{
+    color:var(--primary);
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.section-title p{
+    color:var(--muted);
+    font-size:15px;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-section{
+    margin-bottom:30px;
+}
+
+.search-box{
+    background:var(--white);
     border:1px solid var(--border);
+    border-radius:22px;
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.search-icon{
+    font-size:28px;
+}
+
+.search-box input{
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:var(--primary);
+    font-size:16px;
+}
+
+.search-results{
+    margin-top:12px;
+    display:none;
+}
+
+.search-result{
+    background:var(--white);
+    border:1px solid var(--border);
+
+    padding:14px 18px;
+    border-radius:14px;
+
+    margin-bottom:8px;
+
     box-shadow:var(--shadow);
 }
 
-.hero{
-    border-radius:20px;
-    padding:30px;
-    margin-bottom:25px;
+.search-result a{
+    color:var(--primary2);
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.hero h1{
+.search-result small{
+    display:block;
+    color:var(--muted);
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-box{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:#fff;
+
+    border-radius:24px;
+    padding:30px;
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+    max-width:750px;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.15);
+}
+
+.countdown-box h3{
+    font-size:22px;
+    color:var(--gold);
+    margin-bottom:20px;
+}
+
+.countdown-timers{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.time-card{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+
+    padding:12px 18px;
+    border-radius:14px;
+
+    min-width:80px;
+}
+
+.time-card span{
+    display:block;
+    font-size:26px;
+    font-weight:800;
+    color:var(--gold);
+}
+
+.time-card label{
+    font-size:13px;
+    color:#cbd5e1;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    background:var(--white);
+    border-radius:24px;
+
+    padding:45px 30px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+}
+
+.hero h2{
     color:var(--primary);
+    font-size:32px;
+    margin-bottom:12px;
+    font-weight:800;
 }
 
 .hero p{
     color:var(--muted);
+    max-width:750px;
+
+    margin:0 auto 30px;
+
+    font-size:16px;
 }
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:25px;
+}
+
+.quick-action{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:#fff;
+
+    padding:22px 15px;
+    border-radius:18px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.quick-action:hover{
+    transform:translateY(-5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary2),
+            var(--accent)
+        );
+}
+
+.quick-action span{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+
+    margin-top:25px;
+}
+
+.stat{
+    background:var(--white);
+
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+.stat strong{
+    display:block;
+
+    font-size:32px;
+    color:var(--primary2);
+
+    font-weight:900;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
 .card{
-    border-radius:16px;
-    padding:20px;
-    transition:.2s;
+    background:var(--white);
+
+    border:1px solid var(--border);
+    border-radius:22px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    transition:.3s;
 }
 
 .card:hover{
-    transform:translateY(-3px);
+    transform:translateY(-5px);
 }
 
-.card-icon{
-    font-size:30px;
-    margin-bottom:10px;
+.card .icon{
+    font-size:42px;
+
+    margin-bottom:15px;
+
+    background:#eff6ff;
+
+    width:80px;
+    height:80px;
+
+    line-height:80px;
+
+    border-radius:50%;
+
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.card h3,
-.subject-card h3,
-.tool h3{
+.card h3{
     color:var(--primary);
+    margin-bottom:10px;
+    font-size:20px;
 }
 
 .card p{
     color:var(--muted);
     font-size:14px;
+    margin-bottom:20px;
+
+    flex-grow:1;
 }
 
-.card button{
-    margin-top:15px;
-}
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .btn{
-    border:0;
-    border-radius:10px;
-    padding:10px 16px;
-    background:var(--primary);
-    color:white;
+    display:inline-block;
+
+    background:var(--primary2);
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
     font-size:14px;
+    font-weight:bold;
+
+    transition:.2s;
+
+    margin-top:8px;
+
+    border:none;
+    cursor:pointer;
 }
 
 .btn:hover{
-    opacity:.9;
+    background:var(--primary);
+    transform:translateY(-1px);
 }
 
-.btn.secondary{
-    background:#e8eef5;
+.btn-highlight{
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #059669
+        ) !important;
+
+    box-shadow:
+        0 4px 15px rgba(16,185,129,.4);
+}
+
+/* =========================================================
+   ANNOUNCEMENTS
+========================================================= */
+
+.announcements{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.announcement{
+    background:var(--white);
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    transition:.3s;
+}
+
+.announcement:hover{
+    transform:translateY(-4px);
+}
+
+.announcement .tag{
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    background:#dbeafe;
+    color:#1d4ed8;
+
+    margin-bottom:10px;
+}
+
+.announcement.important .tag{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.announcement h3{
     color:var(--primary);
+    font-size:18px;
+
+    margin-bottom:8px;
 }
 
-.btn.green{
-    background:var(--green);
+.announcement p{
+    color:var(--muted);
+    font-size:14px;
 }
 
-.btn.red{
-    background:var(--red);
+.announcement-date{
+    color:var(--muted);
+    font-size:12px;
+
+    margin-top:12px;
+
+    display:block;
 }
 
-.btn.yellow{
-    background:var(--yellow);
-}
+/* =========================================================
+   CALENDAR
+========================================================= */
 
-.subject-grid{
+.calendar-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
 }
 
-.subject-card{
-    border-radius:18px;
-    padding:22px;
-}
+.calendar-card{
+    background:var(--white);
 
-.subject-number{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#eaf1f8;
-    color:var(--primary);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.subject-card p{
-    color:var(--muted);
-}
-
-.subject-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin-top:14px;
-}
-
-.subject-links button{
     border:1px solid var(--border);
-    background:white;
-    color:var(--primary);
-    padding:7px 10px;
-    border-radius:8px;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
 }
 
-.table-wrap{
+.calendar-date{
+    font-size:14px;
+    color:var(--primary2);
+    font-weight:bold;
+}
+
+.calendar-card h3{
+    color:var(--primary);
+    font-size:18px;
+    margin:5px 0;
+}
+
+.calendar-card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================================================
+   SCHEDULE
+========================================================= */
+
+.table-box{
     overflow-x:auto;
-    background:white;
-    border-radius:16px;
+
+    background:var(--white);
+
+    border-radius:22px;
+
+    border:1px solid var(--border);
+
     box-shadow:var(--shadow);
 }
 
 table{
     width:100%;
+    min-width:700px;
     border-collapse:collapse;
-    min-width:650px;
 }
 
-th,td{
-    padding:14px;
+th,
+td{
+    padding:18px 15px;
+
     text-align:center;
+
     border-bottom:1px solid var(--border);
+
+    font-size:15px;
 }
 
 th{
-    background:#edf3f8;
+    background:var(--primary);
+    color:#fff;
+}
+
+td{
     color:var(--primary);
 }
 
-.announcement{
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
-    border-right:5px solid var(--primary);
+.today-row{
+    background:rgba(59,130,246,.08);
+    font-weight:bold;
 }
 
-.announcement.urgent{
-    border-right-color:var(--red);
+/* =========================================================
+   LIBRARY
+========================================================= */
+
+.library{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:#fff;
+
+    border-radius:24px;
+
+    padding:45px 30px;
+
+    text-align:center;
 }
 
-.announcement.academic{
-    border-right-color:var(--green);
+.library h2{
+    margin-bottom:10px;
 }
 
-.announcement.important{
-    border-right-color:var(--yellow);
+.library p{
+    color:#dbeafe;
 }
 
-.announcement-date,
-.file-info p,
-.muted{
-    color:var(--muted);
-    font-size:13px;
-}
-
-.file-card{
-    padding:18px;
-    border-radius:14px;
+.library-buttons{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:12px;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
 }
 
-.form-box{
-    padding:22px;
-    border-radius:16px;
+.library-btn{
+    display:inline-block;
+
+    text-decoration:none;
+
+    background:var(--gold);
+    color:#78350f;
+
+    padding:14px 30px;
+
+    border-radius:14px;
+
+    font-weight:800;
+
+    margin-top:15px;
+
+    box-shadow:
+        0 6px 20px rgba(245,158,11,.4);
+}
+
+.library-btn.secondary{
+    background:#fff;
+    color:var(--primary2);
+}
+
+/* =========================================================
+   QUESTION BANK
+========================================================= */
+
+.question-box{
+    background:var(--white);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    max-width:850px;
+
+    margin:auto;
+}
+
+.question-number{
+    color:var(--primary2);
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+.question-text{
+    color:var(--primary);
+    font-size:19px;
+    font-weight:700;
+
     margin-bottom:20px;
 }
 
-.form-grid{
+.answers{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 
-.form-group label{
-    display:block;
-    margin-bottom:6px;
-    font-weight:bold;
+.answer{
+    background:var(--soft);
+
+    border:1px solid var(--border);
+
+    padding:12px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
     color:var(--primary);
+
+    transition:.2s;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
-    width:100%;
-    padding:11px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    outline:none;
+.answer:hover{
+    border-color:var(--primary2);
 }
 
-.form-group textarea{
-    min-height:100px;
+.answer.correct{
+    background:#dcfce7;
+    color:#166534;
+    border-color:#22c55e;
 }
 
-.gpa-result{
-    background:#edf7f1;
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-    margin-top:20px;
+.answer.wrong{
+    background:#fee2e2;
+    color:#991b1b;
+    border-color:#ef4444;
 }
 
-.gpa-number{
-    font-size:40px;
-    font-weight:bold;
-    color:var(--green);
-}
-
-.quiz-question{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:15px;
-    box-shadow:var(--shadow);
-}
-
-.quiz-option{
-    display:block;
-    padding:10px;
-    margin-top:8px;
-    background:#f5f7fa;
-    border-radius:8px;
-}
-
-.tools-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.tool{
-    padding:22px;
-    border-radius:16px;
-}
-
-.tool input{
-    width:100%;
-    padding:10px;
-    margin-bottom:10px;
-    border:1px solid var(--border);
-    border-radius:8px;
-}
-
-.assignment-card{
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:12px;
-}
-
-footer{
-    background:var(--primary);
-    color:white;
-    text-align:center;
-    padding:30px 15px;
-}
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:500;
-    padding:20px;
-}
-
-.modal.show{
+.question-controls{
     display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+    flex-wrap:wrap;
 }
 
-.modal-content{
-    background:white;
-    width:100%;
-    max-width:650px;
-    max-height:90vh;
-    overflow:auto;
-    border-radius:18px;
-    padding:25px;
-}
-
-.close{
-    border:0;
-    background:#eee;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    font-size:20px;
-}
-
-.empty{
-    background:white;
-    padding:30px;
-    border-radius:15px;
+.question-score{
     text-align:center;
+    margin-top:15px;
     color:var(--muted);
 }
 
-@media(max-width:900px){
-    .cards{
+/* =========================================================
+   GPA
+========================================================= */
+
+.gpa-box{
+    background:var(--white);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.gpa-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:10px;
+
+    margin-bottom:10px;
+}
+
+.gpa-row input,
+.gpa-row select{
+    width:100%;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+    background:transparent;
+
+    color:var(--primary);
+
+    outline:none;
+}
+
+.gpa-result{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:#fff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    text-align:center;
+
+    margin-top:20px;
+}
+
+.gpa-result strong{
+    display:block;
+    font-size:35px;
+    color:var(--gold);
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.links-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.link-card{
+    background:var(--white);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+.link-card .big-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.link-card h3{
+    color:var(--primary);
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.link-card p{
+    color:var(--muted);
+    font-size:14px;
+    margin:8px 0 15px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:var(--primary);
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    margin-top:50px;
+
+    border-top:1px solid rgba(255,255,255,.1);
+}
+
+.footer-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.footer-btn{
+    background:var(--gold);
+
+    color:#78350f;
+
+    border:none;
+
+    padding:10px 24px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.footer-btn:hover{
+    transform:translateY(-2px);
+}
+
+.share-btn{
+    background:var(--accent);
+    color:#fff;
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+#backToTop{
+    position:fixed;
+
+    bottom:25px;
+    right:25px;
+
+    background:var(--primary2);
+
+    color:#fff;
+
+    border:none;
+
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.3);
+
+    z-index:999;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    z-index:1000;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(15,23,42,.7);
+
+    backdrop-filter:blur(5px);
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.modal-content{
+    background:#fff;
+
+    color:var(--primary);
+
+    padding:35px 30px;
+
+    border-radius:24px;
+
+    max-width:520px;
+
+    width:100%;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:
+        0 25px 50px -12px rgba(0,0,0,.25);
+
+    animation:modalPop .3s ease;
+
+    max-height:90vh;
+
+    overflow:auto;
+}
+
+@keyframes modalPop{
+    0%{
+        transform:scale(.9);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.close-modal{
+    position:absolute;
+
+    top:15px;
+    left:20px;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    color:var(--muted);
+
+    font-weight:bold;
+}
+
+.modal-content h3{
+    color:var(--primary2);
+    font-size:24px;
+
+    margin-bottom:15px;
+}
+
+.modal-content p{
+    color:var(--muted);
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+}
+
+.creators-box{
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    padding:15px;
+
+    border-radius:14px;
+
+    margin-top:15px;
+
+    text-align:right;
+}
+
+.creators-box p{
+    margin:6px 0;
+    color:var(--primary);
+    font-weight:600;
+}
+
+/* =========================================================
+   TOAST NOTIFICATION
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    left:25px;
+
+    background:#0f172a;
+    color:#fff;
+
+    padding:14px 20px;
+
+    border-radius:14px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+    transform:translateY(100px);
+
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:2000;
+
+    max-width:330px;
+
+    font-size:14px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+    text-align:center;
+
+    color:var(--muted);
+
+    padding:20px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .subject-grid{
+    .announcements,
+    .calendar-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .tools-grid{
+}
+
+@media(max-width:850px){
+
+    .cards,
+    .links-grid,
+    .quick-actions{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:600px){
+
     .logo{
-        font-size:23px;
+        font-size:36px;
     }
 
-    main{
-        padding:18px 10px 40px;
+    .theme-toggle-btn{
+        position:relative;
+        top:auto;
+        left:auto;
+
+        margin-bottom:15px;
+    }
+
+    .hero{
+        padding:30px 18px;
+    }
+
+    .hero h2{
+        font-size:26px;
     }
 
     .cards,
-    .subject-grid,
-    .tools-grid,
-    .form-grid{
+    .links-grid,
+    .stats,
+    .quick-actions,
+    .announcements,
+    .calendar-grid{
         grid-template-columns:1fr;
     }
 
-    .file-card{
-        flex-direction:column;
-        align-items:flex-start;
+    .answers{
+        grid-template-columns:1fr;
     }
+
+    .gpa-row{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        padding:15px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<header>
-<div class="header-content">
 
-<div class="logo">🎓 Student Hub</div>
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<button
+    class="theme-toggle-btn"
+    id="themeToggleBtn"
+    type="button">
+    🌙 الوضع الليلي
+</button>
+
+<div class="logo">
+    الريان
+</div>
 
 <div class="subtitle">
-منصة طلاب كلية العلوم الإدارية
+    المنصة الطلابية | كلية العلوم الإدارية
 </div>
 
 <div class="badge">
-دفعة 023 • جامعة بحري
+    دفعة 023
 </div>
 
-<div class="search-area">
-<input
-id="globalSearch"
-type="text"
-placeholder="🔎 ابحث عن مادة، ملف، إعلان..."
-oninput="globalSearch()"
->
-</div>
-
-</div>
 </header>
 
-<nav>
-<div class="nav-container">
 
-<button class="nav-btn active" onclick="showPage('home',this)">الرئيسية</button>
-<button class="nav-btn" onclick="showPage('subjects',this)">📚 المواد</button>
-<button class="nav-btn" onclick="showPage('exams',this)">📝 الامتحانات</button>
-<button class="nav-btn" onclick="showPage('library',this)">📂 المكتبة</button>
-<button class="nav-btn" onclick="showPage('schedule',this)">📅 الجدول</button>
-<button class="nav-btn" onclick="showPage('announcements',this)">📢 الإعلانات</button>
-<button class="nav-btn" onclick="showPage('quiz',this)">🧠 الاختبارات</button>
-<button class="nav-btn" onclick="showPage('gpa',this)">🧮 GPA</button>
-<button class="nav-btn" onclick="showPage('assignments',this)">📋 الواجبات</button>
-<button class="nav-btn" onclick="showPage('tools',this)">⏱️ الأدوات</button>
-<button class="nav-btn" onclick="showPage('opportunities',this)">💼 الفرص</button>
-<button class="nav-btn" onclick="showPage('guide',this)">🎓 دليل الطالب</button>
-<button class="nav-btn" onclick="showPage('community',this)">🤝 المجتمع</button>
+<!-- =========================================================
+     TICKER
+========================================================= -->
+
+<div class="ticker-container">
+
+<span class="ticker-title">
+    عاجل 📢
+</span>
+
+<div class="ticker-text">
+    مرحباً بكم في منصة الريان لدفعة 023 - تابعوا الإعلانات والملفات والاختبارات أولاً بأول.
+</div>
 
 </div>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav>
+
+<div class="nav-container">
+
+<a href="index.html" class="active">
+    الرئيسية
+</a>
+
+<a href="subjects.html">
+    المواد
+</a>
+
+<a href="about.html">
+    عن الكلية
+</a>
+
+<a href="results.html">
+    النتيجة
+</a>
+
+<a href="exams.html">
+    الاختبارات
+</a>
+
+<a href="study-tools.html">
+    الوسائل التعليمية
+</a>
+
+<a href="#announcements">
+    الإعلانات
+</a>
+
+<a href="#schedule">
+    الجدول
+</a>
+
+<a href="#academic-calendar">
+    التقويم
+</a>
+
+<a href="#community">
+    التواصل
+</a>
+
+</div>
+
 </nav>
 
-<main>
 
-<!-- HOME -->
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
-<section id="home" class="page active">
+<main class="container">
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<section class="search-section">
+
+<div class="section-title">
+
+<h2>
+    🔎 البحث في المنصة
+</h2>
+
+<p>
+    ابحث عن مادة أو ملف أو إعلان أو خدمة بسرعة
+</p>
+
+</div>
+
+<div class="search-box">
+
+<div class="search-icon">
+    🔎
+</div>
+
+<input
+    type="search"
+    id="siteSearch"
+    placeholder="مثال: محاسبة، إحصاء، امتحانات، جدول..."
+    autocomplete="off">
+
+</div>
+
+<div
+    class="search-results"
+    id="searchResults">
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     COUNTDOWN
+========================================================= -->
+
+<section>
+
+<div class="countdown-box">
+
+<h3>
+    ⏳ العداد التنازلي لبداية الامتحانات
+</h3>
+
+<p style="color:#cbd5e1;margin-bottom:15px;">
+    9 يناير 2027
+</p>
+
+<div class="countdown-timers">
+
+<div class="time-card">
+<span id="days">00</span>
+<label>يوم</label>
+</div>
+
+<div class="time-card">
+<span id="hours">00</span>
+<label>ساعة</label>
+</div>
+
+<div class="time-card">
+<span id="minutes">00</span>
+<label>دقيقة</label>
+</div>
+
+<div class="time-card">
+<span id="seconds">00</span>
+<label>ثانية</label>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section id="home">
 
 <div class="hero">
 
-<h1>🎓 مرحباً بك في Student Hub</h1>
+<h2>
+    مرحباً بكم في منصة الريان 🎓
+</h2>
 
 <p>
-المنصة الرقمية لطلاب دفعة 023 — جامعة بحري
+    منصة طلابية متكاملة تجمع المواد الدراسية،
+    الملفات، الملخصات، النتائج، الاختبارات،
+    الأدوات التعليمية، والإعلانات الخاصة بالدفعة
+    في مكان واحد وبشكل منظم.
 </p>
 
-<p style="margin-top:10px">
-مكان واحد للمواد والمحاضرات والملخصات والامتحانات
-والجدول والإعلانات وأدوات الدراسة.
+
+<div class="quick-actions">
+
+<a
+    class="quick-action"
+    href="subjects.html">
+
+<span>📚</span>
+المواد الدراسية
+
+</a>
+
+
+<a
+    class="quick-action"
+    href="exams.html">
+
+<span>📝</span>
+الاختبارات وبنك الأسئلة
+
+</a>
+
+
+<a
+    class="quick-action"
+    href="results.html">
+
+<span>📊</span>
+النتيجة الأكاديمية
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong>9</strong>
+<span>مواد دراسية</span>
+</div>
+
+<div class="stat">
+<strong>397</strong>
+<span>طالب وطالبة</span>
+</div>
+
+<div class="stat">
+<strong>023</strong>
+<span>رقم الدفعة</span>
+</div>
+
+<div class="stat">
+<strong id="daysSinceLaunch">0</strong>
+<span>يوم من عمر المنصة</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     ANNOUNCEMENTS
+========================================================= -->
+
+<section id="announcements">
+
+<div class="section-title">
+
+<h2>
+    📢 آخر إعلانات الدفعة
+</h2>
+
+<p>
+    أهم المستجدات والتنبيهات التي تهم الطلاب
 </p>
 
 </div>
+
+
+<div class="announcements">
+
+
+<div class="announcement important">
+
+<span class="tag">
+    مهم
+</span>
+
+<h3>
+    📌 متابعة جدول الامتحانات
+</h3>
+
+<p>
+    تابع المنصة باستمرار لمعرفة أي تحديثات
+    تخص مواعيد الامتحانات والمحاضرات.
+</p>
+
+<span class="announcement-date">
+    آخر تحديث: 02 أكتوبر 2026
+</span>
+
+</div>
+
+
+<div class="announcement">
+
+<span class="tag">
+    أكاديمي
+</span>
+
+<h3>
+    📚 تحديث المواد الدراسية
+</h3>
+
+<p>
+    سيتم إضافة المحاضرات والملخصات والملفات
+    الخاصة بالمواد بصورة تدريجية.
+</p>
+
+<span class="announcement-date">
+    02 أكتوبر 2026
+</span>
+
+</div>
+
+
+<div class="announcement">
+
+<span class="tag">
+    منصة
+</span>
+
+<h3>
+    🚀 تطوير منصة الريان
+</h3>
+
+<p>
+    تمت إضافة أدوات جديدة للبحث والمذاكرة
+    وحساب المعدل وبنك الأسئلة.
+</p>
+
+<span class="announcement-date">
+    02 أكتوبر 2026
+</span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK SECTIONS
+========================================================= -->
+
+<section>
+
+<div class="section-title">
+
+<h2>
+    ⚡ أقسام المنصة السريعة
+</h2>
+
+<p>
+    تصفح خدمات المنصة بضغطة واحدة
+</p>
+
+</div>
+
 
 <div class="cards">
 
-<div class="card">
-<div class="card-icon">📚</div>
-<h3>المواد الدراسية</h3>
-<p>الوصول إلى المواد التسع وتنظيم موارد كل مادة.</p>
-<button class="btn" onclick="goTo('subjects')">فتح المواد</button>
-</div>
 
 <div class="card">
-<div class="card-icon">📝</div>
-<h3>بنك الامتحانات</h3>
-<p>الامتحانات السابقة والمراجعات والأسئلة.</p>
-<button class="btn" onclick="goTo('exams')">فتح الامتحانات</button>
+
+<div class="icon">
+    🏛️
 </div>
 
-<div class="card">
-<div class="card-icon">📅</div>
-<h3>الجدول</h3>
-<p>جدول المحاضرات والمواعيد المهمة.</p>
-<button class="btn" onclick="goTo('schedule')">فتح الجدول</button>
-</div>
-
-<div class="card">
-<div class="card-icon">🧮</div>
-<h3>حاسبة GPA</h3>
-<p>احسب المعدل الدراسي.</p>
-<button class="btn" onclick="goTo('gpa')">حساب GPA</button>
-</div>
-
-<div class="card">
-<div class="card-icon">🧠</div>
-<h3>اختبارات إلكترونية</h3>
-<p>اختبر معلوماتك واحصل على النتيجة.</p>
-<button class="btn" onclick="goTo('quiz')">ابدأ اختبار</button>
-</div>
-
-<div class="card">
-<div class="card-icon">📢</div>
-<h3>الإعلانات</h3>
-<p>تابع تحديثات الدفعة.</p>
-<button class="btn" onclick="goTo('announcements')">الإعلانات</button>
-</div>
-
-<div class="card">
-<div class="card-icon">📂</div>
-<h3>المكتبة</h3>
-<p>ملفات ومراجع ومحاضرات.</p>
-<button class="btn" onclick="goTo('library')">فتح المكتبة</button>
-</div>
-
-<div class="card">
-<div class="card-icon">🤝</div>
-<h3>مجتمع الدفعة</h3>
-<p>الوصول إلى مجتمع الطلاب.</p>
-<button class="btn green" onclick="openCommunity()">دخول المجتمع</button>
-</div>
-
-</div>
-
-<div style="margin-top:30px">
-<h2 class="section-title">🔔 آخر التحديثات</h2>
-<div id="homeUpdates"></div>
-</div>
-
-</section>
-
-
-<!-- SUBJECTS -->
-
-<section id="subjects" class="page">
-
-<h2 class="section-title">📚 المواد الدراسية</h2>
-
-<p class="section-description">
-المواد التسع لطلاب دفعة 023.
-</p>
-
-<div class="subject-grid" id="subjectsContainer"></div>
-
-</section>
-
-
-<!-- SUBJECT DETAILS -->
-
-<section id="subjectDetails" class="page">
-
-<button class="btn secondary" onclick="goTo('subjects')">
-← العودة إلى المواد
-</button>
-
-<h2 id="subjectTitle" class="section-title" style="margin-top:20px"></h2>
-
-<div class="form-box">
-
-<h3>📚 موارد المادة</h3>
-
-<p class="muted" style="margin:8px 0 20px">
-من هنا يمكنك الوصول إلى ملفات المادة.
-</p>
-
-<div id="subjectFiles"></div>
-
-</div>
-
-</section>
-
-
-<!-- EXAMS -->
-
-<section id="exams" class="page">
-
-<h2 class="section-title">📝 بنك الامتحانات</h2>
-
-<div class="form-box">
-
-<h3 style="color:var(--primary);margin-bottom:15px">
-إضافة امتحان
+<h3>
+    عن الكلية
 </h3>
 
-<div class="form-grid">
+<p>
+    تعرف على نبذة تفصيلية عن كلية العلوم الإدارية
+    وأهدافها الأكاديمية.
+</p>
 
-<div class="form-group">
-<label>المادة</label>
-<select id="examSubject"></select>
-</div>
-
-<div class="form-group">
-<label>السنة</label>
-<input id="examYear" type="number" value="2026">
-</div>
-
-<div class="form-group">
-<label>اسم الامتحان</label>
-<input id="examName" placeholder="مثال: امتحان نصف الفصل">
-</div>
-
-<div class="form-group">
-<label>رابط الامتحان</label>
-<input id="examLink" placeholder="ضع رابط الملف هنا">
-</div>
+<a
+    class="btn"
+    href="about.html">
+    استعراض النبذة
+</a>
 
 </div>
 
-<br>
 
-<button class="btn" onclick="addExam()">
-+ إضافة الامتحان
-</button>
+<div class="card">
 
+<div class="icon">
+    🧠
 </div>
 
-<div id="examList"></div>
-
-</section>
-
-
-<!-- LIBRARY -->
-
-<section id="library" class="page">
-
-<h2 class="section-title">📂 المكتبة الأكاديمية</h2>
-
-<div class="form-box">
-
-<h3 style="color:var(--primary);margin-bottom:15px">
-إضافة ملف أو رابط
+<h3>
+    اختبارات المعرفة
 </h3>
 
-<div class="form-grid">
+<p>
+    اختبر معلوماتك وقدراتك الذهنية عبر
+    أسئلة تفاعلية.
+</p>
 
-<div class="form-group">
-<label>اسم الملف</label>
-<input id="fileName" placeholder="مثال: محاضرة المحاسبة">
-</div>
-
-<div class="form-group">
-<label>المادة</label>
-<select id="fileSubject"></select>
-</div>
-
-<div class="form-group">
-<label>رابط الملف</label>
-<input id="fileUrl" placeholder="رابط Google Drive أو الملف">
-</div>
-
-<div class="form-group">
-<label>نوع الملف</label>
-<select id="fileType">
-<option value="pdf">PDF</option>
-<option value="word">Word</option>
-<option value="video">فيديو</option>
-<option value="link">رابط</option>
-</select>
-</div>
+<a
+    class="btn"
+    href="#question-bank">
+    ابدأ الاختبار
+</a>
 
 </div>
 
-<br>
 
-<button class="btn" onclick="addLibraryFile()">
-+ إضافة للمكتبة
-</button>
+<div class="card">
+
+<div class="icon">
+    🛠️
+</div>
+
+<h3>
+    الوسائل التعليمية
+</h3>
+
+<p>
+    أدوات ومصادر ومراجع تعليمية مساعدة
+    لتحسين التحصيل الدراسي.
+</p>
+
+<a
+    class="btn"
+    href="study-tools.html">
+    فتح الوسائل
+</a>
 
 </div>
 
-<div class="form-box">
 
-<input
-id="librarySearch"
-placeholder="🔎 ابحث في المكتبة..."
-oninput="renderLibrary()"
-style="width:100%;padding:12px;border:1px solid var(--border);border-radius:9px"
->
+<div class="card">
+
+<div class="icon">
+    🧮
+</div>
+
+<h3>
+    حاسبة المعدل
+</h3>
+
+<p>
+    احسب معدلك بصورة سريعة وأدخل درجات
+    موادك الدراسية.
+</p>
+
+<a
+    class="btn"
+    href="#gpa">
+    احسب معدلي
+</a>
 
 </div>
 
-<div id="libraryList"></div>
+
+<div class="card">
+
+<div class="icon">
+    📅
+</div>
+
+<h3>
+    التقويم الأكاديمي
+</h3>
+
+<p>
+    تابع المواعيد المهمة المتعلقة بالدراسة
+    والاختبارات.
+</p>
+
+<a
+    class="btn"
+    href="#academic-calendar">
+    فتح التقويم
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+    📚
+</div>
+
+<h3>
+    المكتبة الأكاديمية
+</h3>
+
+<p>
+    الوصول إلى المحاضرات والملخصات والكتب
+    والامتحانات السابقة.
+</p>
+
+<a
+    class="btn"
+    href="#library">
+    فتح المكتبة
+</a>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- SCHEDULE -->
+<!-- =========================================================
+     ACADEMIC CALENDAR
+========================================================= -->
 
-<section id="schedule" class="page">
+<section id="academic-calendar">
 
-<h2 class="section-title">📅 جدول الدفعة</h2>
+<div class="section-title">
 
-<div class="table-wrap">
+<h2>
+    📅 التقويم الأكاديمي
+</h2>
+
+<p>
+    أهم المواعيد التي يحتاج الطالب لمتابعتها
+</p>
+
+</div>
+
+
+<div class="calendar-grid">
+
+
+<div class="calendar-card">
+
+<div class="calendar-date">
+    📅 09 يناير 2027
+</div>
+
+<h3>
+    بداية الامتحانات
+</h3>
+
+<p>
+    الموعد المدرج حاليًا في عداد المنصة.
+    يُرجى اعتماد الإعلان الرسمي عند صدوره.
+</p>
+
+</div>
+
+
+<div class="calendar-card">
+
+<div class="calendar-date">
+    📚 مستمر
+</div>
+
+<h3>
+    تحديث المكتبة
+</h3>
+
+<p>
+    إضافة المحاضرات والملخصات والملفات
+    الجديدة بصورة مستمرة.
+</p>
+
+</div>
+
+
+<div class="calendar-card">
+
+<div class="calendar-date">
+    🔔 مستمر
+</div>
+
+<h3>
+    متابعة الإعلانات
+</h3>
+
+<p>
+    راجع قسم الإعلانات بصورة دورية
+    لمعرفة أي تحديثات جديدة.
+</p>
+
+</div>
+
+
+<div class="calendar-card">
+
+<div class="calendar-date">
+    📝 مستمر
+</div>
+
+<h3>
+    بنك الأسئلة
+</h3>
+
+<p>
+    إضافة أسئلة تدريبية جديدة لمساعدة الطلاب
+    في الاستعداد للامتحانات.
+</p>
+
+</div>
+
+
+<div class="calendar-card">
+
+<div class="calendar-date">
+    📊 أكاديمي
+</div>
+
+<h3>
+    متابعة النتائج
+</h3>
+
+<p>
+    يمكن الوصول إلى صفحة النتائج الأكاديمية
+    من القائمة الرئيسية.
+</p>
+
+</div>
+
+
+<div class="calendar-card">
+
+<div class="calendar-date">
+    🎓 دفعة 023
+</div>
+
+<h3>
+    خدمات الطلاب
+</h3>
+
+<p>
+    المنصة مخصصة لتجميع الخدمات والمصادر
+    التي يحتاجها طلاب الدفعة.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SCHEDULE
+========================================================= -->
+
+<section id="schedule">
+
+<div class="section-title">
+
+<h2>
+    📅 جدول المحاضرات الأسبوعي
+</h2>
+
+<p>
+    المواعيد الرسمية للمحاضرات من السبت إلى الخميس
+</p>
+
+</div>
+
+
+<div class="table-box">
 
 <table>
 
 <thead>
+
 <tr>
-<th>اليوم</th>
-<th>الوقت</th>
-<th>المادة</th>
-<th>النوع</th>
-<th>المكان</th>
+
+<th>
+    اليوم
+</th>
+
+<th>
+    المحاضرة الأولى
+</th>
+
+<th>
+    المحاضرة الثانية
+</th>
+
+<th>
+    المحاضرة الثالثة
+</th>
+
 </tr>
+
 </thead>
 
-<tbody id="scheduleBody"></tbody>
+
+<tbody id="scheduleBody">
+
+<tr>
+<td>السبت</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>الأحد</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>الاثنين</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>الثلاثاء</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>الأربعاء</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>الخميس</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+</tbody>
 
 </table>
 
 </div>
 
+<p
+    style="
+    text-align:center;
+    color:var(--muted);
+    margin-top:12px;
+    font-size:13px;">
+    سيتم استبدال الخانات الفارغة بالمواعيد الرسمية عند توفر الجدول المعتمد.
+</p>
+
 </section>
 
 
-<!-- ANNOUNCEMENTS -->
+<!-- =========================================================
+     LIBRARY
+========================================================= -->
 
-<section id="announcements" class="page">
+<section id="library">
 
-<h2 class="section-title">📢 مركز الإعلانات</h2>
+<div class="library">
 
-<div class="form-box">
+<h2>
+    📚 المكتبة الأكاديمية
+</h2>
 
-<h3 style="color:var(--primary);margin-bottom:15px">
-إضافة إعلان
+<p>
+    مكان واحد للوصول إلى المحاضرات والملخصات
+    والكتب والامتحانات والمراجع.
+</p>
+
+
+<div class="library-buttons">
+
+<a
+    class="library-btn"
+    href="subjects.html">
+    📚 تصفح المواد
+</a>
+
+<a
+    class="library-btn secondary"
+    href="exams.html">
+    📝 الامتحانات السابقة
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     QUESTION BANK
+========================================================= -->
+
+<section id="question-bank">
+
+<div class="section-title">
+
+<h2>
+    🧠 بنك الأسئلة التفاعلي
+</h2>
+
+<p>
+    اختبر معلوماتك واحصل على نتيجتك مباشرة
+</p>
+
+</div>
+
+
+<div class="question-box">
+
+<div class="question-number"
+     id="questionNumber">
+    السؤال 1
+</div>
+
+
+<div class="question-text"
+     id="questionText">
+    ما هو الهدف الأساسي من المحاسبة المالية؟
+</div>
+
+
+<div
+    class="answers"
+    id="answers">
+
+<button
+    class="answer"
+    data-correct="true">
+    توفير معلومات مالية تساعد في اتخاذ القرارات
+</button>
+
+<button
+    class="answer">
+    زيادة أسعار السلع
+</button>
+
+<button
+    class="answer">
+    إدارة وسائل التواصل الاجتماعي
+</button>
+
+<button
+    class="answer">
+    تحديد مواعيد المحاضرات
+</button>
+
+</div>
+
+
+<div class="question-controls">
+
+<button
+    class="btn"
+    id="nextQuestion">
+    السؤال التالي →
+</button>
+
+<button
+    class="btn"
+    id="restartQuiz">
+    🔄 إعادة الاختبار
+</button>
+
+</div>
+
+
+<div
+    class="question-score"
+    id="questionScore">
+    الدرجة: 0 / 5
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     GPA CALCULATOR
+========================================================= -->
+
+<section id="gpa">
+
+<div class="section-title">
+
+<h2>
+    🧮 حاسبة المعدل
+</h2>
+
+<p>
+    أدخل درجاتك لمعرفة متوسطك بصورة تقريبية
+</p>
+
+</div>
+
+
+<div class="gpa-box">
+
+
+<div
+    id="gpaRows">
+
+
+<div class="gpa-row">
+
+<input
+    type="text"
+    placeholder="اسم المادة">
+
+<input
+    type="number"
+    min="0"
+    max="100"
+    placeholder="الدرجة">
+
+<select>
+
+<option value="3">الساعات: 3</option>
+<option value="2">الساعات: 2</option>
+<option value="1">الساعات: 1</option>
+
+</select>
+
+</div>
+
+
+<div class="gpa-row">
+
+<input
+    type="text"
+    placeholder="اسم المادة">
+
+<input
+    type="number"
+    min="0"
+    max="100"
+    placeholder="الدرجة">
+
+<select>
+
+<option value="3">الساعات: 3</option>
+<option value="2">الساعات: 2</option>
+<option value="1">الساعات: 1</option>
+
+</select>
+
+</div>
+
+
+<div class="gpa-row">
+
+<input
+    type="text"
+    placeholder="اسم المادة">
+
+<input
+    type="number"
+    min="0"
+    max="100"
+    placeholder="الدرجة">
+
+<select>
+
+<option value="3">الساعات: 3</option>
+<option value="2">الساعات: 2</option>
+<option value="1">الساعات: 1</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<div style="text-align:center;margin-top:15px;">
+
+<button
+    class="btn"
+    id="addSubject">
+    ➕ إضافة مادة
+</button>
+
+<button
+    class="btn"
+    id="calculateGPA">
+    🧮 حساب المعدل
+</button>
+
+</div>
+
+
+<div
+    class="gpa-result"
+    id="gpaResult">
+
+<span>
+    المعدل سيظهر هنا
+</span>
+
+<strong>
+    —
+</strong>
+
+</div>
+
+
+<p
+    style="
+    color:var(--muted);
+    font-size:12px;
+    text-align:center;
+    margin-top:10px;">
+    هذه حاسبة تقديرية. نظام المعدل الرسمي قد يختلف حسب لوائح الجامعة.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     COMMUNITY
+========================================================= -->
+
+<section id="community">
+
+<div class="section-title">
+
+<h2>
+    🔗 روابط التواصل والاتصال
+</h2>
+
+<p>
+    قنوات التواصل الرسمية الخاصة بالدفعة والكلية
+</p>
+
+</div>
+
+
+<div class="links-grid">
+
+
+<div class="link-card">
+
+<div class="big-icon">
+    💬
+</div>
+
+<h3>
+    مجموعة الواتساب
 </h3>
 
-<div class="form-group">
-
-<label>عنوان الإعلان</label>
-
-<input id="announcementTitle" placeholder="عنوان الإعلان">
-
-</div>
-
-<br>
-
-<div class="form-group">
-
-<label>نص الإعلان</label>
-
-<textarea id="announcementText"></textarea>
-
-</div>
-
-<br>
-
-<button class="btn" onclick="addAnnouncement()">
-+ نشر الإعلان
-</button>
-
-</div>
-
-<div id="announcementList"></div>
-
-</section>
-
-
-<!-- QUIZ -->
-
-<section id="quiz" class="page">
-
-<h2 class="section-title">🧠 اختبار تجريبي</h2>
-
-<div id="quizContainer"></div>
-
-<button class="btn green" onclick="calculateQuiz()">
-إظهار النتيجة
-</button>
-
-<div id="quizResult"></div>
-
-</section>
-
-
-<!-- GPA -->
-
-<section id="gpa" class="page">
-
-<h2 class="section-title">🧮 حاسبة GPA</h2>
-
-<div class="form-box">
-
-<div id="gpaRows">
-
-<div class="form-grid gpa-row">
-
-<div class="form-group">
-<label>المادة</label>
-<input type="text" placeholder="اسم المادة">
-</div>
-
-<div class="form-group">
-<label>الساعات</label>
-<input type="number" class="hours" value="3">
-</div>
-
-<div class="form-group">
-<label>الدرجة من 100</label>
-<input type="number" class="grade" value="80">
-</div>
-
-</div>
-
-</div>
-
-<br>
-
-<button class="btn secondary" onclick="addGPARow()">
-+ إضافة مادة
-</button>
-
-<button class="btn" onclick="calculateGPA()">
-احسب GPA
-</button>
-
-<div id="gpaResult"></div>
-
-</div>
-
-</section>
-
-
-<!-- ASSIGNMENTS -->
-
-<section id="assignments" class="page">
-
-<h2 class="section-title">📋 الواجبات والتكاليف</h2>
-
-<div class="form-box">
-
-<div class="form-grid">
-
-<div class="form-group">
-<label>المادة</label>
-<input id="assignmentSubject" placeholder="اسم المادة">
-</div>
-
-<div class="form-group">
-<label>الواجب</label>
-<input id="assignmentName" placeholder="اسم الواجب">
-</div>
-
-<div class="form-group">
-<label>آخر موعد</label>
-<input id="assignmentDate" type="date">
-</div>
-
-</div>
-
-<br>
-
-<button class="btn" onclick="addAssignment()">
-+ إضافة الواجب
-</button>
-
-</div>
-
-<div id="assignmentList"></div>
-
-</section>
-
-
-<!-- TOOLS -->
-
-<section id="tools" class="page">
-
-<h2 class="section-title">⏱️ أدوات الطالب</h2>
-
-<div class="tools-grid">
-
-<div class="tool">
-<h3>🧮 النسبة المئوية</h3>
-
-<input id="percentValue" type="number" placeholder="القيمة">
-<input id="percentTotal" type="number" placeholder="من">
-
-<button class="btn" onclick="calculatePercent()">احسب</button>
-
-<p id="percentResult"></p>
-</div>
-
-
-<div class="tool">
-
-<h3>💰 الفائدة البسيطة</h3>
-
-<input id="principal" type="number" placeholder="رأس المال">
-<input id="rate" type="number" placeholder="نسبة الفائدة %">
-<input id="years" type="number" placeholder="السنوات">
-
-<button class="btn" onclick="calculateInterest()">احسب</button>
-
-<p id="interestResult"></p>
-
-</div>
-
-
-<div class="tool">
-
-<h3>⏱️ مؤقت الدراسة</h3>
-
-<p id="timerDisplay"
-style="font-size:35px;text-align:center;margin:15px">
-25:00
+<p>
+    مجموعة الدفعة الرسمية للاستفسارات
+    والأخبار السريعة.
 </p>
 
-<button class="btn" onclick="startTimer()">▶️ بدء</button>
-<button class="btn yellow" onclick="pauseTimer()">⏸️ إيقاف</button>
-<button class="btn secondary" onclick="resetTimer()">🔄 إعادة</button>
+<a
+    class="btn"
+    href="https://chat.whatsapp.com/FmtkIp9Y0YMBGaBZfgo0ZW"
+    target="_blank"
+    rel="noopener">
+    انضم للمجموعة
+</a>
 
 </div>
 
 
-<div class="tool">
+<div class="link-card">
 
-<h3>📅 اليوم</h3>
-
-<p id="todayDate" style="font-size:18px"></p>
-
+<div class="big-icon">
+    👥
 </div>
 
-
-<div class="tool">
-
-<h3>🔢 محول الساعات</h3>
-
-<input id="hoursInput" type="number">
-
-<button class="btn" onclick="convertHours()">تحويل</button>
-
-<p id="hoursResult"></p>
-
-</div>
-
-
-<div class="tool">
-
-<h3>📊 متوسط الدرجات</h3>
-
-<input id="gradesInput" placeholder="80,75,90">
-
-<button class="btn" onclick="calculateAverage()">احسب</button>
-
-<p id="averageResult"></p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- OPPORTUNITIES -->
-
-<section id="opportunities" class="page">
-
-<h2 class="section-title">💼 فرص الطلاب</h2>
-
-<div class="cards">
-
-<div class="card">
-<div class="card-icon">🎓</div>
-<h3>منح دراسية</h3>
-<p>مساحة لإضافة المنح.</p>
-<button class="btn" onclick="showMessage('سيتم إضافة المنح هنا')">
-عرض
-</button>
-</div>
-
-<div class="card">
-<div class="card-icon">💼</div>
-<h3>تدريب</h3>
-<p>مساحة لفرص التدريب.</p>
-<button class="btn" onclick="showMessage('سيتم إضافة فرص التدريب هنا')">
-استكشاف
-</button>
-</div>
-
-<div class="card">
-<div class="card-icon">📚</div>
-<h3>دورات</h3>
-<p>مساحة للدورات.</p>
-<button class="btn" onclick="showMessage('سيتم إضافة الدورات هنا')">
-استكشاف
-</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- GUIDE -->
-
-<section id="guide" class="page">
-
-<h2 class="section-title">🎓 دليل الطالب</h2>
-
-<div class="form-box">
-
-<h3 style="color:var(--primary)">
-كيف تستخدم المنصة؟
+<h3>
+    صفحة الفيسبوك
 </h3>
 
 <p>
-📚 افتح المواد للوصول إلى المواد التسع.
+    تابع مستجدات الدفعة والكلية.
 </p>
 
-<p>
-📂 استخدم المكتبة للوصول إلى الملفات.
-</p>
-
-<p>
-📝 استخدم بنك الامتحانات لمراجعة الامتحانات السابقة.
-</p>
-
-<p>
-📅 تابع الجدول والمواعيد المهمة.
-</p>
-
-<p>
-📢 تابع الإعلانات الجديدة.
-</p>
-
-<p>
-🧮 استخدم حاسبة GPA لمعرفة معدلك.
-</p>
-
-<p>
-🤝 استخدم المجتمع للوصول إلى مجموعة الدفعة.
-</p>
+<a
+    class="btn"
+    href="https://www.facebook.com/share/1M81DYnAxV/"
+    target="_blank"
+    rel="noopener">
+    زوروا الصفحة
+</a>
 
 </div>
 
-</section>
 
+<div class="link-card">
 
-<!-- COMMUNITY -->
+<div class="big-icon">
+    📢
+</div>
 
-<section id="community" class="page">
-
-<h2 class="section-title">🤝 مجتمع الدفعة</h2>
-
-<div class="hero">
-
-<h2>مجتمع دفعة 023</h2>
+<h3>
+    أخبار الجامعة
+</h3>
 
 <p>
-تواصل مع زملائك وتابع أخبار الدفعة.
+    تابع الأخبار والتعاميم الرسمية.
 </p>
+
+<a
+    class="btn"
+    href="https://www.facebook.com/share/19i7UZ4Cne/"
+    target="_blank"
+    rel="noopener">
+    صفحة الأخبار
+</a>
+
+</div>
+
+
+<div class="link-card"
+     style="border:2px solid #3b82f6;">
+
+<div class="big-icon">
+    📞
+</div>
+
+<h3>
+    أرقام القيادة
+</h3>
+
+<p>
+<strong>ليدر الدفعة:</strong><br>
+249116314682
+</p>
+
+<a
+    class="btn btn-highlight"
+    href="https://wa.me/249116314682"
+    target="_blank">
+    💬 مراسلة ليدر الدفعة
+</a>
+
+<p style="margin-top:15px;">
+
+<strong>
+    مسجل الدفعة:
+</strong>
 
 <br>
 
-<button class="btn green" onclick="openCommunity()">
-💬 فتح مجموعة الواتساب
+249111744435
+
+</p>
+
+<a
+    class="btn btn-highlight"
+    href="https://wa.me/249111744435"
+    target="_blank">
+    💬 مراسلة مسجل الدفعة
+</a>
+
+</div>
+
+
+<div class="link-card">
+
+<div class="big-icon">
+    💡
+</div>
+
+<h3>
+    مقترحات التطوير
+</h3>
+
+<p>
+    شاركنا برأيك لتطوير المنصة.
+</p>
+
+<a
+    class="btn"
+    href="https://wa.me/249995040725?text=مرحباً، لدي اقتراح بخصوص منصة الريان:"
+    target="_blank">
+    أرسل اقتراحك
+</a>
+
+</div>
+
+
+<div class="link-card">
+
+<div class="big-icon">
+    📤
+</div>
+
+<h3>
+    شارك المنصة
+</h3>
+
+<p>
+    ساعد زملاءك في الوصول إلى منصة الريان.
+</p>
+
+<button
+    class="btn"
+    id="shareCardBtn">
+    مشاركة المنصة
 </button>
 
 </div>
 
+
+</div>
+
 </section>
+
 
 </main>
 
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
-<strong>🎓 Student Hub</strong>
+<div class="footer-buttons">
+
+<button
+    class="footer-btn"
+    id="aboutUsBtn"
+    type="button">
+    من نحن 👥
+</button>
+
+
+<button
+    class="footer-btn share-btn"
+    id="shareSiteBtn"
+    type="button">
+    🔗 مشاركة المنصة
+</button>
+
+</div>
+
 
 <p>
-دفعة 023 • جامعة بحري
+    جميع الحقوق محفوظة لـ
+    <strong>
+        منصة الريان - كلية العلوم الإدارية (دفعة 023)
+    </strong>
 </p>
 
-<p>
-منصة طلابية لتنظيم الدراسة والموارد الأكاديمية
+<p style="margin-top:6px;">
+    صُنِع بشغف لخدمة طلاب الدفعة 💙
 </p>
 
 </footer>
 
 
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    id="backToTop"
+    title="العودة للأعلى">
+    ⬆
+</button>
+
+
+<!-- =========================================================
+     ABOUT MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="aboutModal">
+
+<div class="modal-content">
+
+<span
+    class="close-modal"
+    id="closeModalBtn">
+    &times;
+</span>
+
+
+<h3>
+    من نحن 🎓
+</h3>
+
+
+<p>
+    منصة الريان هي منصة طلابية تعليمية تهدف
+    إلى تسهيل الوصول إلى المواد والمحاضرات
+    والملخصات والاختبارات والمراجع وخدمات
+    التواصل الخاصة بطلاب دفعة 023 بكلية العلوم الإدارية.
+</p>
+
+
+<div class="creators-box">
+
+<p>
+✨ <strong>المؤسس:</strong>
+عمر عبد المنعم محمد احمد
+</p>
+
+<p>
+✨ <strong>الزميلة المشاركة:</strong>
+ريان عبد المطلب البشير
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
-/* =========================
-   البيانات
-========================= */
+document.addEventListener("DOMContentLoaded", function(){
 
-const subjects = [
-"محاسبة",
-"اقتصاد",
-"إدارة",
-"رياضيات",
-"حاسوب",
-"دراسات مصرفية",
-"دراسات جامعية",
-"لغة إنجليزية",
-"مادة اختيارية"
+
+/* =========================================================
+   1. DARK MODE
+========================================================= */
+
+const themeBtn =
+    document.getElementById("themeToggleBtn");
+
+if(localStorage.getItem("theme") === "dark"){
+
+    document.body.classList.add("dark-mode");
+
+    themeBtn.innerText =
+        "☀️ الوضع الصباحي";
+}
+
+
+themeBtn.addEventListener("click",function(){
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+
+        localStorage.setItem("theme","dark");
+
+        themeBtn.innerText =
+            "☀️ الوضع الصباحي";
+
+        showToast("تم تفعيل الوضع الليلي 🌙");
+
+    }else{
+
+        localStorage.setItem("theme","light");
+
+        themeBtn.innerText =
+            "🌙 الوضع الليلي";
+
+        showToast("تم تفعيل الوضع الصباحي ☀️");
+    }
+
+});
+
+
+/* =========================================================
+   2. COUNTDOWN
+========================================================= */
+
+const examDate =
+    new Date("January 9, 2027 00:00:00").getTime();
+
+
+function updateCountdown(){
+
+    const now =
+        new Date().getTime();
+
+    const distance =
+        examDate - now;
+
+
+    if(distance <= 0){
+
+        document.getElementById("days").innerText="00";
+        document.getElementById("hours").innerText="00";
+        document.getElementById("minutes").innerText="00";
+        document.getElementById("seconds").innerText="00";
+
+        return;
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000*60*60*24)
+        );
+
+    const hours =
+        Math.floor(
+            (distance %
+            (1000*60*60*24)) /
+            (1000*60*60)
+        );
+
+    const minutes =
+        Math.floor(
+            (distance %
+            (1000*60*60)) /
+            (1000*60)
+        );
+
+    const seconds =
+        Math.floor(
+            (distance %
+            (1000*60)) /
+            1000
+        );
+
+
+    document.getElementById("days").innerText =
+        String(days).padStart(2,"0");
+
+    document.getElementById("hours").innerText =
+        String(hours).padStart(2,"0");
+
+    document.getElementById("minutes").innerText =
+        String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds").innerText =
+        String(seconds).padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
+
+
+/* =========================================================
+   3. DAYS SINCE LAUNCH
+========================================================= */
+
+const launchDate =
+    new Date("October 1, 2026").getTime();
+
+const today =
+    new Date().getTime();
+
+const daysSince =
+    Math.max(
+        0,
+        Math.floor(
+            (today-launchDate) /
+            (1000*60*60*24)
+        )
+    );
+
+document.getElementById("daysSinceLaunch").innerText =
+    daysSince;
+
+
+/* =========================================================
+   4. ABOUT MODAL
+========================================================= */
+
+const aboutBtn =
+    document.getElementById("aboutUsBtn");
+
+const aboutModal =
+    document.getElementById("aboutModal");
+
+const closeBtn =
+    document.getElementById("closeModalBtn");
+
+
+aboutBtn.addEventListener("click",function(){
+
+    aboutModal.style.display="flex";
+
+});
+
+
+closeBtn.addEventListener("click",function(){
+
+    aboutModal.style.display="none";
+
+});
+
+
+aboutModal.addEventListener("click",function(e){
+
+    if(e.target === aboutModal){
+
+        aboutModal.style.display="none";
+
+    }
+
+});
+
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+
+        aboutModal.style.display="none";
+
+    }
+
+});
+
+
+/* =========================================================
+   5. SHARE
+========================================================= */
+
+async function shareSite(){
+
+    const shareData = {
+
+        title:"منصة الريان - دفعة 023",
+
+        text:
+        "🎓 منصة الريان الطلابية - كلية العلوم الإدارية - دفعة 023",
+
+        url:
+        window.location.href
+
+    };
+
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share(shareData);
+
+        }catch(error){
+
+            // المستخدم أغلق نافذة المشاركة
+        }
+
+    }else{
+
+        try{
+
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+
+            showToast(
+                "تم نسخ رابط المنصة. يمكنك إرساله الآن 📋"
+            );
+
+        }catch(error){
+
+            showToast(
+                "رابط المنصة: " +
+                window.location.href
+            );
+
+        }
+
+    }
+
+}
+
+
+document.getElementById("shareSiteBtn")
+    .addEventListener("click",shareSite);
+
+
+document.getElementById("shareCardBtn")
+    .addEventListener("click",shareSite);
+
+
+/* =========================================================
+   6. BACK TO TOP
+========================================================= */
+
+const backToTop =
+    document.getElementById("backToTop");
+
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY > 500){
+
+        backToTop.style.display="flex";
+
+    }else{
+
+        backToTop.style.display="none";
+
+    }
+
+});
+
+
+backToTop.addEventListener("click",function(){
+
+    window.scrollTo({
+
+        top:0,
+        behavior:"smooth"
+
+    });
+
+});
+
+
+/* =========================================================
+   7. SEARCH ENGINE
+========================================================= */
+
+const searchInput =
+    document.getElementById("siteSearch");
+
+const searchResults =
+    document.getElementById("searchResults");
+
+
+const searchData = [
+
+{
+    title:"المواد الدراسية",
+    description:"جميع المواد والمحاضرات والملفات الدراسية.",
+    url:"subjects.html",
+    keywords:"مواد دراسية محاضرات ملفات مذكرات"
+},
+
+{
+    title:"الاختبارات وبنك الأسئلة",
+    description:"الاختبارات والمواد التدريبية وأسئلة المراجعة.",
+    url:"exams.html",
+    keywords:"اختبارات امتحانات أسئلة مراجعة"
+},
+
+{
+    title:"النتيجة الأكاديمية",
+    description:"الوصول إلى صفحة النتائج الأكاديمية.",
+    url:"results.html",
+    keywords:"نتيجة نتائج درجات معدل"
+},
+
+{
+    title:"عن الكلية",
+    description:"نبذة عن كلية العلوم الإدارية.",
+    url:"about.html",
+    keywords:"كلية علوم إدارية جامعة بحري"
+},
+
+{
+    title:"الوسائل التعليمية",
+    description:"أدوات ومصادر تعليمية.",
+    url:"study-tools.html",
+    keywords:"تعليم أدوات مصادر كتب"
+},
+
+{
+    title:"بنك الأسئلة",
+    description:"اختبر معلوماتك من خلال الأسئلة التفاعلية.",
+    url:"#question-bank",
+    keywords:"أسئلة اختبار تفاعلي تدريب"
+},
+
+{
+    title:"حاسبة المعدل",
+    description:"احسب معدلك التقديري.",
+    url:"#gpa",
+    keywords:"معدل GPA درجات تقدير"
+},
+
+{
+    title:"التقويم الأكاديمي",
+    description:"أهم المواعيد الأكاديمية.",
+    url:"#academic-calendar",
+    keywords:"تقويم مواعيد امتحانات"
+},
+
+{
+    title:"جدول المحاضرات",
+    description:"جدول المحاضرات الأسبوعي.",
+    url:"#schedule",
+    keywords:"جدول محاضرات السبت الأحد الاثنين الثلاثاء الأربعاء الخميس"
+},
+
+{
+    title:"مجموعة الواتساب",
+    description:"مجموعة دفعة 023.",
+    url:"https://chat.whatsapp.com/FmtkIp9Y0YMBGaBZfgo0ZW",
+    keywords:"واتساب مجموعة دفعة تواصل"
+
+}
+
 ];
 
-const defaultSchedule = [
-["السبت","09:00","محاسبة","محاضرة","القاعة"],
-["الأحد","10:00","اقتصاد","محاضرة","القاعة"],
-["الإثنين","09:00","إدارة","محاضرة","القاعة"],
-["الثلاثاء","11:00","دراسات مصرفية","محاضرة","القاعة"],
-["الأربعاء","10:00","دراسات جامعية","محاضرة","القاعة"]
+
+searchInput.addEventListener("input",function(){
+
+    const query =
+        this.value.trim().toLowerCase();
+
+
+    if(!query){
+
+        searchResults.style.display="none";
+
+        searchResults.innerHTML="";
+
+        return;
+
+    }
+
+
+    const results =
+        searchData.filter(item => {
+
+            return (
+
+                item.title.toLowerCase()
+                    .includes(query)
+
+                ||
+
+                item.description.toLowerCase()
+                    .includes(query)
+
+                ||
+
+                item.keywords.toLowerCase()
+                    .includes(query)
+
+            );
+
+        });
+
+
+    searchResults.style.display="block";
+
+
+    if(results.length === 0){
+
+        searchResults.innerHTML =
+            '<div class="search-result">' +
+            '❌ لم نجد نتيجة مطابقة لبحثك.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    searchResults.innerHTML =
+        results.map(item => {
+
+            return `
+
+            <div class="search-result">
+
+                <a href="${item.url}">
+                    ${item.title}
+                </a>
+
+                <small>
+                    ${item.description}
+                </small>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+});
+
+
+/* =========================================================
+   8. QUIZ
+========================================================= */
+
+const questions = [
+
+{
+
+    question:
+    "ما هو الهدف الأساسي من المحاسبة المالية؟",
+
+    answers:[
+
+        {
+            text:
+            "توفير معلومات مالية تساعد في اتخاذ القرارات",
+            correct:true
+        },
+
+        {
+            text:"زيادة أسعار السلع",
+            correct:false
+        },
+
+        {
+            text:"إدارة وسائل التواصل الاجتماعي",
+            correct:false
+        },
+
+        {
+            text:"تحديد مواعيد المحاضرات",
+            correct:false
+        }
+
+    ]
+
+},
+
+{
+
+    question:
+    "ما المقصود بالميزانية في المفهوم المالي؟",
+
+    answers:[
+
+        {
+            text:
+            "خطة تقديرية للإيرادات والمصروفات",
+            correct:true
+        },
+
+        {
+            text:"سجل الحضور",
+            correct:false
+        },
+
+        {
+            text:"جدول المحاضرات",
+            correct:false
+        },
+
+        {
+            text:"قائمة الطلاب",
+            correct:false
+        }
+
+    ]
+
+},
+
+{
+
+    question:
+    "ما الذي يقيسه المتوسط الحسابي؟",
+
+    answers:[
+
+        {
+            text:
+            "القيمة المركزية لمجموعة من القيم",
+            correct:true
+        },
+
+        {
+            text:"عدد المواد فقط",
+            correct:false
+        },
+
+        {
+            text:"عدد الطلاب فقط",
+            correct:false
+        },
+
+        {
+            text:"عدد المحاضرات",
+            correct:false
+        }
+
+    ]
+
+},
+
+{
+
+    question:
+    "ما أهمية دراسة الاقتصاد؟",
+
+    answers:[
+
+        {
+            text:
+            "فهم كيفية استخدام الموارد واتخاذ القرارات الاقتصادية",
+            correct:true
+        },
+
+        {
+            text:"حفظ أسماء الطلاب",
+            correct:false
+        },
+
+        {
+            text:"تغيير جدول المحاضرات",
+            correct:false
+        },
+
+        {
+            text:"إدارة المجموعة فقط",
+            correct:false
+        }
+
+    ]
+
+},
+
+{
+
+    question:
+    "ما المقصود بالبنك التجاري؟",
+
+    answers:[
+
+        {
+            text:
+            "مؤسسة مالية تقدم خدمات مصرفية للعملاء",
+            correct:true
+        },
+
+        {
+            text:"مؤسسة رياضية",
+            correct:false
+        },
+
+        {
+            text:"مكتبة جامعية",
+            correct:false
+        },
+
+        {
+            text:"قسم من أقسام الكلية",
+            correct:false
+        }
+
+    ]
+
+}
+
 ];
 
 
-/* =========================
-   التخزين
-========================= */
+let currentQuestion = 0;
 
-function getData(key, fallback=[]){
-    try{
-        return JSON.parse(localStorage.getItem(key)) || fallback;
-    }catch(e){
-        
+let score = 0;
+
+let answered = false;
+
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const questionText =
+    document.getElementById("questionText");
+
+const answersContainer =
+    document.getElementById("answers");
+
+const questionScore =
+    document.getElementById("questionScore");
+
+
+function loadQuestion(){
+
+    answered = false;
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    questionNumber.innerText =
+        "السؤال " +
+        (currentQuestion+1) +
+        " من " +
+        questions.length;
+
+
+    questionText.innerText =
+        q.question;
+
+
+    answersContainer.innerHTML =
+        "";
+
+
+    q.answers.forEach(answer => {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "answer";
+
+        button.innerText =
+            answer.text;
+
+
+        button.dataset.correct =
+            answer.correct;
+
+
+        button.addEventListener(
+            "click",
+            selectAnswer
+        );
+
+
+        answersContainer.appendChild(button);
+
+    });
+
+
+    questionScore.innerText =
+        "الدرجة: " +
+        score +
+        " / " +
+        questions.length;
+
+}
+
+
+function selectAnswer(){
+
+    if(answered) return;
+
+    answered = true;
+
+
+    const buttons =
+        answersContainer.querySelectorAll(".answer");
+
+
+    buttons.forEach(button => {
+
+        if(button.dataset.correct === "true"){
+
+            button.classList.add("correct");
+
+        }
+
+    });
+
+
+    if(this.dataset.correct === "true"){
+
+        score++;
+
+        showToast("إجابة صحيحة ✅");
+
+    }else{
+
+        this.classList.add("wrong");
+
+        showToast("إجابة غير صحيحة ❌");
+
+    }
+
+
+    questionScore.innerText =
+        "الدرجة: " +
+        score +
+        " / " +
+        questions.length;
+
+}
+
+
+document
+.getElementById("nextQuestion")
+.addEventListener("click",function(){
+
+    if(currentQuestion <
+       questions.length-1){
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }else{
+
+        showToast(
+            "انتهى الاختبار. نتيجتك: " +
+            score +
+            " / " +
+            questions.length
+        );
+
+    }
+
+});
+
+
+document
+.getElementById("restartQuiz")
+.addEventListener("click",function(){
+
+    currentQuestion=0;
+
+    score=0;
+
+    loadQuestion();
+
+});
+
+
+loadQuestion();
+
+
+/* =========================================================
+   9. GPA CALCULATOR
+========================================================= */
+
+const gpaRows =
+    document.getElementById("gpaRows");
+
+
+document
+.getElementById("addSubject")
+.addEventListener("click",function(){
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "gpa-row";
+
+
+    row.innerHTML = `
+
+        <input
+            type="text"
+            placeholder="اسم المادة">
+
+        <input
+            type="number"
+            min="0"
+            max="100"
+            placeholder="الدرجة">
+
+        <select>
+
+            <option value="3">
+                الساعات: 3
+            </option>
+
+            <option value="2">
+                الساعات: 2
+            </option>
+
+            <option value="1">
+                الساعات: 1
+            </option>
+
+        </select>
+
+    `;
+
+
+    gpaRows.appendChild(row);
+
+});
+
+
+function gradeToPoint(grade){
+
+    if(grade >= 90) return 4.0;
+
+    if(grade >= 85) return 3.7;
+
+    if(grade >= 80) return 3.3;
+
+    if(grade >= 75) return 3.0;
+
+    if(grade >= 70) return 2.7;
+
+    if(grade >= 65) return 2.3;
+
+    if(grade >= 60) return 2.0;
+
+    if(grade >= 50) return 1.0;
+
+    return 0;
+
+}
+
+
+document
+.getElementById("calculateGPA")
+.addEventListener("click",function(){
+
+    const rows =
+        document.querySelectorAll(".gpa-row");
+
+
+    let totalPoints=0;
+
+    let totalHours=0;
+
+    let count=0;
+
+
+    rows.forEach(row => {
+
+        const inputs =
+            row.querySelectorAll("input");
+
+        const select =
+            row.querySelector("select");
+
+
+        const grade =
+            parseFloat(inputs[1].value);
+
+        const hours =
+            parseFloat(select.value);
+
+
+        if(!isNaN(grade)){
+
+            const point =
+                gradeToPoint(grade);
+
+
+            totalPoints +=
+                point * hours;
+
+
+            totalHours +=
+                hours;
+
+
+            count++;
+
+        }
+
+    });
+
+
+    const result =
+        document.getElementById("gpaResult");
+
+
+    if(count === 0){
+
+        result.innerHTML = `
+
+            <span>
+                أدخل درجات مادة واحدة على الأقل
+            </span>
+
+            <strong>
+                —
+            </strong>
+
+        `;
+
+        return;
+
+    }
+
+
+    const gpa =
+        totalPoints /
+        totalHours;
+
+
+    result.innerHTML = `
+
+        <span>
+            المعدل التقديري
+        </span>
+
+        <strong>
+            ${gpa.toFixed(2)}
+        </strong>
+
+        <span>
+            بناءً على الدرجات المدخلة
+        </span>
+
+    `;
+
+
+    localStorage.setItem(
+        "lastGPA",
+        gpa.toFixed(2)
+    );
+
+
+    showToast(
+        "تم حساب المعدل بنجاح 🧮"
+    );
+
+});
+
+
+/* =========================================================
+   10. TODAY SCHEDULE
+========================================================= */
+
+const dayNames = [
+
+    "الأحد",
+    "الاثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة",
+    "السبت"
+
+];
+
+
+const todayName =
+    dayNames[new Date().getDay()];
+
+
+document
+.querySelectorAll("#scheduleBody tr")
+.forEach(row => {
+
+    const day =
+        row.cells[0].innerText.trim();
+
+
+    if(day === todayName){
+
+        row.classList.add("today-row");
+
+    }
+
+});
+
+
+/* =========================================================
+   11. TOAST
+========================================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(window.toastTimer);
+
+
+    window.toastTimer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },3000);
+
+}
+
+
+/* =========================================================
+   12. ACTIVE NAVIGATION
+========================================================= */
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-container a"
+    );
+
+
+navLinks.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        function(){
+
+            navLinks.forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+
+            this.classList.add("active");
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   13. WELCOME MESSAGE
+========================================================= */
+
+setTimeout(function(){
+
+    showToast(
+        "مرحباً بك في منصة الريان 🎓"
+    );
+
+},1200);
+
+
+/* =========================================================
+   END
+========================================================= */
+
+});
+
+</script>
+
+</body>
+</html>
