@@ -136,19 +136,24 @@ header{
     background:rgba(255,255,255,0.25);
 }
 
-/* تنسيق أيقونة الجامعة المدمجة في الجهه اليمنى للشريط العلوي */
-.university-emblem-icon {
+/* تنسيق صورة شعار الجامعة المدمجة في الجهة اليمنى للشريط العلوي */
+.header-university-logo {
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: 20px;
-    width: 48px;
-    height: 56px;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 3px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
     z-index: 10;
     transition: transform 0.3s ease;
 }
 
-.university-emblem-icon:hover {
+.header-university-logo:hover {
     transform: scale(1.08);
 }
 
@@ -829,27 +834,8 @@ footer{
     <!-- زر تبديل الوضع الليلي/الصباحي في الجهة اليسرى -->
     <button class="theme-toggle-btn" id="themeToggleBtn" type="button">🌙 الوضع الليلي</button>
 
-    <!-- أيقونة شعار جامعة بحري مدمجة كـ SVG في الجهة اليمنى للشريط العلوي -->
-    <svg class="university-emblem-icon" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" title="شعار جامعة بحري">
-        <!-- درع الجامعة الأخضر -->
-        <path d="M100 5 C150 5, 185 25, 185 80 C185 145, 120 200, 100 220 C80 200, 15 145, 15 80 C15 25, 50 5, 100 5 Z" fill="#0d7a46" stroke="#ffffff" stroke-width="6"/>
-        <!-- الدائرة الداخلية البيضاء للشعار -->
-        <circle cx="100" cy="95" r="55" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-        <!-- عناصر التروس/النقاط المحيطة بدائرة الشعار -->
-        <g fill="#000000">
-            <circle cx="100" cy="45" r="5"/>
-            <circle cx="138" cy="57" r="5"/>
-            <circle cx="150" cy="95" r="5"/>
-            <circle cx="138" cy="133" r="5"/>
-            <circle cx="100" cy="145" r="5"/>
-            <circle cx="62" cy="133" r="5"/>
-            <circle cx="50" cy="95" r="5"/>
-            <circle cx="62" cy="57" r="5"/>
-        </g>
-        <!-- الرمز الداخلي (حرف B والأشكال الهندسية) -->
-        <path d="M75 75 H110 V115 H75 Z" fill="none" stroke="#000000" stroke-width="5" rx="5"/>
-        <text x="100" y="103" font-size="28" font-weight="900" text-anchor="middle" fill="#000000" font-family="Arial">UB</text>
-    </svg>
+    <!-- صورة شعار جامعة بحري مدمجة في الجهة اليمنى (تأكد من مطابقة اسم الصورة مع ملفك في المشروع مثل university-logo.png) -->
+    <img src="university-logo.png" alt="شعار جامعة بحري" class="header-university-logo">
 
     <div class="logo">الريان</div>
     <div class="university-title">جامعة بحري</div>
@@ -1252,7 +1238,7 @@ footer{
 
             <div class="big-icon">💡</div>
 
-            ### الآراء والاقتراحات
+            <h3>الآراء والاقتراحات</h3>
 
             <p>
                 شاركنا برأيك لتطوير المنصة وتحسينها مباشرة عبر رقمي الخاص.
@@ -1506,7 +1492,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     if(shareBtn){
         shareBtn.addEventListener('click',function(){
-            const shareData = {
+            const shareDate = {
                 title: 'منصة الريان الطلابية - جامعة بحري',
                 text: 'منصة الريان التعليمية لطلاب دفعة 023 / 024 - كلية العلوم الإدارية بجامعة بحري',
                 url: window.location.href
