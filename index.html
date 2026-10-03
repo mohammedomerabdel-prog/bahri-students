@@ -136,27 +136,6 @@ header{
     background:rgba(255,255,255,0.25);
 }
 
-/* تنسيق صورة شعار الجامعة المدمجة في الجهة اليمنى للشريط العلوي */
-.header-university-logo {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 50%;
-    background: #ffffff;
-    padding: 3px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    border: 2px solid rgba(255,255,255,0.5);
-    z-index: 10;
-    transition: transform 0.3s ease;
-}
-
-.header-university-logo:hover {
-    transform: scale(1.08);
-}
-
 .ticker-container{
     background:#1e293b;
     color:#f8fafc;
@@ -831,11 +810,7 @@ footer{
 </div>
 
 <header>
-    <!-- زر تبديل الوضع الليلي/الصباحي في الجهة اليسرى -->
     <button class="theme-toggle-btn" id="themeToggleBtn" type="button">🌙 الوضع الليلي</button>
-
-    <!-- صورة شعار جامعة بحري مدمجة في الجهة اليمنى (تأكد من مطابقة اسم الصورة مع ملفك في المشروع مثل university-logo.png) -->
-    <img src="university-logo.png" alt="شعار جامعة بحري" class="header-university-logo">
 
     <div class="logo">الريان</div>
     <div class="university-title">جامعة بحري</div>
@@ -1323,7 +1298,7 @@ footer{
 
             <p>
                 ✨ <strong>الزميلة المشاركة:</strong>
-                ريان عبد المطلب البشير
+                Rayan Abdul Mutalib El Bashir ❤️
             </p>
 
         </div>
@@ -1341,7 +1316,7 @@ document.addEventListener("DOMContentLoaded", function(){
     function initVisitorCounter() {
         let visits = localStorage.getItem("platform_visits");
         if (!visits) {
-            visits = 1250;
+            visits = 1250; // الرقم الابتدائي للزيارات
         }
         if (!sessionStorage.getItem("visited_session")) {
             visits = parseInt(visits) + 1;
@@ -1492,7 +1467,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     if(shareBtn){
         shareBtn.addEventListener('click',function(){
-            const shareDate = {
+            const shareData = {
                 title: 'منصة الريان الطلابية - جامعة بحري',
                 text: 'منصة الريان التعليمية لطلاب دفعة 023 / 024 - كلية العلوم الإدارية بجامعة بحري',
                 url: window.location.href
