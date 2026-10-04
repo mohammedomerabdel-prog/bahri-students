@@ -664,6 +664,17 @@ footer{
     background:#2563eb;
 }
 
+.admin-btn{
+    background:linear-gradient(135deg,#475569,#1e293b);
+    color:#ffffff;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.admin-btn:hover{
+    background:linear-gradient(135deg,#334155,#0f172a);
+}
+
 #backToTop{
     position:fixed;
     bottom:25px;
@@ -794,6 +805,16 @@ footer{
     .cards,.links-grid,.stats,.quick-actions{
         grid-template-columns:1fr;
     }
+
+    .footer-buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .footer-btn{
+        width:100%;
+        max-width:280px;
+    }
 }
 </style>
 </head>
@@ -810,107 +831,241 @@ footer{
 </div>
 
 <header>
-    <button class="theme-toggle-btn" id="themeToggleBtn" type="button">🌙 الوضع الليلي</button>
+
+    <button class="theme-toggle-btn" id="themeToggleBtn" type="button">
+        🌙 الوضع الليلي
+    </button>
 
     <div class="logo">الريان</div>
-    <div class="university-title">جامعة بحري</div>
-    <div class="subtitle">المنصة الطلابية | كلية العلوم الإدارية</div>
-    <div class="badge">دفعة 023 / 024</div>
+
+    <div class="university-title">
+        جامعة بحري
+    </div>
+
+    <div class="subtitle">
+        المنصة الطلابية | كلية العلوم الإدارية
+    </div>
+
+    <div class="badge">
+        دفعة 023 / 024
+    </div>
+
 </header>
 
 <div class="ticker-container">
-    <span class="ticker-title">عاجل 📢</span>
+
+    <span class="ticker-title">
+        عاجل 📢
+    </span>
+
     <div class="ticker-text">
         مرحباً بكم في منصة الريان - جامعة بحري لدفعة 023 / 024 - تابعوا جدول المحاضرات والملفات الدراسية أولاً بأول!
     </div>
+
 </div>
 
 <div class="search-box-wrapper">
+
     <div class="search-box-container">
-        <span class="search-icon-inside">🔍</span>
-        <input type="text" id="siteSearchInput" class="search-input"
-        placeholder="ابحث عن مواد، اختبارات، نتيجة، جدول، أو روابط تواصل..."
-        autocomplete="off">
-        <button id="clearSearchBtn" class="clear-search-btn" title="مسح البحث">✕</button>
+
+        <span class="search-icon-inside">
+            🔍
+        </span>
+
+        <input
+            type="text"
+            id="siteSearchInput"
+            class="search-input"
+            placeholder="ابحث عن مواد، اختبارات، نتيجة، جدول، أو روابط تواصل..."
+            autocomplete="off">
+
+        <button
+            id="clearSearchBtn"
+            class="clear-search-btn"
+            title="مسح البحث">
+
+            ✕
+
+        </button>
+
     </div>
+
 </div>
 
 <nav>
+
     <div class="nav-container">
-        <a href="index.html" class="active">الرئيسية</a>
-        <a href="subjects.html">المواد</a>
-        <a href="about.html">عن الكلية</a>
-        <a href="results.html">النتيجة</a>
-        <a href="exams.html">الاختبارات</a>
-        <a href="study-tools.html">الوسائل التعليمية</a>
-        <a href="#schedule">الجدول</a>
-        <a href="#community">التواصل</a>
+
+        <a href="index.html" class="active">
+            الرئيسية
+        </a>
+
+        <a href="subjects.html">
+            المواد
+        </a>
+
+        <a href="about.html">
+            عن الكلية
+        </a>
+
+        <a href="results.html">
+            النتيجة
+        </a>
+
+        <a href="exams.html">
+            الاختبارات
+        </a>
+
+        <a href="study-tools.html">
+            الوسائل التعليمية
+        </a>
+
+        <a href="#schedule">
+            الجدول
+        </a>
+
+        <a href="#community">
+            التواصل
+        </a>
+
     </div>
+
 </nav>
 
 <main class="container">
 
 <div id="noResultsMsg" class="no-results-msg">
-    <div style="font-size:40px;margin-bottom:10px;">🔍❌</div>
-    <h4>عفواً، لم نجد أي نتائج تطابق بحثك!</h4>
-    <p>جرب البحث بكلمات أخرى مثل: "مواد"، "نتيجة"، "جدول"، "واتساب"، "ليدر".</p>
+
+    <div style="font-size:40px;margin-bottom:10px;">
+        🔍❌
+    </div>
+
+    <h4>
+        عفواً، لم نجد أي نتائج تطابق بحثك!
+    </h4>
+
+    <p>
+        جرب البحث بكلمات أخرى مثل:
+        "مواد"، "نتيجة"، "جدول"، "واتساب"، "ليدر".
+    </p>
+
 </div>
 
 <section class="searchable-section">
+
     <div class="countdown-box searchable-item">
-        <h3>⏳ العداد التنازلي لبداية الامتحانات (9 يناير 2027)</h3>
+
+        <h3>
+            ⏳ العداد التنازلي لبداية الامتحانات (9 يناير 2027)
+        </h3>
 
         <div class="countdown-timers">
+
             <div class="time-card">
-                <span id="days">00</span>
-                <label>يوم</label>
+
+                <span id="days">
+                    00
+                </span>
+
+                <label>
+                    يوم
+                </label>
+
             </div>
 
             <div class="time-card">
-                <span id="hours">00</span>
-                <label>ساعة</label>
+
+                <span id="hours">
+                    00
+                </span>
+
+                <label>
+                    ساعة
+                </label>
+
             </div>
 
             <div class="time-card">
-                <span id="minutes">00</span>
-                <label>دقيقة</label>
+
+                <span id="minutes">
+                    00
+                </span>
+
+                <label>
+                    دقيقة
+                </label>
+
             </div>
 
             <div class="time-card">
-                <span id="seconds">00</span>
-                <label>ثانية</label>
+
+                <span id="seconds">
+                    00
+                </span>
+
+                <label>
+                    ثانية
+                </label>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 <section id="home" class="searchable-section">
 
     <div class="hero">
 
-        <h2>مرحباً بكم في منصة الريان 🎓</h2>
+        <h2>
+            مرحباً بكم في منصة الريان 🎓
+        </h2>
 
         <p>
-            منصة طلابية متكاملة بـ <strong>جامعة بحري</strong>
+            منصة طلابية متكاملة بـ
+            <strong>جامعة بحري</strong>
             تجمع المواد الدراسية، الملفات، الملخصات، والنتائج الخاصة بدفعة
             023 / 024 في مكان واحد.
         </p>
 
         <div class="quick-actions">
 
-            <a class="quick-action searchable-item" href="subjects.html">
-                <span>📚</span>
+            <a
+                class="quick-action searchable-item"
+                href="subjects.html">
+
+                <span>
+                    📚
+                </span>
+
                 المواد الدراسية
+
             </a>
 
-            <a class="quick-action searchable-item" href="exams.html">
-                <span>📝</span>
+            <a
+                class="quick-action searchable-item"
+                href="exams.html">
+
+                <span>
+                    📝
+                </span>
+
                 الاختبارات وبنك الأسئلة
+
             </a>
 
-            <a class="quick-action searchable-item" href="results.html">
-                <span>📊</span>
+            <a
+                class="quick-action searchable-item"
+                href="results.html">
+
+                <span>
+                    📊
+                </span>
+
                 النتيجة الأكاديمية
+
             </a>
 
         </div>
@@ -920,24 +1075,51 @@ footer{
     <div class="stats searchable-item">
 
         <div class="stat">
-            <strong>8</strong>
-            <span>مواد دراسية</span>
+
+            <strong>
+                8
+            </strong>
+
+            <span>
+                مواد دراسية
+            </span>
+
         </div>
 
         <div class="stat">
-            <strong>397</strong>
-            <span>طالب وطالبة</span>
+
+            <strong>
+                397
+            </strong>
+
+            <span>
+                طالب وطالبة
+            </span>
+
         </div>
 
-        <!-- خانة عداد الزيارات المضافة حديثاً -->
         <div class="stat">
-            <strong id="visitorCount">1250</strong>
-            <span>إجمالي زيارات المنصة</span>
+
+            <strong id="visitorCount">
+                1250
+            </strong>
+
+            <span>
+                إجمالي زيارات المنصة
+            </span>
+
         </div>
 
         <div class="stat">
-            <strong id="platformAge">0 يوم</strong>
-            <span>عمر المنصة</span>
+
+            <strong id="platformAge">
+                0 يوم
+            </strong>
+
+            <span>
+                عمر المنصة
+            </span>
+
         </div>
 
     </div>
@@ -947,16 +1129,28 @@ footer{
 <section class="searchable-section">
 
     <div class="section-title">
-        <h2>⚡ أقسام المنصة السريعة</h2>
-        <p>تصفح كافة خدمات المنصة بضغطة زر واحدة</p>
+
+        <h2>
+            ⚡ أقسام المنصة السريعة
+        </h2>
+
+        <p>
+            تصفح كافة خدمات المنصة بضغطة زر واحدة
+        </p>
+
     </div>
 
     <div class="cards">
 
         <div class="card searchable-item">
-            <div class="icon icon-amber">🏛️</div>
 
-            <h3>عن الكلية</h3>
+            <div class="icon icon-amber">
+                🏛️
+            </div>
+
+            <h3>
+                عن الكلية
+            </h3>
 
             <p>
                 تعرف على نبذة تفصيلية عن كلية العلوم الإدارية وأهدافها الأكاديمية.
@@ -965,13 +1159,19 @@ footer{
             <a class="btn" href="about.html">
                 استعراض النبذة
             </a>
+
         </div>
 
 
         <div class="card searchable-item">
-            <div class="icon icon-purple">🧠</div>
 
-            <h3>اختبارات معرفة القدرات</h3>
+            <div class="icon icon-purple">
+                🧠
+            </div>
+
+            <h3>
+                اختبارات معرفة القدرات
+            </h3>
 
             <p>
                 اختبر معلوماتك وقدراتك الذهنية عبر تمرينات واختبارات تفاعلية مشوقة.
@@ -980,13 +1180,19 @@ footer{
             <a class="btn" href="fun.html">
                 ابدأ الاختبار
             </a>
+
         </div>
 
 
         <div class="card searchable-item">
-            <div class="icon icon-teal">🛠️</div>
 
-            <h3>الوسائل التعليمية</h3>
+            <div class="icon icon-teal">
+                🛠️
+            </div>
+
+            <h3>
+                الوسائل التعليمية
+            </h3>
 
             <p>
                 أدوات ومصادر ومراجع تعليمية مساعدة لتحسين التحصيل الدراسي.
@@ -995,14 +1201,19 @@ footer{
             <a class="btn" href="study-tools.html">
                 فتح الوسائل
             </a>
+
         </div>
 
 
         <div class="card searchable-item">
 
-            <div class="icon icon-news">📰</div>
+            <div class="icon icon-news">
+                📰
+            </div>
 
-            <h3>السبق الصحفي</h3>
+            <h3>
+                السبق الصحفي
+            </h3>
 
             <p>
                 تابع الأخبار والتغطيات والموضوعات الصحفية المميزة
@@ -1023,8 +1234,15 @@ footer{
 <section id="schedule" class="searchable-section">
 
     <div class="section-title">
-        <h2>📅 جدول المحاضرات الأسبوعي</h2>
-        <p>المواعيد الرسمية للمحاضرات من السبت إلى الخميس</p>
+
+        <h2>
+            📅 جدول المحاضرات الأسبوعي
+        </h2>
+
+        <p>
+            المواعيد الرسمية للمحاضرات من السبت إلى الخميس
+        </p>
+
     </div>
 
     <div class="table-box searchable-item">
@@ -1032,56 +1250,151 @@ footer{
         <table>
 
             <thead>
+
                 <tr>
-                    <th>اليوم</th>
-                    <th>المحاضرة الأولى</th>
-                    <th>المحاضرة الثانية</th>
-                    <th>المحاضرة الثالثة</th>
+
+                    <th>
+                        اليوم
+                    </th>
+
+                    <th>
+                        المحاضرة الأولى
+                    </th>
+
+                    <th>
+                        المحاضرة الثانية
+                    </th>
+
+                    <th>
+                        المحاضرة الثالثة
+                    </th>
+
                 </tr>
+
             </thead>
 
             <tbody>
+
                 <tr>
-                    <td>السبت</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+
+                    <td>
+                        السبت
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
                 </tr>
 
                 <tr>
-                    <td>الأحد</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+
+                    <td>
+                        الأحد
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
                 </tr>
 
                 <tr>
-                    <td>الاثنين</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+
+                    <td>
+                        الاثنين
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
                 </tr>
 
                 <tr>
-                    <td>الثلاثاء</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+
+                    <td>
+                        الثلاثاء
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
                 </tr>
 
                 <tr>
-                    <td>الأربعاء</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+
+                    <td>
+                        الأربعاء
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
                 </tr>
 
                 <tr>
-                    <td>الخميس</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+
+                    <td>
+                        الخميس
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
                 </tr>
+
             </tbody>
 
         </table>
@@ -1095,15 +1408,21 @@ footer{
 
     <div class="library searchable-item">
 
-        <h2>📁 مكتبة الملفات والمراجع</h2>
+        <h2>
+            📁 مكتبة الملفات والمراجع
+        </h2>
 
         <p>
             جميع الملفات والمحاضرات والملخصات الخاصة بمواد الدفعة
             متوفرة للتحميل المباشر.
         </p>
 
-        <a class="library-btn" href="subjects.html">
+        <a
+            class="library-btn"
+            href="subjects.html">
+
             تصفح ملفات المواد
+
         </a>
 
     </div>
@@ -1114,26 +1433,40 @@ footer{
 <section id="community" class="searchable-section">
 
     <div class="section-title">
-        <h2>🔗 روابط التواصل والاتصال</h2>
-        <p>قنوات التواصل الرسمية الخاصة بالدفعة والكلية</p>
+
+        <h2>
+            🔗 روابط التواصل والاتصال
+        </h2>
+
+        <p>
+            قنوات التواصل الرسمية الخاصة بالدفعة والكلية
+        </p>
+
     </div>
 
     <div class="links-grid">
 
         <div class="link-card searchable-item">
 
-            <div class="big-icon">💬</div>
+            <div class="big-icon">
+                💬
+            </div>
 
-            <h3>مجموعة الواتساب</h3>
+            <h3>
+                مجموعة الواتساب
+            </h3>
 
             <p>
                 مجموعة الدفعة الرسمية للاستفسارات والأخبار السريعة.
             </p>
 
-            <a class="btn"
-            href="https://chat.whatsapp.com/FmtkIp9Y0YMBGaBZfgo0ZW"
-            target="_blank">
+            <a
+                class="btn"
+                href="https://chat.whatsapp.com/FmtkIp9Y0YMBGaBZfgo0ZW"
+                target="_blank">
+
                 انضم للمجموعة
+
             </a>
 
         </div>
@@ -1141,18 +1474,25 @@ footer{
 
         <div class="link-card searchable-item">
 
-            <div class="big-icon">👥</div>
+            <div class="big-icon">
+                👥
+            </div>
 
-            <h3>صفحة الفيسبوك</h3>
+            <h3>
+                صفحة الفيسبوك
+            </h3>
 
             <p>
                 تابعنا على صفحتنا الرسمية على الفيسبوك لأحدث مستجدات الدفعة.
             </p>
 
-            <a class="btn"
-            href="https://www.facebook.com/share/1M81DYnAxV/"
-            target="_blank">
+            <a
+                class="btn"
+                href="https://www.facebook.com/share/1M81DYnAxV/"
+                target="_blank">
+
                 زوروا صفحتنا
+
             </a>
 
         </div>
@@ -1160,50 +1500,76 @@ footer{
 
         <div class="link-card searchable-item">
 
-            <div class="big-icon">📢</div>
+            <div class="big-icon">
+                📢
+            </div>
 
-            <h3>أخبار الجامعة</h3>
+            <h3>
+                أخبار الجامعة
+            </h3>
 
             <p>
                 تابع آخر الأخبار والتعاميم الرسمية الصادرة من إدارة الجامعة.
             </p>
 
-            <a class="btn"
-            href="https://www.facebook.com/share/19i7UZ4Cne/"
-            target="_blank">
+            <a
+                class="btn"
+                href="https://www.facebook.com/share/19i7UZ4Cne/"
+                target="_blank">
+
                 صفحة الأخبار
+
             </a>
 
         </div>
 
 
-        <div class="link-card searchable-item"
-        style="border:2px solid #3b82f6;">
+        <div
+            class="link-card searchable-item"
+            style="border:2px solid #3b82f6;">
 
-            <div class="big-icon">📞</div>
+            <div class="big-icon">
+                📞
+            </div>
 
-            <h3>أرقام القيادة</h3>
+            <h3>
+                أرقام القيادة
+            </h3>
 
             <p>
-                <strong>ليدر الدفعة:</strong><br>
+                <strong>
+                    ليدر الدفعة:
+                </strong>
+                <br>
                 249116314682
             </p>
 
-            <a class="btn btn-highlight"
-            href="https://wa.me/249116314682"
-            target="_blank">
+            <a
+                class="btn btn-highlight"
+                href="https://wa.me/249116314682"
+                target="_blank">
+
                 💬 مراسلة ليدر الدفعة
+
             </a>
 
             <p style="margin-top:15px;">
-                <strong>مسجل الدفعة:</strong><br>
+
+                <strong>
+                    مسجل الدفعة:
+                </strong>
+                <br>
                 249111744435
+
             </p>
 
-            <a class="btn btn-highlight"
-            href="https://wa.me/249111744435"
-            target="_blank">
+            <a
+                class="btn btn-highlight"
+                href="https://wa.me/249111744435"
+                target="_blank">
+
                 💬 مراسلة مسجل الدفعة
+
             </a>
 
         </div>
@@ -1211,18 +1577,25 @@ footer{
 
         <div class="link-card searchable-item">
 
-            <div class="big-icon">💡</div>
+            <div class="big-icon">
+                💡
+            </div>
 
-            <h3>الآراء والاقتراحات</h3>
+            <h3>
+                الآراء والاقتراحات
+            </h3>
 
             <p>
                 شاركنا برأيك لتطوير المنصة وتحسينها مباشرة عبر رقمي الخاص.
             </p>
 
-            <a class="btn"
-            href="https://wa.me/249995040725?text=مرحباً، لدي اقتراح بخصوص منصة الريان:"
-            target="_blank">
+            <a
+                class="btn"
+                href="https://wa.me/249995040725?text=مرحباً، لدي اقتراح بخصوص منصة الريان:"
+                target="_blank">
+
                 أرسل اقتراحك
+
             </a>
 
         </div>
@@ -1238,67 +1611,116 @@ footer{
 
     <div class="footer-buttons">
 
-        <button class="footer-btn"
-        id="aboutUsBtn"
-        type="button">
+        <button
+            class="footer-btn"
+            id="aboutUsBtn"
+            type="button">
+
             من نحن 👥
+
         </button>
 
-        <button class="footer-btn share-btn"
-        id="shareSiteBtn"
-        type="button">
+
+        <button
+            class="footer-btn share-btn"
+            id="shareSiteBtn"
+            type="button">
+
             🔗 مشاركة المنصة
+
         </button>
+
+
+        <!-- لوحة الإدارة -->
+
+        <a
+            class="footer-btn admin-btn"
+            href="admin.html">
+
+            ⚙️ لوحة الإدارة
+
+        </a>
 
     </div>
 
+
     <p>
+
         جميع الحقوق محفوظة لـ
+
         <strong>
             منصة الريان - جامعة بحري - كلية العلوم الإدارية
             (دفعة 023 / 024)
         </strong>
+
     </p>
 
     <p style="margin-top:6px;">
+
         صُنِع بشغف لخدمة طلاب الدفعة 💙
+
     </p>
 
 </footer>
 
 
-<button id="backToTop" title="العودة للأعلى">
+<button
+    id="backToTop"
+    title="العودة للأعلى">
+
     ⬆
+
 </button>
 
 
-<div class="modal" id="aboutModal">
+<div
+    class="modal"
+    id="aboutModal">
 
     <div class="modal-content">
 
-        <span class="close-modal"
-        id="closeModalBtn">
+        <span
+            class="close-modal"
+            id="closeModalBtn">
+
             &times;
+
         </span>
 
-        <h3>من نحن 🎓</h3>
+        <h3>
+            من نحن 🎓
+        </h3>
 
         <p>
+
             منصة الريان هي منصة طلابية تعليمية متكاملة
             تهدف إلى تسهيل الوصول للملفات والمراجع وخدمة
             طلاب دفعة 023 / 024 بكلية العلوم الإدارية بجامعة بحري.
+
         </p>
 
         <div class="creators-box">
 
             <p>
-                ✨ <strong>المؤسس:</strong>
+
+                ✨
+                <strong>
+                    المؤسس:
+                </strong>
+
                 Omer Abd El Moniem Mohammed
+
             </p>
 
             <p>
-                ✨ <strong>الزميلة المشاركة:</strong>
+
+                ✨
+                <strong>
+                    الزميلة المشاركة:
+                </strong>
+
                 Rayan Abdul Mutalib El Bashir ❤️
+
             </p>
 
         </div>
@@ -1312,228 +1734,666 @@ footer{
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    /* عداد زوار الموقع */
+    /* =========================
+       عداد زوار الموقع
+    ========================= */
+
     function initVisitorCounter() {
-        let visits = localStorage.getItem("platform_visits");
+
+        let visits =
+        localStorage.getItem(
+            "platform_visits"
+        );
+
         if (!visits) {
-            visits = 1250; // الرقم الابتدائي للزيارات
+
+            visits = 1250;
+
         }
-        if (!sessionStorage.getItem("visited_session")) {
-            visits = parseInt(visits) + 1;
-            localStorage.setItem("platform_visits", visits);
-            sessionStorage.setItem("visited_session", "true");
+
+        if (!sessionStorage.getItem(
+            "visited_session"
+        )) {
+
+            visits =
+            parseInt(visits) + 1;
+
+            localStorage.setItem(
+                "platform_visits",
+                visits
+            );
+
+            sessionStorage.setItem(
+                "visited_session",
+                "true"
+            );
+
         }
-        const visitorEl = document.getElementById("visitorCount");
+
+        const visitorEl =
+        document.getElementById(
+            "visitorCount"
+        );
+
         if (visitorEl) {
-            visitorEl.innerText = visits;
+
+            visitorEl.innerText =
+            visits;
+
         }
+
     }
+
     initVisitorCounter();
 
-    /* حساب عمر المنصة منذ 1 أكتوبر 2026 */
-    function updatePlatformAge() {
-        const launchDate = new Date("October 1, 2026 00:00:00").getTime();
-        const now = new Date().getTime();
-        const diff = now - launchDate;
 
-        const ageEl = document.getElementById("platformAge");
-        if(ageEl) {
-            if(diff < 0) {
-                ageEl.innerText = "قريباً";
-            } else {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                if(days === 0) {
-                    ageEl.innerText = "اليوم الأول";
-                } else {
-                    ageEl.innerText = days + " يوم";
+    /* =========================
+       حساب عمر المنصة
+    ========================= */
+
+    function updatePlatformAge() {
+
+        const launchDate =
+        new Date(
+            "October 1, 2026 00:00:00"
+        ).getTime();
+
+        const now =
+        new Date().getTime();
+
+        const diff =
+        now - launchDate;
+
+        const ageEl =
+        document.getElementById(
+            "platformAge"
+        );
+
+        if(ageEl){
+
+            if(diff < 0){
+
+                ageEl.innerText =
+                "قريباً";
+
+            }else{
+
+                const days =
+                Math.floor(
+                    diff /
+                    (1000 * 60 * 60 * 24)
+                );
+
+                if(days === 0){
+
+                    ageEl.innerText =
+                    "اليوم الأول";
+
+                }else{
+
+                    ageEl.innerText =
+                    days + " يوم";
+
                 }
+
             }
+
         }
+
     }
+
     updatePlatformAge();
 
-    /* إغلاق نافذة التنبيه */
-    const noticeModal = document.getElementById('noticeModal');
-    const confirmNoticeBtn = document.getElementById('confirmNoticeBtn');
 
-    if(confirmNoticeBtn && noticeModal){
-        confirmNoticeBtn.addEventListener('click',function(){
-            noticeModal.style.display='none';
-        });
+    /* =========================
+       إغلاق نافذة التنبيه
+    ========================= */
+
+    const noticeModal =
+    document.getElementById(
+        'noticeModal'
+    );
+
+    const confirmNoticeBtn =
+    document.getElementById(
+        'confirmNoticeBtn'
+    );
+
+    if(
+        confirmNoticeBtn &&
+        noticeModal
+    ){
+
+        confirmNoticeBtn.addEventListener(
+            'click',
+            function(){
+
+                noticeModal.style.display =
+                'none';
+
+            }
+        );
+
     }
 
-    /* الوضع الليلي والصباحي */
-    const themeBtn = document.getElementById('themeToggleBtn');
+
+    /* =========================
+       الوضع الليلي
+    ========================= */
+
+    const themeBtn =
+    document.getElementById(
+        'themeToggleBtn'
+    );
 
     if(themeBtn){
-        const currentTheme = localStorage.getItem('theme');
+
+        const currentTheme =
+        localStorage.getItem(
+            'theme'
+        );
 
         if(currentTheme === 'dark'){
-            document.body.classList.add('dark-mode');
-            themeBtn.innerText = '☀️ الوضع الصباحي';
+
+            document.body.classList.add(
+                'dark-mode'
+            );
+
+            themeBtn.innerText =
+            '☀️ الوضع الصباحي';
+
         }
 
-        themeBtn.addEventListener('click',function(){
-            document.body.classList.toggle('dark-mode');
+        themeBtn.addEventListener(
+            'click',
+            function(){
 
-            if(document.body.classList.contains('dark-mode')){
-                localStorage.setItem('theme','dark');
-                themeBtn.innerText = '☀️ الوضع الصباحي';
-            }else{
-                localStorage.setItem('theme','light');
-                themeBtn.innerText = '🌙 الوضع الليلي';
+                document.body.classList.toggle(
+                    'dark-mode'
+                );
+
+                if(
+                    document.body.classList.contains(
+                        'dark-mode'
+                    )
+                ){
+
+                    localStorage.setItem(
+                        'theme',
+                        'dark'
+                    );
+
+                    themeBtn.innerText =
+                    '☀️ الوضع الصباحي';
+
+                }else{
+
+                    localStorage.setItem(
+                        'theme',
+                        'light'
+                    );
+
+                    themeBtn.innerText =
+                    '🌙 الوضع الليلي';
+
+                }
+
             }
-        });
+        );
+
     }
 
-    /* محرك البحث */
-    const searchInput = document.getElementById('siteSearchInput');
-    const clearBtn = document.getElementById('clearSearchBtn');
-    const noResults = document.getElementById('noResultsMsg');
+
+    /* =========================
+       محرك البحث
+    ========================= */
+
+    const searchInput =
+    document.getElementById(
+        'siteSearchInput'
+    );
+
+    const clearBtn =
+    document.getElementById(
+        'clearSearchBtn'
+    );
+
+    const noResults =
+    document.getElementById(
+        'noResultsMsg'
+    );
 
     if(searchInput){
-        searchInput.addEventListener('input',function(){
-            const query = this.value.trim().toLowerCase();
 
-            if(query.length > 0){
-                clearBtn.style.display='block';
-            }else{
-                clearBtn.style.display='none';
-            }
+        searchInput.addEventListener(
+            'input',
+            function(){
 
-            let totalMatches=0;
-            const sections = document.querySelectorAll('.searchable-section');
+                const query =
+                this.value
+                .trim()
+                .toLowerCase();
 
-            sections.forEach(function(section){
-                const items = section.querySelectorAll('.searchable-item');
-                let visibleItemsInSection=0;
 
-                items.forEach(function(item){
-                    const text = item.textContent.toLowerCase();
+                if(query.length > 0){
 
-                    if(query === '' || text.includes(query)){
-                        item.style.display='';
-                        visibleItemsInSection++;
-                        totalMatches++;
-                    }else{
-                        item.style.display='none';
-                    }
-                });
+                    clearBtn.style.display =
+                    'block';
 
-                if(query === '' || visibleItemsInSection > 0){
-                    section.style.display='';
                 }else{
-                    section.style.display='none';
+
+                    clearBtn.style.display =
+                    'none';
+
                 }
-            });
 
-            if(totalMatches === 0 && query !== ''){
-                noResults.style.display='block';
-            }else{
-                noResults.style.display='none';
+
+                let totalMatches = 0;
+
+
+                const sections =
+                document.querySelectorAll(
+                    '.searchable-section'
+                );
+
+
+                sections.forEach(
+                    function(section){
+
+                        const items =
+                        section.querySelectorAll(
+                            '.searchable-item'
+                        );
+
+                        let visibleItemsInSection =
+                        0;
+
+
+                        items.forEach(
+                            function(item){
+
+                                const text =
+                                item.textContent
+                                .toLowerCase();
+
+
+                                if(
+                                    query === '' ||
+                                    text.includes(query)
+                                ){
+
+                                    item.style.display =
+                                    '';
+
+                                    visibleItemsInSection++;
+
+                                    totalMatches++;
+
+                                }else{
+
+                                    item.style.display =
+                                    'none';
+
+                                }
+
+                            }
+                        );
+
+
+                        if(
+                            query === '' ||
+                            visibleItemsInSection > 0
+                        ){
+
+                            section.style.display =
+                            '';
+
+                        }else{
+
+                            section.style.display =
+                            'none';
+
+                        }
+
+                    }
+                );
+
+
+                if(
+                    totalMatches === 0 &&
+                    query !== ''
+                ){
+
+                    noResults.style.display =
+                    'block';
+
+                }else{
+
+                    noResults.style.display =
+                    'none';
+
+                }
+
             }
-        });
+        );
 
-        clearBtn.addEventListener('click',function(){
-            searchInput.value='';
-            searchInput.dispatchEvent(new Event('input'));
-            searchInput.focus();
-        });
+
+        clearBtn.addEventListener(
+            'click',
+            function(){
+
+                searchInput.value = '';
+
+                searchInput.dispatchEvent(
+                    new Event('input')
+                );
+
+                searchInput.focus();
+
+            }
+        );
+
     }
 
-    /* نافذة من نحن */
-    const aboutBtn = document.getElementById('aboutUsBtn');
-    const aboutModal = document.getElementById('aboutModal');
-    const closeModal = document.getElementById('closeModalBtn');
 
-    if(aboutBtn && aboutModal && closeModal){
-        aboutBtn.addEventListener('click',function(){
-            aboutModal.style.display='flex';
-        });
+    /* =========================
+       نافذة من نحن
+    ========================= */
 
-        closeModal.addEventListener('click',function(){
-            aboutModal.style.display='none';
-        });
+    const aboutBtn =
+    document.getElementById(
+        'aboutUsBtn'
+    );
 
-        window.addEventListener('click',function(e){
-            if(e.target === aboutModal){
-                aboutModal.style.display='none';
+    const aboutModal =
+    document.getElementById(
+        'aboutModal'
+    );
+
+    const closeModal =
+    document.getElementById(
+        'closeModalBtn'
+    );
+
+
+    if(
+        aboutBtn &&
+        aboutModal &&
+        closeModal
+    ){
+
+        aboutBtn.addEventListener(
+            'click',
+            function(){
+
+                aboutModal.style.display =
+                'flex';
+
             }
-        });
+        );
+
+
+        closeModal.addEventListener(
+            'click',
+            function(){
+
+                aboutModal.style.display =
+                'none';
+
+            }
+        );
+
+
+        window.addEventListener(
+            'click',
+            function(e){
+
+                if(e.target === aboutModal){
+
+                    aboutModal.style.display =
+                    'none';
+
+                }
+
+            }
+        );
+
     }
 
-    /* مشاركة المنصة */
-    const shareBtn = document.getElementById('shareSiteBtn');
+
+    /* =========================
+       مشاركة المنصة
+    ========================= */
+
+    const shareBtn =
+    document.getElementById(
+        'shareSiteBtn'
+    );
 
     if(shareBtn){
-        shareBtn.addEventListener('click',function(){
-            const shareData = {
-                title: 'منصة الريان الطلابية - جامعة بحري',
-                text: 'منصة الريان التعليمية لطلاب دفعة 023 / 024 - كلية العلوم الإدارية بجامعة بحري',
-                url: window.location.href
-            };
 
-            if(navigator.share){
-                navigator.share(shareData).catch(function(){});
-            }else{
-                navigator.clipboard.writeText(window.location.href)
-                .then(function(){
-                    alert('تم نسخ رابط المنصة بنجاح!');
-                })
-                .catch(function(){
-                    alert('الرابط: ' + window.location.href);
-                });
+        shareBtn.addEventListener(
+            'click',
+            function(){
+
+                const shareData = {
+
+                    title:
+                    'منصة الريان الطلابية - جامعة بحري',
+
+                    text:
+                    'منصة الريان التعليمية لطلاب دفعة 023 / 024 - كلية العلوم الإدارية بجامعة بحري',
+
+                    url:
+                    window.location.href
+
+                };
+
+
+                if(navigator.share){
+
+                    navigator.share(
+                        shareData
+                    ).catch(
+                        function(){}
+                    );
+
+                }else{
+
+                    navigator.clipboard
+                    .writeText(
+                        window.location.href
+                    )
+                    .then(
+                        function(){
+
+                            alert(
+                                'تم نسخ رابط المنصة بنجاح!'
+                            );
+
+                        }
+                    )
+                    .catch(
+                        function(){
+
+                            alert(
+                                'الرابط: ' +
+                                window.location.href
+                            );
+
+                        }
+                    );
+
+                }
+
             }
-        });
+        );
+
     }
 
-    /* العداد التنازلي */
-    const examDate = new Date("January 9, 2027 00:00:00").getTime();
+
+    /* =========================
+       العداد التنازلي
+    ========================= */
+
+    const examDate =
+    new Date(
+        "January 9, 2027 00:00:00"
+    ).getTime();
+
 
     function updateCountdown(){
-        const now = new Date().getTime();
-        const distance = examDate - now;
+
+        const now =
+        new Date().getTime();
+
+        const distance =
+        examDate - now;
+
 
         if(distance < 0){
-            document.getElementById("days").innerText="00";
-            document.getElementById("hours").innerText="00";
-            document.getElementById("minutes").innerText="00";
-            document.getElementById("seconds").innerText="00";
+
+            document.getElementById(
+                "days"
+            ).innerText = "00";
+
+            document.getElementById(
+                "hours"
+            ).innerText = "00";
+
+            document.getElementById(
+                "minutes"
+            ).innerText = "00";
+
+            document.getElementById(
+                "seconds"
+            ).innerText = "00";
+
             return;
+
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+        const hours =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+
+        const minutes =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+
+        const seconds =
+        Math.floor(
+            (distance %
+            (1000 * 60)) /
+            1000
+        );
+
+
+        document.getElementById(
+            "days"
+        ).innerText =
+        days < 10
+        ? "0" + days
+        : days;
+
+
+        document.getElementById(
+            "hours"
+        ).innerText =
+        hours < 10
+        ? "0" + hours
+        : hours;
+
+
+        document.getElementById(
+            "minutes"
+        ).innerText =
+        minutes < 10
+        ? "0" + minutes
+        : minutes;
+
+
+        document.getElementById(
+            "seconds"
+        ).innerText =
+        seconds < 10
+        ? "0" + seconds
+        : seconds;
+
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
 
-    /* زر العودة للأعلى */
-    const backToTopBtn = document.getElementById('backToTop');
+    updateCountdown();
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+
+    /* =========================
+       زر العودة للأعلى
+    ========================= */
+
+    const backToTopBtn =
+    document.getElementById(
+        'backToTop'
+    );
+
 
     if(backToTopBtn){
-        window.addEventListener('scroll',function(){
-            if(window.scrollY > 300){
-                backToTopBtn.style.display='flex';
-            }else{
-                backToTopBtn.style.display='none';
-            }
-        });
 
-        backToTopBtn.addEventListener('click',function(){
-            window.scrollTo({
-                top:0,
-                behavior:'smooth'
-            });
-        });
+        window.addEventListener(
+            'scroll',
+            function(){
+
+                if(window.scrollY > 300){
+
+                    backToTopBtn.style.display =
+                    'flex';
+
+                }else{
+
+                    backToTopBtn.style.display =
+                    'none';
+
+                }
+
+            }
+        );
+
+
+        backToTopBtn.addEventListener(
+            'click',
+            function(){
+
+                window.scrollTo({
+
+                    top:0,
+
+                    behavior:'smooth'
+
+                });
+
+            }
+        );
+
     }
 
 });
@@ -1541,4 +2401,4 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 </body>
-</html>
+    </html>
