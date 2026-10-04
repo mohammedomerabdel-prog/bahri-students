@@ -1,0 +1,2611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة الإدارة | منصة الريان</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:#f1f5f9;
+    color:#1e293b;
+    line-height:1.8;
+}
+
+:root{
+    --primary:#0f172a;
+    --primary2:#1e3a8a;
+    --accent:#3b82f6;
+    --gold:#f59e0b;
+    --green:#10b981;
+    --red:#ef4444;
+    --white:#ffffff;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --shadow:0 10px 25px -5px rgba(15,23,42,0.08);
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-screen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+        radial-gradient(
+            circle at top right,
+            #1e3a8a,
+            #0f172a 55%,
+            #020617
+        );
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:#ffffff;
+    border-radius:25px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 25px 60px rgba(0,0,0,0.3);
+}
+
+.login-logo{
+    width:85px;
+    height:85px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+    color:#ffffff;
+    font-size:40px;
+    font-weight:900;
+}
+
+.login-box h1{
+    color:#0f172a;
+    margin-bottom:5px;
+    font-size:28px;
+}
+
+.login-box .subtitle{
+    color:#64748b;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.password-wrapper{
+    position:relative;
+}
+
+.password-input{
+    width:100%;
+    padding:14px 15px;
+    border:2px solid #e2e8f0;
+    border-radius:14px;
+    outline:none;
+    font-size:16px;
+    font-family:inherit;
+    text-align:center;
+    transition:0.2s;
+}
+
+.password-input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,0.12);
+}
+
+.login-btn{
+    width:100%;
+    border:none;
+    margin-top:15px;
+    padding:13px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+.login-error{
+    display:none;
+    margin-top:12px;
+    color:#dc2626;
+    background:#fee2e2;
+    padding:8px;
+    border-radius:10px;
+    font-size:14px;
+}
+
+.login-note{
+    margin-top:20px;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+#adminApp{
+    display:none;
+}
+
+.admin-header{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+    color:white;
+    padding:25px 20px;
+    position:relative;
+}
+
+.admin-header-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.admin-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.admin-title-icon{
+    width:55px;
+    height:55px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.admin-title h1{
+    font-size:24px;
+}
+
+.admin-title p{
+    color:#bfdbfe;
+    font-size:13px;
+}
+
+.header-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.header-btn{
+    border:none;
+    padding:9px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+}
+
+.home-btn{
+    background:#ffffff;
+    color:#1e3a8a;
+}
+
+.logout-btn{
+    background:#ef4444;
+    color:#ffffff;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.admin-container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px 20px 60px;
+}
+
+.dashboard-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.dashboard-stat{
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.dashboard-stat .stat-icon{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.dashboard-stat strong{
+    display:block;
+    font-size:27px;
+    color:#1e3a8a;
+}
+
+.dashboard-stat span{
+    color:#64748b;
+    font-size:13px;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.admin-tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:25px;
+    padding-bottom:5px;
+}
+
+.admin-tab{
+    border:none;
+    background:#ffffff;
+    color:#475569;
+    padding:11px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+    white-space:nowrap;
+    border:1px solid var(--border);
+    transition:0.2s;
+}
+
+.admin-tab:hover{
+    border-color:#3b82f6;
+    color:#1e3a8a;
+}
+
+.admin-tab.active{
+    background:#1e3a8a;
+    color:#ffffff;
+    border-color:#1e3a8a;
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+.admin-panel{
+    display:none;
+}
+
+.admin-panel.active{
+    display:block;
+}
+
+.panel-card{
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+}
+
+.panel-header{
+    border-bottom:1px solid var(--border);
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.panel-header h2{
+    color:#0f172a;
+    font-size:21px;
+}
+
+.panel-header p{
+    color:#64748b;
+    font-size:13px;
+    margin-top:3px;
+}
+
+
+/* =========================
+   FORMS
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    margin-bottom:7px;
+    font-weight:bold;
+    color:#334155;
+    font-size:14px;
+}
+
+.form-control{
+    width:100%;
+    padding:12px 14px;
+    border:2px solid #e2e8f0;
+    border-radius:12px;
+    outline:none;
+    font-family:inherit;
+    font-size:14px;
+    color:#1e293b;
+    background:#f8fafc;
+    transition:0.2s;
+}
+
+.form-control:focus{
+    border-color:#3b82f6;
+    background:#ffffff;
+    box-shadow:0 0 0 4px rgba(59,130,246,0.08);
+}
+
+textarea.form-control{
+    min-height:110px;
+    resize:vertical;
+}
+
+.save-btn{
+    border:none;
+    background:linear-gradient(135deg,#059669,#10b981);
+    color:#ffffff;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+    margin-top:20px;
+    transition:0.2s;
+}
+
+.save-btn:hover{
+    transform:translateY(-2px);
+}
+
+.reset-btn{
+    border:none;
+    background:#f1f5f9;
+    color:#475569;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+    margin-top:20px;
+    margin-right:8px;
+}
+
+
+/* =========================
+   SCHEDULE
+========================= */
+
+.schedule-table-wrapper{
+    overflow-x:auto;
+}
+
+.schedule-table{
+    width:100%;
+    min-width:750px;
+    border-collapse:collapse;
+}
+
+.schedule-table th{
+    background:#0f172a;
+    color:#ffffff;
+    padding:14px;
+}
+
+.schedule-table td{
+    border-bottom:1px solid #e2e8f0;
+    padding:10px;
+    text-align:center;
+}
+
+.schedule-table input{
+    width:100%;
+    padding:9px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    outline:none;
+    text-align:center;
+    font-family:inherit;
+}
+
+.schedule-table input:focus{
+    border-color:#3b82f6;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.feature-card{
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    background:#f8fafc;
+}
+
+.feature-card .icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.feature-card h3{
+    color:#1e293b;
+    margin-bottom:7px;
+}
+
+.feature-card p{
+    color:#64748b;
+    font-size:13px;
+}
+
+
+/* =========================
+   NOTICE
+========================= */
+
+.info-box{
+    border-right:4px solid #3b82f6;
+    background:#eff6ff;
+    color:#1e40af;
+    padding:15px 18px;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.warning-box{
+    border-right:4px solid #f59e0b;
+    background:#fffbeb;
+    color:#92400e;
+    padding:15px 18px;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%) translateY(100px);
+    background:#0f172a;
+    color:white;
+    padding:13px 22px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    opacity:0;
+    transition:0.3s;
+    z-index:9999;
+    font-size:14px;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .dashboard-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .admin-header-inner{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .header-actions{
+        justify-content:center;
+    }
+
+    .dashboard-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .admin-container{
+        padding:20px 12px 50px;
+    }
+
+    .panel-card{
+        padding:18px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN SCREEN
+===================================================== -->
+
+<div class="login-screen" id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            ⚙️
+        </div>
+
+        <h1>
+            لوحة إدارة الريان
+        </h1>
+
+        <p class="subtitle">
+            جامعة بحري | كلية العلوم الإدارية
+        </p>
+
+        <div class="password-wrapper">
+
+            <input
+                type="password"
+                id="adminPassword"
+                class="password-input"
+                placeholder="أدخل كلمة مرور الإدارة"
+                autocomplete="off">
+
+        </div>
+
+        <button
+            class="login-btn"
+            id="loginBtn"
+            type="button">
+
+            دخول لوحة الإدارة
+
+        </button>
+
+        <div
+            class="login-error"
+            id="loginError">
+
+            كلمة المرور غير صحيحة.
+
+        </div>
+
+        <p class="login-note">
+            منصة الريان • لوحة الإدارة الأولية
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADMIN APPLICATION
+===================================================== -->
+
+<div id="adminApp">
+
+
+<!-- HEADER -->
+
+<header class="admin-header">
+
+    <div class="admin-header-inner">
+
+        <div class="admin-title">
+
+            <div class="admin-title-icon">
+                ⚙️
+            </div>
+
+            <div>
+
+                <h1>
+                    لوحة إدارة منصة الريان
+                </h1>
+
+                <p>
+                    التحكم في بيانات المنصة والإعلانات والجدول
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                class="header-btn home-btn"
+                id="homeBtn"
+                type="button">
+
+                🏠 الموقع الرئيسي
+
+            </button>
+
+            <button
+                class="header-btn logout-btn"
+                id="logoutBtn"
+                type="button">
+
+                تسجيل الخروج
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- MAIN -->
+
+<main class="admin-container">
+
+
+<!-- DASHBOARD STATS -->
+
+<div class="dashboard-stats">
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon">
+            📚
+        </div>
+
+        <strong id="dashboardSubjects">
+            8
+        </strong>
+
+        <span>
+            المواد الدراسية
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+        <strong id="dashboardStudents">
+            397
+        </strong>
+
+        <span>
+            عدد الطلاب
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon">
+            👁️
+        </div>
+
+        <strong id="dashboardVisitors">
+            1250
+        </strong>
+
+        <span>
+            زيارات المنصة
+        </span>
+
+    </div>
+
+
+    <div class="dashboard-stat">
+
+        <div class="stat-icon">
+            📅
+        </div>
+
+        <strong id="dashboardAge">
+            0
+        </strong>
+
+        <span>
+            عمر المنصة بالأيام
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- TABS -->
+
+<div class="admin-tabs">
+
+    <button
+        class="admin-tab active"
+        data-tab="general"
+        type="button">
+
+        ⚙️ الإعدادات العامة
+
+    </button>
+
+
+    <button
+        class="admin-tab"
+        data-tab="schedule"
+        type="button">
+
+        📅 إدارة الجدول
+
+    </button>
+
+
+    <button
+        class="admin-tab"
+        data-tab="content"
+        type="button">
+
+        📚 محتوى المنصة
+
+    </button>
+
+
+    <button
+        class="admin-tab"
+        data-tab="system"
+        type="button">
+
+        🔐 النظام
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     GENERAL PANEL
+===================================================== -->
+
+<section
+    class="admin-panel active"
+    id="generalPanel">
+
+    <div class="panel-card">
+
+        <div class="panel-header">
+
+            <h2>
+                ⚙️ الإعدادات العامة
+            </h2>
+
+            <p>
+                عدّل المعلومات الأساسية التي تستخدمها المنصة.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            التعديلات في هذه النسخة تُحفظ على جهازك باستخدام
+            LocalStorage. لن تظهر تلقائياً لباقي الطلاب إلا بعد
+            ربط المنصة بقاعدة بيانات حقيقية.
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    اسم المنصة
+                </label>
+
+                <input
+                    type="text"
+                    id="platformName"
+                    class="form-control"
+                    value="الريان">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    اسم الجامعة
+                </label>
+
+                <input
+                    type="text"
+                    id="universityName"
+                    class="form-control"
+                    value="جامعة بحري">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    اسم الكلية
+                </label>
+
+                <input
+                    type="text"
+                    id="collegeName"
+                    class="form-control"
+                    value="كلية العلوم الإدارية">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    الدفعة
+                </label>
+
+                <input
+                    type="text"
+                    id="batchName"
+                    class="form-control"
+                    value="023 / 024">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    عدد المواد
+                </label>
+
+                <input
+                    type="number"
+                    id="subjectsCount"
+                    class="form-control"
+                    value="8"
+                    min="0">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    عدد الطلاب
+                </label>
+
+                <input
+                    type="number"
+                    id="studentsCount"
+                    class="form-control"
+                    value="397"
+                    min="0">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    تاريخ إطلاق المنصة
+                </label>
+
+                <input
+                    type="date"
+                    id="launchDate"
+                    class="form-control"
+                    value="2026-10-01">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    تاريخ بداية الامتحانات
+                </label>
+
+                <input
+                    type="date"
+                    id="examDate"
+                    class="form-control"
+                    value="2027-01-09">
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    شريط الأخبار / الإعلان العلوي
+                </label>
+
+                <textarea
+                    id="tickerText"
+                    class="form-control">مرحباً بكم في منصة الريان - جامعة بحري لدفعة 023 / 024 - تابعوا جدول المحاضرات والملفات الدراسية أولاً بأول!</textarea>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            id="saveGeneralBtn"
+            type="button">
+
+            💾 حفظ الإعدادات العامة
+
+        </button>
+
+
+        <button
+            class="reset-btn"
+            id="resetGeneralBtn"
+            type="button">
+
+            إعادة الإعدادات الافتراضية
+
+        </button>
+
+    </div>
+
+
+    <!-- NOTICE -->
+
+    <div class="panel-card">
+
+        <div class="panel-header">
+
+            <h2>
+                📢 تنبيه الموقع
+            </h2>
+
+            <p>
+                الرسالة التي تظهر للطلاب عند دخول الموقع.
+            </p>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                نص التنبيه
+            </label>
+
+            <textarea
+                id="noticeText"
+                class="form-control">مرحباً بكم! نود إحاطتكم بأنه جارٍ العمل على تطوير وتحديث منصة الريان باستمرار لخدمتكم بشكل أفضل.</textarea>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            id="saveNoticeBtn"
+            type="button">
+
+            💾 حفظ التنبيه
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCHEDULE PANEL
+===================================================== -->
+
+<section
+    class="admin-panel"
+    id="schedulePanel">
+
+    <div class="panel-card">
+
+        <div class="panel-header">
+
+            <h2>
+                📅 إدارة جدول المحاضرات
+            </h2>
+
+            <p>
+                أدخل اسم المادة ووقت المحاضرة لكل يوم.
+            </p>
+
+        </div>
+
+
+        <div class="schedule-table-wrapper">
+
+            <table class="schedule-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            اليوم
+                        </th>
+
+                        <th>
+                            المحاضرة الأولى
+                        </th>
+
+                        <th>
+                            المحاضرة الثانية
+                        </th>
+
+                        <th>
+                            المحاضرة الثالثة
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            السبت
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="sat1"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="sat2"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="sat3"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            الأحد
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="sun1"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="sun2"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="sun3"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            الاثنين
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="mon1"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="mon2"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="mon3"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            الثلاثاء
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="tue1"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="tue2"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="tue3"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            الأربعاء
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="wed1"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="wed2"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="wed3"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            الخميس
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="thu1"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="thu2"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                        <td>
+                            <input
+                                type="text"
+                                id="thu3"
+                                placeholder="المادة / الوقت">
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            id="saveScheduleBtn"
+            type="button">
+
+            💾 حفظ الجدول
+
+        </button>
+
+        <button
+            class="reset-btn"
+            id="clearScheduleBtn"
+            type="button">
+
+            🗑️ مسح الجدول
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTENT PANEL
+===================================================== -->
+
+<section
+    class="admin-panel"
+    id="contentPanel">
+
+    <div class="panel-card">
+
+        <div class="panel-header">
+
+            <h2>
+                📚 إدارة محتوى المنصة
+            </h2>
+
+            <p>
+                الأقسام التي سنقوم بتحويلها لاحقاً إلى إدارة كاملة.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <h3>
+                    المواد الدراسية
+                </h3>
+
+                <p>
+                    إضافة وتعديل وحذف المواد والمحاضرات والملخصات.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    📁
+                </div>
+
+                <h3>
+                    الملفات
+                </h3>
+
+                <p>
+                    رفع ملفات PDF والمحاضرات والمراجع وتنظيمها.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h3>
+                    بنك الأسئلة
+                </h3>
+
+                <p>
+                    إنشاء الأسئلة وإجاباتها وتصنيفها حسب المادة.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    📢
+                </div>
+
+                <h3>
+                    الإعلانات
+                </h3>
+
+                <p>
+                    نشر أخبار وإعلانات جديدة للطلاب.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    👥
+                </div>
+
+                <h3>
+                    الطلاب
+                </h3>
+
+                <p>
+                    إدارة بيانات الطلاب والإحصائيات.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    🤖
+                </div>
+
+                <h3>
+                    المساعد الذكي
+                </h3>
+
+                <p>
+                    ربط المساعد بمحتوى المنصة والمواد والأسئلة.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel-card">
+
+        <div class="warning-box">
+
+            هذه الأقسام ظاهرة حالياً كواجهة تمهيدية فقط.
+            الخطوة القادمة ستكون بناء كل قسم فعلياً وربطه بقاعدة البيانات.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SYSTEM PANEL
+===================================================== -->
+
+<section
+    class="admin-panel"
+    id="systemPanel">
+
+    <div class="panel-card">
+
+        <div class="panel-header">
+
+            <h2>
+                🔐 إعدادات النظام
+            </h2>
+
+            <p>
+                معلومات مهمة حول نسخة لوحة الإدارة الحالية.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <strong>
+                نوع النظام:
+            </strong>
+
+            لوحة إدارة محلية تعتمد على JavaScript و LocalStorage.
+
+        </div>
+
+
+        <div class="warning-box">
+
+            <strong>
+                تنبيه أمني:
+            </strong>
+
+            كلمة المرور الحالية موجودة داخل كود الصفحة،
+            ولذلك هذه النسخة مناسبة للتجربة والتطوير وليست نظام
+            إدارة آمناً للاستخدام الحقيقي.
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    اسم النظام
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    value="Rayyan Student Platform Admin"
+                    readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    الإصدار
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    value="1.0 - Prototype"
+                    readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    التخزين
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    value="LocalStorage"
+                    readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    المصادقة
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    value="Client-side password"
+                    readonly>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel-card">
+
+        <div class="panel-header">
+
+            <h2>
+                🚀 التطوير القادم
+            </h2>
+
+            <p>
+                المراحل المقترحة لتحويل اللوحة إلى نظام حقيقي.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    🗄️
+                </div>
+
+                <h3>
+                    قاعدة بيانات
+                </h3>
+
+                <p>
+                    Supabase أو Firebase لحفظ البيانات مركزياً.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    🔑
+                </div>
+
+                <h3>
+                    تسجيل دخول حقيقي
+                </h3>
+
+                <p>
+                    حساب مدير ومصادقة آمنة بدلاً من كلمة المرور داخل الصفحة.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    ☁️
+                </div>
+
+                <h3>
+                    تخزين الملفات
+                </h3>
+
+                <p>
+                    رفع ملفات المحاضرات والمراجع وربطها بالمواد.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+
+    تم الحفظ بنجاح
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   إعدادات النظام
+===================================================== */
+
+const ADMIN_PASSWORD = "023024";
+
+const SETTINGS_KEY =
+"rayyan_platform_settings";
+
+const SCHEDULE_KEY =
+"rayyan_platform_schedule";
+
+const NOTICE_KEY =
+"rayyan_platform_notice";
+
+
+/* =====================================================
+   عناصر تسجيل الدخول
+===================================================== */
+
+const loginScreen =
+document.getElementById(
+    "loginScreen"
+);
+
+const adminApp =
+document.getElementById(
+    "adminApp"
+);
+
+const adminPassword =
+document.getElementById(
+    "adminPassword"
+);
+
+const loginBtn =
+document.getElementById(
+    "loginBtn"
+);
+
+const loginError =
+document.getElementById(
+    "loginError"
+);
+
+
+/* =====================================================
+   تسجيل الدخول
+===================================================== */
+
+function login(){
+
+    const password =
+    adminPassword.value;
+
+    if(password === ADMIN_PASSWORD){
+
+        loginScreen.style.display =
+        "none";
+
+        adminApp.style.display =
+        "block";
+
+        loginError.style.display =
+        "none";
+
+        loadAllData();
+
+    }else{
+
+        loginError.style.display =
+        "block";
+
+        adminPassword.value = "";
+
+        adminPassword.focus();
+
+    }
+
+}
+
+
+loginBtn.addEventListener(
+    "click",
+    login
+);
+
+
+adminPassword.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            login();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   Toast
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+    document.getElementById(
+        "toast"
+    );
+
+    toast.textContent =
+    message;
+
+    toast.classList.add(
+        "show"
+    );
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =====================================================
+   الإعدادات الافتراضية
+===================================================== */
+
+const defaultSettings = {
+
+    platformName:
+    "الريان",
+
+    universityName:
+    "جامعة بحري",
+
+    collegeName:
+    "كلية العلوم الإدارية",
+
+    batchName:
+    "023 / 024",
+
+    subjectsCount:
+    8,
+
+    studentsCount:
+    397,
+
+    launchDate:
+    "2026-10-01",
+
+    examDate:
+    "2027-01-09",
+
+    tickerText:
+    "مرحباً بكم في منصة الريان - جامعة بحري لدفعة 023 / 024 - تابعوا جدول المحاضرات والملفات الدراسية أولاً بأول!"
+
+};
+
+
+const defaultNotice =
+"مرحباً بكم! نود إحاطتكم بأنه جارٍ العمل على تطوير وتحديث منصة الريان باستمرار لخدمتكم بشكل أفضل.";
+
+
+/* =====================================================
+   تحميل الإعدادات
+===================================================== */
+
+function loadGeneralSettings(){
+
+    let saved =
+    localStorage.getItem(
+        SETTINGS_KEY
+    );
+
+
+    let settings;
+
+    if(saved){
+
+        try{
+
+            settings =
+            JSON.parse(saved);
+
+        }catch(error){
+
+            settings =
+            defaultSettings;
+
+        }
+
+    }else{
+
+        settings =
+        defaultSettings;
+
+    }
+
+
+    document.getElementById(
+        "platformName"
+    ).value =
+    settings.platformName;
+
+
+    document.getElementById(
+        "universityName"
+    ).value =
+    settings.universityName;
+
+
+    document.getElementById(
+        "collegeName"
+    ).value =
+    settings.collegeName;
+
+
+    document.getElementById(
+        "batchName"
+    ).value =
+    settings.batchName;
+
+
+    document.getElementById(
+        "subjectsCount"
+    ).value =
+    settings.subjectsCount;
+
+
+    document.getElementById(
+        "studentsCount"
+    ).value =
+    settings.studentsCount;
+
+
+    document.getElementById(
+        "launchDate"
+    ).value =
+    settings.launchDate;
+
+
+    document.getElementById(
+        "examDate"
+    ).value =
+    settings.examDate;
+
+
+    document.getElementById(
+        "tickerText"
+    ).value =
+    settings.tickerText;
+
+}
+
+
+/* =====================================================
+   حفظ الإعدادات
+===================================================== */
+
+function saveGeneralSettings(){
+
+    const settings = {
+
+        platformName:
+        document.getElementById(
+            "platformName"
+        ).value.trim(),
+
+        universityName:
+        document.getElementById(
+            "universityName"
+        ).value.trim(),
+
+        collegeName:
+        document.getElementById(
+            "collegeName"
+        ).value.trim(),
+
+        batchName:
+        document.getElementById(
+            "batchName"
+        ).value.trim(),
+
+        subjectsCount:
+        parseInt(
+            document.getElementById(
+                "subjectsCount"
+            ).value
+        ) || 0,
+
+        studentsCount:
+        parseInt(
+            document.getElementById(
+                "studentsCount"
+            ).value
+        ) || 0,
+
+        launchDate:
+        document.getElementById(
+            "launchDate"
+        ).value,
+
+        examDate:
+        document.getElementById(
+            "examDate"
+        ).value,
+
+        tickerText:
+        document.getElementById(
+            "tickerText"
+        ).value.trim()
+
+    };
+
+
+    localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify(settings)
+    );
+
+
+    updateDashboard();
+
+    showToast(
+        "تم حفظ الإعدادات العامة بنجاح"
+    );
+
+}
+
+
+/* =====================================================
+   إعادة الإعدادات
+===================================================== */
+
+function resetGeneralSettings(){
+
+    const confirmed =
+    confirm(
+        "هل تريد إعادة جميع الإعدادات العامة إلى الوضع الافتراضي؟"
+    );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify(
+            defaultSettings
+        )
+    );
+
+
+    loadGeneralSettings();
+
+    updateDashboard();
+
+    showToast(
+        "تمت إعادة الإعدادات الافتراضية"
+    );
+
+}
+
+
+/* =====================================================
+   التنبيه
+===================================================== */
+
+function loadNotice(){
+
+    const saved =
+    localStorage.getItem(
+        NOTICE_KEY
+    );
+
+
+    document.getElementById(
+        "noticeText"
+    ).value =
+    saved || defaultNotice;
+
+}
+
+
+function saveNotice(){
+
+    const text =
+    document.getElementById(
+        "noticeText"
+    ).value.trim();
+
+
+    localStorage.setItem(
+        NOTICE_KEY,
+        text
+    );
+
+
+    showToast(
+        "تم حفظ تنبيه الموقع"
+    );
+
+}
+
+
+/* =====================================================
+   الجدول
+===================================================== */
+
+const scheduleFields = [
+
+    "sat1",
+    "sat2",
+    "sat3",
+
+    "sun1",
+    "sun2",
+    "sun3",
+
+    "mon1",
+    "mon2",
+    "mon3",
+
+    "tue1",
+    "tue2",
+    "tue3",
+
+    "wed1",
+    "wed2",
+    "wed3",
+
+    "thu1",
+    "thu2",
+    "thu3"
+
+];
+
+
+function loadSchedule(){
+
+    const saved =
+    localStorage.getItem(
+        SCHEDULE_KEY
+    );
+
+
+    if(!saved){
+
+        return;
+
+    }
+
+
+    let schedule;
+
+    try{
+
+        schedule =
+        JSON.parse(saved);
+
+    }catch(error){
+
+        return;
+
+    }
+
+
+    scheduleFields.forEach(
+        function(field){
+
+            const element =
+            document.getElementById(
+                field
+            );
+
+
+            if(element){
+
+                element.value =
+                schedule[field] || "";
+
+            }
+
+        }
+    );
+
+}
+
+
+function saveSchedule(){
+
+    const schedule = {};
+
+
+    scheduleFields.forEach(
+        function(field){
+
+            const element =
+            document.getElementById(
+                field
+            );
+
+
+            if(element){
+
+                schedule[field] =
+                element.value.trim();
+
+            }
+
+        }
+    );
+
+
+    localStorage.setItem(
+        SCHEDULE_KEY,
+        JSON.stringify(schedule)
+    );
+
+
+    showToast(
+        "تم حفظ جدول المحاضرات"
+    );
+
+}
+
+
+function clearSchedule(){
+
+    const confirmed =
+    confirm(
+        "هل تريد مسح جميع بيانات جدول المحاضرات؟"
+    );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        SCHEDULE_KEY
+    );
+
+
+    scheduleFields.forEach(
+        function(field){
+
+            const element =
+            document.getElementById(
+                field
+            );
+
+
+            if(element){
+
+                element.value = "";
+
+            }
+
+        }
+    );
+
+
+    showToast(
+        "تم مسح الجدول"
+    );
+
+}
+
+
+/* =====================================================
+   تحديث الإحصائيات
+===================================================== */
+
+function updateDashboard(){
+
+    let settings =
+    localStorage.getItem(
+        SETTINGS_KEY
+    );
+
+
+    let data =
+    defaultSettings;
+
+
+    if(settings){
+
+        try{
+
+            data =
+            JSON.parse(settings);
+
+        }catch(error){
+
+            data =
+            defaultSettings;
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "dashboardSubjects"
+    ).textContent =
+    data.subjectsCount;
+
+
+    document.getElementById(
+        "dashboardStudents"
+    ).textContent =
+    data.studentsCount;
+
+
+    let visitors =
+    localStorage.getItem(
+        "platform_visits"
+    );
+
+
+    if(!visitors){
+
+        visitors = 1250;
+
+    }
+
+
+    document.getElementById(
+        "dashboardVisitors"
+    ).textContent =
+    visitors;
+
+
+    if(data.launchDate){
+
+        const launch =
+        new Date(
+            data.launchDate
+        ).getTime();
+
+        const now =
+        new Date().getTime();
+
+        const difference =
+        now - launch;
+
+
+        if(difference >= 0){
+
+            const days =
+            Math.floor(
+                difference /
+                (1000 * 60 * 60 * 24)
+            );
+
+            document.getElementById(
+                "dashboardAge"
+            ).textContent =
+            days;
+
+        }else{
+
+            document.getElementById(
+                "dashboardAge"
+            ).textContent =
+            "0";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   التبويبات
+===================================================== */
+
+const tabs =
+document.querySelectorAll(
+    ".admin-tab"
+);
+
+
+const panels = {
+
+    general:
+    document.getElementById(
+        "generalPanel"
+    ),
+
+    schedule:
+    document.getElementById(
+        "schedulePanel"
+    ),
+
+    content:
+    document.getElementById(
+        "contentPanel"
+    ),
+
+    system:
+    document.getElementById(
+        "systemPanel"
+    )
+
+};
+
+
+tabs.forEach(
+    function(tab){
+
+        tab.addEventListener(
+            "click",
+            function(){
+
+                tabs.forEach(
+                    function(item){
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                tab.classList.add(
+                    "active"
+                );
+
+
+                Object.values(
+                    panels
+                ).forEach(
+                    function(panel){
+
+                        panel.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                const selected =
+                tab.dataset.tab;
+
+
+                if(panels[selected]){
+
+                    panels[selected]
+                    .classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   أزرار الإدارة
+===================================================== */
+
+document.getElementById(
+    "saveGeneralBtn"
+).addEventListener(
+    "click",
+    saveGeneralSettings
+);
+
+
+document.getElementById(
+    "resetGeneralBtn"
+).addEventListener(
+    "click",
+    resetGeneralSettings
+);
+
+
+document.getElementById(
+    "saveNoticeBtn"
+).addEventListener(
+    "click",
+    saveNotice
+);
+
+
+document.getElementById(
+    "saveScheduleBtn"
+).addEventListener(
+    "click",
+    saveSchedule
+);
+
+
+document.getElementById(
+    "clearScheduleBtn"
+).addEventListener(
+    "click",
+    clearSchedule
+);
+
+
+/* =====================================================
+   الموقع الرئيسي
+===================================================== */
+
+document.getElementById(
+    "homeBtn"
+).addEventListener(
+    "click",
+    function(){
+
+        window.location.href =
+        "index.html";
+
+    }
+);
+
+
+/* =====================================================
+   تسجيل الخروج
+===================================================== */
+
+document.getElementById(
+    "logoutBtn"
+).addEventListener(
+    "click",
+    function(){
+
+        adminApp.style.display =
+        "none";
+
+        loginScreen.style.display =
+        "flex";
+
+        adminPassword.value =
+        "";
+
+        adminPassword.focus();
+
+    }
+);
+
+
+/* =====================================================
+   تحميل كل البيانات
+===================================================== */
+
+function loadAllData(){
+
+    loadGeneralSettings();
+
+    loadNotice();
+
+    loadSchedule();
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+   بدء النظام
+===================================================== */
+
+adminPassword.focus();
+
+</script>
+
+</body>
+</html>
