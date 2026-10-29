@@ -1,39 +1,102 @@
-class FinancialSecretariat:
-    def __init__(self, initial_balance=0.0):
-        self.balance = initial_balance
-        self.transactions = []
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أمانة الشؤون المالية - منصة المعين</title>
+    <!-- استيراد تصميم Tailwind CSS لتنسيق سريع ومرتب -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
 
-    def add_income(self, amount, description):
-        """تسجيل إيراد (دعم، اشتراكات، تبرعات)"""
-        self.balance += amount
-        self.transactions.append({"type": "إيراد", "amount": amount, "desc": description})
-        print(f"تم إضافة إيراد: +{amount} ({description})")
+    <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4 text-center">أمانة الشؤون المالية - منصة المعين</h1>
+        
+        <!-- بطاقة الرصيد -->
+        <div class="bg-blue-600 text-white p-4 rounded-lg mb-6 text-center">
+            <h2 class="text-sm opacity-90">الرصيد الحالي المتبقي</h2>
+            <p id="balanceDisplay" class="text-3xl font-bold mt-1">0.00 ج.س</p>
+        </div>
 
-    def add_expense(self, amount, description):
-        """تسجيل منصرف (مصروفات أنشطة، طباعة، إلخ)"""
-        if amount > self.balance:
-            print("تحذير: الرصيد غير كافٍ لإتمام هذا المنصرف!")
-            return False
-        self.balance -= amount
-        self.transactions.append({"type": "منصرف", "amount": amount, "desc": description})
-        print(f"تم تسجيل منصرف: -{amount} ({description})")
-        return True
+        <!-- نموذج الإدخال -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            <input type="text" id="descInput" placeholder="بيان المعاملة (مثلاً: اشتراكات، طباعة)" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="number" id="amountInput" placeholder="المبلغ" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select id="typeInput" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="income">إيراد (+)</option>
+                <option value="expense">منصرف (-)</option>
+            </select>
+        </div>
+        <button onclick="addTransaction()" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700 transition font-bold mb-6">إضافة العملية المالية</button>
 
-    def get_statement(self):
-        """عرض كشف الحساب والتقرير المالي"""
-        print("\n--- كشف الحساب المالي للأمانة ---")
-        for t in self.transactions:
-            print(f"[{t['type']}] {t['amount']} - {t['desc']}")
-        print(f"الرصيد الحالي المتبقي: {self.balance}\n")
+        <!-- جدول العمليات -->
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">سجل الحركات المالية</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-200 text-right">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="border border-gray-200 p-2">البيان</th>
+                        <th class="border border-gray-200 p-2">المبلغ</th>
+                        <th class="border border-gray-200 p-2">النوع</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTable">
+                    <!-- يتم إدراج العمليات هنا برمجياً -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-# --- مثال على الاستخدام ---
-if __name__ == "__main__":
-    # إنشاء خزينة الأمانة المالية برصيد ابتدائي
-    treasury = FinancialSecretariat(initial_balance=50000)
-    
-    # تسجيل بعض المعاملات
-    treasury.add_income(25000, "اشتراكات الأعضاء لشهر أكتوبر")
-    treasury.add_expense(15000, "تكلفة طباعة الملخصات والمستندات")
-    
-    # عرض التقرير المالي النهائي
-    treasury.get_statement()
+    <script>
+        let balance = 0;
+        let transactions = [];
+
+        function addTransaction() {
+            const desc = document.getElementById('descInput').value;
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            const type = document.getElementById('typeInput').value;
+
+            if (!desc || isNaN(amount) || amount <= 0) {
+                alert('الرجاء إدخال بيان صحيح ومبلغ صالح.');
+                return;
+            }
+
+            if (type === 'expense' && amount > balance) {
+                alert('عذراً، الرصيد غير كافٍ لإتمام هذا المنصرف!');
+                return;
+            }
+
+            if (type === 'income') {
+                balance += amount;
+            } else {
+                balance -= amount;
+            }
+
+            transactions.push({ desc, amount, type });
+            updateUI();
+            
+            // تفريغ الحقول بعد الإضافة
+            document.getElementById('descInput').value = '';
+            document.getElementById('amountInput').value = '';
+        }
+
+        function updateUI() {
+            document.getElementById('balanceDisplay').innerText = balance.toLocaleString() + ' ج.س';
+            const tableBody = document.getElementById('transactionTable');
+            tableBody.innerHTML = '';
+
+            transactions.forEach(t => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="border border-gray-200 p-2">${t.desc}</td>
+                    <td class="border border-gray-200 p-2 font-bold ${t.type === 'income' ? 'text-green-600' : 'text-red-600'}">
+                        ${t.type === 'income' ? '+' : '-'}${t.amount.toLocaleString()} ج.س
+                    </td>
+                    <td class="border border-gray-200 p-2">${t.type === 'income' ? 'إيراد' : 'منصرف'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
