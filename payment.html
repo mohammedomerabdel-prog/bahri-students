@@ -40,23 +40,23 @@
             </div>
             <h2 class="text-xl font-black text-indigo-950">المساهمة والدفع المالي</h2>
             <p class="text-xs md:text-sm text-indigo-800 mt-2 leading-relaxed">
-                يمكنكم تحويل الاشتراكات أو المساهمات المالية لدعم خزينة الدفعة وصندوق التكافل عبر تطبيقات الدفع الإلكتروني المعتمدة أدناه.
+                يمكنكم تحويل الاشتراكات أو المساهمات المالية لدعم خزينة الدفعة وصندوق التكافل عبر التطبيقات المعتمدة أدناه.
             </p>
         </div>
 
-        <!-- قائمة الحسابات المتاحة بناءً على التطبيقات المحددة -->
+        <!-- قائمة الحسابات المتاحة -->
         <div class="space-y-4">
 
-            <!-- 1. بنكك (Bankak) -->
+            <!-- 1. بنكك / بنك الخرطوم -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-red-100 text-red-700 rounded-2xl flex items-center justify-center text-xl font-black">
+                    <div class="w-14 h-14 bg-red-600 text-white rounded-2xl flex items-center justify-center text-xl font-black shadow-md">
                         <i class="fa-solid fa-building-columns"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800">بنكك (Bankak) - بنك الخرطوم[span_3](start_span)[span_3](end_span)</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">رقم الحساب / المحفظة:</p>
-                        <p class="text-sm font-black text-indigo-900 mt-1 dir-ltr text-right" id="acc-bankk">0000000 (قيد الإضافة)</p>
+                        <h3 class="font-bold text-slate-800 text-base">بنكك / Bankak</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">بنك الخرطوم[span_6](start_span)[span_6](end_span) - رقم الحساب:</p>
+                        <p class="text-sm font-black text-indigo-900 mt-1 dir-ltr text-right" id="acc-bankk">0000000 (اضف الرقم هنا)</p>
                     </div>
                 </div>
                 <button onclick="copyAccount('acc-bankk')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-2">
@@ -65,16 +65,16 @@
                 </button>
             </div>
 
-            <!-- 2. تطبيق فوري (FIB Fawry) -->
+            <!-- 2. تطبيق فوري / بنك الفاتح الإسلامي -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-800 rounded-2xl flex items-center justify-center text-xl font-black">
+                    <div class="w-14 h-14 bg-purple-900 text-white rounded-2xl flex items-center justify-center text-xl font-black shadow-md">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800">تطبيق فوري (Fawry) - بنك الفاتح[span_4](start_span)[span_4](end_span)</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">رقم الحساب / التطبيق:</p>
-                        <p class="text-sm font-black text-indigo-900 mt-1 dir-ltr text-right" id="acc-fawry">0000000 (قيد الإضافة)</p>
+                        <h3 class="font-bold text-slate-800 text-base">تطبيق فوري / Fawry</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">بنك الفاتح الإسلامي (Sudan)[span_7](start_span)[span_7](end_span) - رقم الحساب:</p>
+                        <p class="text-sm font-black text-indigo-900 mt-1 dir-ltr text-right" id="acc-fawry">0000000 (اضف الرقم هنا)</p>
                     </div>
                 </div>
                 <button onclick="copyAccount('acc-fawry')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-2">
@@ -83,16 +83,16 @@
                 </button>
             </div>
 
-            <!-- 3. تطبيق أوكاش (O-Cash) -->
+            <!-- 3. تطبيق أوكاش / O-Cash -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-xl font-black">
+                    <div class="w-14 h-14 bg-emerald-700 text-white rounded-2xl flex items-center justify-center text-xl font-black shadow-md">
                         <i class="fa-solid fa-wallet"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800">تطبيق أوكاش (O-Cash)[span_5](start_span)[span_5](end_span)</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">رقم الحساب / المحفظة:</p>
-                        <p class="text-sm font-black text-indigo-900 mt-1 dir-ltr text-right" id="acc-ocash">0000000 (قيد الإضافة)</p>
+                        <h3 class="font-bold text-slate-800 text-base">تطبيق أوكاش / O-Cash</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Bitpacific Information Technology[span_8](start_span)[span_8](end_span) - رقم الحساب:</p>
+                        <p class="text-sm font-black text-indigo-900 mt-1 dir-ltr text-right" id="acc-ocash">0000000 (اضف الرقم هنا)</p>
                     </div>
                 </div>
                 <button onclick="copyAccount('acc-ocash')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center justify-center gap-2">
@@ -104,10 +104,10 @@
         </div>
 
         <!-- زر تأكيد إرسال الإيصال -->
-        <div class="bg-emerald-900 text-white rounded-2xl p-6 text-center space-y-3">
+        <div class="bg-emerald-900 text-white rounded-2xl p-6 text-center space-y-3 shadow-sm">
             <h3 class="font-bold text-base">هل قمت بالتحويل؟</h3>
             <p class="text-xs text-emerald-200">الرجاء إرسال صورة إيصال التحويل عبر الواتساب للأمين المالي لتسجيل المساهمة رسمياً.</p>
-            <a href="https://wa.me/249116314682?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D9%82%D9%85%D8%AA%20%D8%A8%D8%AA%D8%AD%D9%88%D9%8A%D9%84%20%D9%85%D8%A8%D9%84%D8% فإن%20%D9%85%D8%A7%D9%84%D9%8A%20%D9%88%D9%87%D8%B0%D8%A7%20%D9%87%D9%88%20%D8%A5%D9%8A%D8%B5%D8%A7%D9%84%20%D8%A7%D9%84%20%D8%AA%D8%AD%D9%88%D9%8A%D9%84:" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition shadow-md">
+            <a href="https://wa.me/249116314682?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D9%82%D9%85%D8%AA%20%D8%A8%D8%AA%D8%AD%D9%88%D9%8A%D9%84%20%D9%85%D8%A8%D9%84%D8%BA%20%D9%85%D8%A7%D9%84%D9%8A%20%D9%88%D9%87%D8%B0%D8%A7%20%D9%87%D9%88%20%D8%A5%D9%8A%D8%B5%D8%A7%D9%84%20%D8%A7%D9%84%D8%AA%20%D8%AD%D9%88%D9%8A%D9%84:" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition shadow-md">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
                 إرسال إيصال التحويل للأمين المالي
             </a>
