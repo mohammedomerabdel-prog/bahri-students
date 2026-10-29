@@ -53,7 +53,7 @@
                     طلب دعم مالي أو مساعدة طارئة
                 </h2>
                 <p class="text-slate-500 text-xs mt-1">
-                    هذا الطلب سري تماماً ويصل حصرياً للأمين المالي. لا يتم نشر أي اسم أو تفاصيل شخصية نهائياً. الخصوصية خط أحمر.
+                    هذا الطلب سري تماماً ويصل حصرياً عبر الواتساب للأمين المالي. لا يتم نشر أي اسم أو تفاصيل شخصية نهائياً. الخصوصية خط أحمر.
                 </p>
             </div>
 
@@ -75,7 +75,7 @@
 
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition shadow-md flex items-center justify-center gap-2">
                     <i class="fa-solid fa-paper-plane"></i>
-                    إرسال الطلب بسرية تامة
+                    إرسال الطلب بسرية تامة عبر الواتساب
                 </button>
             </form>
         </div>
@@ -88,7 +88,7 @@
                     الإبلاغ عن نقص أو عطل في القاعات
                 </h2>
                 <p class="text-slate-500 text-xs mt-1">
-                    ساهم معنا في تحسين بيئة الدراسة. أبلغ عن أي عطل في المقاعد، الإضاءة، المكيفات، أو النواقص الأخرى.
+                    ساهم معنا في تحسين بيئة الدراسة. أبلغ عن أي عطل في المقاعد، الإضاءة، المكيفات، أو النواقص الأخرى لتصل مباشرة للأمين المالي.
                 </p>
             </div>
 
@@ -105,15 +105,23 @@
 
                 <button type="submit" class="w-full bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-3.5 rounded-xl transition shadow-md flex items-center justify-center gap-2">
                     <i class="fa-solid fa-circle-check"></i>
-                    إرسال البلاغ للأمين المالي
+                    إرسال البلاغ عبر الواتساب للأمين المالي
                 </button>
             </form>
         </div>
 
     </main>
 
-    <!-- جافاسكريبت للتحكم بالتبويبات -->
+    <!-- الفوتر Footer -->
+    <footer class="mt-12 text-center text-slate-400 text-xs">
+        <p>خزينة النخبة الشاملة &copy; 2026 - جميع الحقوق محفوظة للدفعة</p>
+    </footer>
+
+    <!-- جافاسكريبت للتحكم بالتبويبات والإرسال المباشر للواتساب -->
     <script>
+        // رقم واتساب الأمين المالي
+        const ADMIN_WHATSAPP = "249116314682";
+
         // التحقق من نوع التبويب المطلوب عند فتح الصفحة عبر الرابط
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -144,17 +152,41 @@
             }
         }
 
-        // دوال إرسال البيانات (سيتم ربطها بقاعدة البيانات لاحقاً)
+        // إرسال طلب الدعم سرياً عبر الواتساب
         function submitSupport(e) {
             e.preventDefault();
-            alert("تم إرسال طلب الدعم بنجاح وبسرية تامة إلى الأمين المالي. شكراً لثقتك.");
-            document.getElementById('support-form').reset();
+            const name = document.getElementById('sup-name').value || "فاعل خير / سري";
+            const details = document.getElementById('sup-details').value;
+            const contact = document.getElementById('sup-contact').value;
+
+            // تنسيق الرسالة بشكل مرتب واحترافي
+            const message = `*🔒 طلب دعم مالي / تعثر جديد (خزينة النخبة)*\n\n` +
+                            `👤 *الاسم/اللقب:* ${name}\n` +
+                            `📝 *التفاصيل:* ${details}\n` +
+                            `📞 *طريقة التواصل:* ${contact}`;
+
+            openWhatsApp(message);
         }
 
+        // إرسال بلاغ النواقص عبر الواتساب
         function submitIssue(e) {
             e.preventDefault();
-            alert("تم تسجيل البلاغ بنجاح! سيقوم الأمين المالي بمراجعته والعمل على معالجته قريباً.");
-            document.getElementById('issue-form').reset();
+            const location = document.getElementById('iss-location').value;
+            const description = document.getElementById('iss-description').value;
+
+            // تنسيق رسالة البلاغ
+            const message = `*⚠️ بلاغ نقص أو عطل بقاعة (خزينة النخبة)*\n\n` +
+                            `🏫 *المكان/القاعة:* ${location}\n` +
+                            `🔧 *وصف النقص:* ${description}`;
+
+            openWhatsApp(message);
+        }
+
+        // دالة فتح رابط الواتساب مباشرة
+        function openWhatsApp(text) {
+            const encodedMessage = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
