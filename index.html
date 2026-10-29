@@ -157,14 +157,14 @@
             const issues = JSON.parse(localStorage.getItem('elite_issues')) || [];
             const tableBody = document.getElementById('issues-list-body');
 
-            // إذا لم تكن هناك بنود مضافة، نعرض بند افتراضي
+            // إذا لم تكن هناك بنود مضافة، نعرض البند الافتراضي الخاص بتسديد رسوم العاجزين
             if (issues.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td class="py-3 px-4 font-bold text-slate-700">قاعة (1)</td>
-                        <td class="py-3 px-4 text-slate-600">صيانة الإضاءة وتوفير أقلام سبورة</td>
+                        <td class="py-3 px-4 font-bold text-slate-700">صندوق التكافل</td>
+                        <td class="py-3 px-4 text-slate-600">تسديد رسوم العاجزين والمتعثرين (بسرية تامة)</td>
                         <td class="py-3 px-4">
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">قيد التوفير</span>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">جارٍ الدعم</span>
                         </td>
                     </tr>
                 `;
