@@ -3,100 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أمانة الشؤون المالية - منصة المعين</title>
-    <!-- استيراد تصميم Tailwind CSS لتنسيق سريع ومرتب -->
+    <title>خزينة النخبة الشاملة</title>
+    <!-- مكتبة Tailwind CSS للتصميم -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خط تجوال من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans p-6">
+<body class="text-slate-800 pb-12">
 
-    <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 class="text-2xl font-bold text-gray-800 mb-4 text-center">أمانة الشؤون المالية - منصة المعين</h1>
-        
-        <!-- بطاقة الرصيد -->
-        <div class="bg-blue-600 text-white p-4 rounded-lg mb-6 text-center">
-            <h2 class="text-sm opacity-90">الرصيد الحالي المتبقي</h2>
-            <p id="balanceDisplay" class="text-3xl font-bold mt-1">0.00 ج.س</p>
+    <!-- الهيدر / الشريط العلوي -->
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-lg">
+        <div class="max-w-5xl mx-auto px-4 py-8 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-full mb-3 backdrop-blur-sm">
+                <i class="fa-solid fa-vault text-3xl text-amber-400"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">خزينة النخبة الشاملة</h1>
+            <p class="mt-2 text-blue-200 text-sm md:text-base font-medium max-w-xl mx-auto">
+                منصة التكافل المالي، الشفافية، وإدارة احتياجات القاعات والدفعة بكل سرية ومسؤولية.
+            </p>
         </div>
+    </header>
 
-        <!-- نموذج الإدخال -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-            <input type="text" id="descInput" placeholder="بيان المعاملة (مثلاً: اشتراكات، طباعة)" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <input type="number" id="amountInput" placeholder="المبلغ" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <select id="typeInput" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="income">إيراد (+)</option>
-                <option value="expense">منصرف (-)</option>
-            </select>
-        </div>
-        <button onclick="addTransaction()" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700 transition font-bold mb-6">إضافة العملية المالية</button>
+    <!-- المحتوى الرئيسي -->
+    <main class="max-w-5xl mx-auto px-4 mt-8 space-y-8">
 
-        <!-- جدول العمليات -->
-        <h3 class="text-lg font-semibold text-gray-700 mb-2">سجل الحركات المالية</h3>
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-200 text-right">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="border border-gray-200 p-2">البيان</th>
-                        <th class="border border-gray-200 p-2">المبلغ</th>
-                        <th class="border border-gray-200 p-2">النوع</th>
-                    </tr>
-                </thead>
-                <tbody id="transactionTable">
-                    <!-- يتم إدراج العمليات هنا برمجياً -->
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <!-- لوحة الإحصائيات والشفافية المالية -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-pie text-indigo-600"></i>
+                    الموقف المالي العام (مُحدث)
+                </h2>
+                <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold flex items-center gap-1">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    شفافية كاملة
+                </span>
+            </div>
 
-    <script>
-        let balance = 0;
-        let transactions = [];
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- الوارد -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase">إجمالي المجمع</p>
+                        <h3 class="text-2xl font-black text-emerald-600 mt-1" id="total-income">0 ج.س</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-arrow-down-left"></i>
+                    </div>
+                </div>
 
-        function addTransaction() {
-            const desc = document.getElementById('descInput').value;
-            const amount = parseFloat(document.getElementById('amountInput').value);
-            const type = document.getElementById('typeInput').value;
+                <!-- المصروف -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase">إجمالي المصروفات</p>
+                        <h3 class="text-2xl font-black text-rose-600 mt-1" id="total-expenses">0 ج.س</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-arrow-up-right"></i>
+                    </div>
+                </div>
 
-            if (!desc || isNaN(amount) || amount <= 0) {
-                alert('الرجاء إدخال بيان صحيح ومبلغ صالح.');
-                return;
-            }
+                <!-- المتبقي -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase">الرصيد المالي المتاح</p>
+                        <h3 class="text-2xl font-black text-indigo-600 mt-1" id="current-balance">0 ج.س</h3>
+                    </div>
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            if (type === 'expense' && amount > balance) {
-                alert('عذراً، الرصيد غير كافٍ لإتمام هذا المنصرف!');
-                return;
-            }
+        <!-- الأزرار السريعة للخدمات -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="student-portal.html?type=support" class="bg-gradient-to-br from-indigo-600 to-indigo-800 text-white p-6 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 block">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-sm opacity-70"></i>
+                </div>
+                <h3 class="text-lg font-bold">طلب دعم/مساعدة طارئة</h3>
+                <p class="text-indigo-100 text-xs mt-1">تقديم طلب سري تماماً لأمين المال مع حفظ الخصوصية المطلقة.</p>
+            </a>
 
-            if (type === 'income') {
-                balance += amount;
-            } else {
-                balance -= amount;
-            }
+            <a href="student-portal.html?type=issue" class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 block">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-sm opacity-70"></i>
+                </div>
+                <h3 class="text-lg font-bold">الإبلاغ عن نواقص القاعات</h3>
+                <p class="text-slate-300 text-xs mt-1">تحديد النواقص والمستلزمات في القاعات ليتولى الأمين المالي معالجتها.</p>
+            </a>
+        </section>
 
-            transactions.push({ desc, amount, type });
-            updateUI();
-            
-            // تفريغ الحقول بعد الإضافة
-            document.getElementById('descInput').value = '';
-            document.getElementById('amountInput').value = '';
-        }
+        <!-- جدول متابعة احتياجات القاعات والمشاريع -->
+        <section class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-indigo-600"></i>
+                    سجل نواقص القاعات والمشاريع قائمة التنفيذ
+                </h2>
+            </div>
 
-        function updateUI() {
-            document.getElementById('balanceDisplay').innerText = balance.toLocaleString() + ' ج.س';
-            const tableBody = document.getElementById('transactionTable');
-            tableBody.innerHTML = '';
+            <div class="overflow-x-auto">
+                <table class="w-full text-right text-sm">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-500 border-b border-slate-100">
+                            <th class="py-3 px-4 rounded-r-lg">البند / القاعة</th>
+                            <th class="py-3 px-4">التفاصيل / النقص</th>
+                            <th class="py-3 px-4">الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="issues-list-body" class="divide-y divide-slate-100">
+                        <!-- نموذج لعرض البيانات ديناميكياً مستقبلاً -->
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700">قاعة (1)</td>
+                            <td class="py-3 px-4 text-slate-600">صيانة الإضاءة وتوفير أقلام سبورة</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">قيد التوفير</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700">المقاعد الدراسية</td>
+                            <td class="py-3 px-4 text-slate-600">إصلاح المقاعد المكسورة بالمجال الرئيسي</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">تم الإنجاز</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-            transactions.forEach(t => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="border border-gray-200 p-2">${t.desc}</td>
-                    <td class="border border-gray-200 p-2 font-bold ${t.type === 'income' ? 'text-green-600' : 'text-red-600'}">
-                        ${t.type === 'income' ? '+' : '-'}${t.amount.toLocaleString()} ج.س
-                    </td>
-                    <td class="border border-gray-200 p-2">${t.type === 'income' ? 'إيراد' : 'منصرف'}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-    </script>
+    </main>
+
+    <!-- الفوتر Footer -->
+    <footer class="mt-12 text-center text-slate-400 text-xs">
+        <p>خزينة النخبة الشاملة &copy; 2026 - جميع الحقوق محفوظة للدفعة</p>
+    </footer>
+
+    <!-- ملف الربط مع قواعد البيانات مستقبلاً -->
+    <script src="app.js"></script>
 </body>
 </html>
