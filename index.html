@@ -84,8 +84,22 @@
             </div>
         </section>
 
-        <!-- الأزرار السريعة للخدمات -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- الأزرار السريعة للخدمات (تمت إضافة زر طرق الدفع هنا) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- 1. زر الدفع والمساهمة -->
+            <a href="payment.html" class="bg-gradient-to-br from-emerald-600 to-teal-800 text-white p-6 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 block">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-sm opacity-70"></i>
+                </div>
+                <h3 class="text-lg font-bold">طرق الدفع والمساهمة</h3>
+                <p class="text-emerald-100 text-xs mt-1">تحويل الرسوم والمساهمات عبر بنكك، فوري، وأوكاش مباشرة.</p>
+            </a>
+
+            <!-- 2. زر طلب الدعم -->
             <a href="student-portal.html?type=support" class="bg-gradient-to-br from-indigo-600 to-indigo-800 text-white p-6 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 block">
                 <div class="flex items-center justify-between mb-3">
                     <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center text-lg">
@@ -97,6 +111,7 @@
                 <p class="text-indigo-100 text-xs mt-1">تقديم طلب سري تماماً لأمين المال مع حفظ الخصوصية المطلقة.</p>
             </a>
 
+            <!-- 3. زر بلاغ القاعات -->
             <a href="student-portal.html?type=issue" class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 block">
                 <div class="flex items-center justify-between mb-3">
                     <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center text-lg">
@@ -107,6 +122,7 @@
                 <h3 class="text-lg font-bold">الإبلاغ عن نواقص القاعات</h3>
                 <p class="text-slate-300 text-xs mt-1">تحديد النواقص والمستلزمات في القاعات ليتولى الأمين المالي معالجتها.</p>
             </a>
+
         </section>
 
         <!-- جدول متابعة احتياجات القاعات والمشاريع -->
