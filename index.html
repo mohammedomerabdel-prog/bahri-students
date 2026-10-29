@@ -1,207 +1,39 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خزينة النخبة - الإدارة المالية</title>
-    <!-- مكتبة التصميم Tailwind CSS لتنسيق احترافي وسريع -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- خط عربي أنيق Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Cairo', sans-serif; }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 min-h-screen p-4 sm:p-6">
+class FinancialSecretariat:
+    def __init__(self, initial_balance=0.0):
+        self.balance = initial_balance
+        self.transactions = []
 
-    <div class="max-w-5xl mx-auto space-y-6">
-        
-        <!-- رأس الصفحة -->
-        <header class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-2xl font-bold text-slate-900">خزينة النخبة 📊</h1>
-                <p class="text-sm text-slate-500 mt-1">نظام إدارة التسديدات ومتابعة كشف الحسابات للأمين المالي</p>
-            </div>
-            <div class="bg-indigo-50 border border-indigo-100 px-5 py-3 rounded-xl text-center">
-                <span class="block text-xs text-indigo-600 font-semibold">إجمالي رصيد الخزينة</span>
-                <span id="totalBalance" class="text-2xl font-bold text-indigo-900">0.00</span> <span class="text-xs text-indigo-600">ج.س</span>
-            </div>
-        </header>
+    def add_income(self, amount, description):
+        """تسجيل إيراد (دعم، اشتراكات، تبرعات)"""
+        self.balance += amount
+        self.transactions.append({"type": "إيراد", "amount": amount, "desc": description})
+        print(f"تم إضافة إيراد: +{amount} ({description})")
 
-        <!-- نموذج إضافة حركة مالية -->
-        <section class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100">
-            <h2 class="text-lg font-bold text-slate-800 mb-4">تسجيل معاملة جديدة (قبض / صرف)</h2>
-            <form id="transactionForm" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">نوع المعاملة</label>
-                    <select id="type" class="w-full rounded-lg border border-slate-200 p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
-                        <option value="قبض">إيراد / قبض (داخل)</option>
-                        <option value="صرف">صرف / مصروفات (خارج)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">اسم العضو / الجهة</label>
-                    <input type="text" id="name" required placeholder="مثلاً: محمد أحمد" class="w-full rounded-lg border border-slate-200 p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">المبلغ (ج.س)</label>
-                    <input type="number" id="amount" required min="1" placeholder="0.00" class="w-full rounded-lg border border-slate-200 p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">البيان / السبب</label>
-                    <input type="text" id="note" placeholder="اشتراك شهرى، تصوير..." class="w-full rounded-lg border border-slate-200 p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
-                </div>
-                <div class="flex items-end">
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg text-sm transition shadow-sm">
-                        حفظ المعاملة
-                    </button>
-                </div>
-            </form>
-        </section>
+    def add_expense(self, amount, description):
+        """تسجيل منصرف (مصروفات أنشطة، طباعة، إلخ)"""
+        if amount > self.balance:
+            print("تحذير: الرصيد غير كافٍ لإتمام هذا المنصرف!")
+            return False
+        self.balance -= amount
+        self.transactions.append({"type": "منصرف", "amount": amount, "desc": description})
+        print(f"تم تسجيل منصرف: -{amount} ({description})")
+        return True
 
-        <!-- كشف الحسابات والعمليات -->
-        <section class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100">
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
-                <h2 class="text-lg font-bold text-slate-800">سجل المعاملات وكشف الحساب</h2>
-                <div class="flex gap-2 w-full sm:w-auto">
-                    <input type="text" id="searchInput" placeholder="بحث باسم العضو..." class="border border-slate-200 px-3 py-1.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-64">
-                    <button onclick="exportData()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-sm transition">تصدير CSV</button>
-                </div>
-            </div>
+    def get_statement(self):
+        """عرض كشف الحساب والتقرير المالي"""
+        print("\n--- كشف الحساب المالي للأمانة ---")
+        for t in self.transactions:
+            print(f"[{t['type']}] {t['amount']} - {t['desc']}")
+        print(f"الرصيد الحالي المتبقي: {self.balance}\n")
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-right border-collapse">
-                    <thead>
-                        <tr class="border-b border-slate-100 text-xs text-slate-400 uppercase">
-                            <th class="py-3 px-4">التاريخ</th>
-                            <th class="py-3 px-4">النوع</th>
-                            <th class="py-3 px-4">الاسم / الجهة</th>
-                            <th class="py-3 px-4">المبلغ</th>
-                            <th class="py-3 px-4">البيان</th>
-                            <th class="py-3 px-4 text-center">إجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="transactionsTableBody" class="divide-y divide-slate-50 text-sm">
-                        <!-- تُعبأ البيانات تلقائياً عبر JavaScript -->
-                    </tbody>
-                </table>
-                <div id="emptyState" class="text-center py-8 text-slate-400 text-sm hidden">لا توجد معاملات مسجلة حتى الآن.</div>
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        // استرجاع المعاملات من ذاكرة المتصفح المحلية
-        let transactions = JSON.parse(localStorage.getItem('elnoor_treasury')) || [];
-
-        const form = document.getElementById('transactionForm');
-        const tableBody = document.getElementById('transactionsTableBody');
-        const totalBalanceEl = document.getElementById('totalBalance');
-        const emptyStateEl = document.getElementById('emptyState');
-        const searchInput = document.getElementById('searchInput');
-
-        // دالة لعرض البيانات وتحديث الحسابات
-        function renderTransactions(filterText = '') {
-            tableBody.innerHTML = '';
-            let total = 0;
-            
-            const filtered = transactions.filter(t => t.name.toLowerCase().includes(filterText.toLowerCase()) || t.note.toLowerCase().includes(filterText.toLowerCase()));
-
-            if (filtered.length === 0) {
-                emptyStateEl.classList.remove('hidden');
-            } else {
-                emptyStateEl.classList.add('hidden');
-            }
-
-            filtered.forEach((t, index) => {
-                const isIncome = t.type === 'قبض';
-                if (isIncome) {
-                    total += Number(t.amount);
-                } else {
-                    total -= Number(t.amount);
-                }
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="py-3 px-4 text-slate-500 text-xs">${t.date}</td>
-                    <td class="py-3 px-4">
-                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${isIncome ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}">
-                            ${t.type}
-                        </span>
-                    </td>
-                    <td class="py-3 px-4 font-medium text-slate-800">${t.name}</td>
-                    <td class="py-3 px-4 font-bold ${isIncome ? 'text-emerald-600' : 'text-rose-600'}">
-                        ${isIncome ? '+' : '-'}${Number(t.amount).toLocaleString()} ج.س
-                    </td>
-                    <td class="py-3 px-4 text-slate-500 text-xs">${t.note || '-'}</td>
-                    <td class="py-3 px-4 text-center">
-                        <button onclick="deleteTransaction(${t.id})" class="text-slate-400 hover:text-rose-600 transition text-xs">حذف</button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-
-            // حساب الإجمالي العام لكل المعاملات بغض النظر عن الفلتر
-            let absoluteTotal = transactions.reduce((acc, curr) => {
-                return curr.type === 'قبض' ? acc + Number(curr.amount) : acc - Number(curr.amount);
-            }, 0);
-
-            totalBalanceEl.textContent = absoluteTotal.toLocaleString();
-            totalBalanceEl.className = `text-2xl font-bold ${absoluteTotal >= 0 ? 'text-indigo-900' : 'text-rose-600'}`;
-        }
-
-        // إضافة معاملة جديدة
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const newTransaction = {
-                id: Date.now(),
-                type: document.getElementById('type').value,
-                name: document.getElementById('name').value,
-                amount: parseFloat(document.getElementById('amount').value),
-                note: document.getElementById('note').value,
-                date: new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: '2-digit', day: '2-digit' })
-            };
-
-            transactions.unshift(newTransaction);
-            localStorage.setItem('elnoor_treasury', JSON.stringify(transactions));
-            
-            form.reset();
-            renderTransactions();
-        });
-
-        // حذف معاملة
-        function deleteTransaction(id) {
-            if(confirm('هل أنت متأكد من حذف هذه المعاملة؟')) {
-                transactions = transactions.filter(t => t.id !== id);
-                localStorage.setItem('elnoor_treasury', JSON.stringify(transactions));
-                renderTransactions(searchInput.value);
-            }
-        }
-
-        // البحث الفوري
-        searchInput.addEventListener('input', (e) => {
-            renderTransactions(e.target.value);
-        });
-
-        // تصدير البيانات كملف CSV (اختياري للأمين المالي)
-        function exportData() {
-            let csvContent = "data:text/csv;charset=utf-8,\uFEFFDate,Type,Name,Amount,Note\n";
-            transactions.forEach(t => {
-                csvContent += `${t.date},${t.type},"${t.name}",${t.amount},"${t.note}"\n`;
-            });
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "khazina_elnoor_report.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // التشغيل الأولي
-        renderTransactions();
-    </script>
-</body>
-</html>
+# --- مثال على الاستخدام ---
+if __name__ == "__main__":
+    # إنشاء خزينة الأمانة المالية برصيد ابتدائي
+    treasury = FinancialSecretariat(initial_balance=50000)
+    
+    # تسجيل بعض المعاملات
+    treasury.add_income(25000, "اشتراكات الأعضاء لشهر أكتوبر")
+    treasury.add_expense(15000, "تكلفة طباعة الملخصات والمستندات")
+    
+    # عرض التقرير المالي النهائي
+    treasury.get_statement()
