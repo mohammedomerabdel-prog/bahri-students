@@ -128,21 +128,7 @@
                         </tr>
                     </thead>
                     <tbody id="issues-list-body" class="divide-y divide-slate-100">
-                        <!-- نموذج لعرض البيانات ديناميكياً مستقبلاً -->
-                        <tr>
-                            <td class="py-3 px-4 font-bold text-slate-700">قاعة (1)</td>
-                            <td class="py-3 px-4 text-slate-600">صيانة الإضاءة وتوفير أقلام سبورة</td>
-                            <td class="py-3 px-4">
-                                <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">قيد التوفير</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 px-4 font-bold text-slate-700">المقاعد الدراسية</td>
-                            <td class="py-3 px-4 text-slate-600">إصلاح المقاعد المكسورة بالمجال الرئيسي</td>
-                            <td class="py-3 px-4">
-                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">تم الإنجاز</span>
-                            </td>
-                        </tr>
+                        <!-- سيتم جلب البنود ديناميكياً من لوحة التحكم هنا -->
                     </tbody>
                 </table>
             </div>
@@ -155,7 +141,53 @@
         <p>خزينة النخبة الشاملة &copy; 2026 - جميع الحقوق محفوظة للدفعة</p>
     </footer>
 
-    <!-- ملف الربط مع قواعد البيانات مستقبلاً -->
-    <script src="app.js"></script>
+    <!-- جافاسكريبت لجلب البيانات وتحديث الصفحة تلقائياً -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // 1. جلب وتحديث الأرقام المالية
+            const income = localStorage.getItem('elite_income');
+            const expenses = localStorage.getItem('elite_expenses');
+            const balance = localStorage.getItem('elite_balance');
+
+            if (income) document.getElementById('total-income').innerText = income;
+            if (expenses) document.getElementById('total-expenses').innerText = expenses;
+            if (balance) document.getElementById('current-balance').innerText = balance;
+
+            // 2. جلب وعرض جدول النواقص المضاف من لوحة التحكم
+            const issues = JSON.parse(localStorage.getItem('elite_issues')) || [];
+            const tableBody = document.getElementById('issues-list-body');
+
+            // إذا لم تكن هناك بنود مضافة، نعرض بند افتراضي
+            if (issues.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td class="py-3 px-4 font-bold text-slate-700">قاعة (1)</td>
+                        <td class="py-3 px-4 text-slate-600">صيانة الإضاءة وتوفير أقلام سبورة</td>
+                        <td class="py-3 px-4">
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-semibold">قيد التوفير</span>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tableBody.innerHTML = ""; // تفريغ الجدول الافتراضي
+                issues.forEach(item => {
+                    const statusClass = item.status === 'تم الإنجاز' 
+                        ? 'bg-emerald-100 text-emerald-800' 
+                        : 'bg-amber-100 text-amber-800';
+
+                    const row = `
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700">${item.location}</td>
+                            <td class="py-3 px-4 text-slate-600">${item.desc}</td>
+                            <td class="py-3 px-4">
+                                <span class="${statusClass} text-xs px-2.5 py-1 rounded-full font-semibold">${item.status}</span>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
