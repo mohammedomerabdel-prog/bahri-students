@@ -2,1237 +2,442 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة إدارة خزينة النخبة</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: #f1f5f9;
-        }
-        .hidden-section { display: none !important; }
-        .stat-card { transition: .2s; }
-        .stat-card:hover { transform: translateY(-3px); }
-        input, select, textarea { font-family: inherit; }
-        button:disabled { opacity: .6; cursor: not-allowed; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة إدارة خزينة النخبة</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{font-family:'Tajawal',sans-serif;background:#f1f5f9}
+.hidden-section{display:none!important}
+.stat-card{transition:.2s}
+.stat-card:hover{transform:translateY(-3px)}
+input,select,textarea,button{font-family:inherit}
+button:disabled{opacity:.6;cursor:not-allowed}
+</style>
 </head>
-
 <body class="text-slate-800 pb-12">
 
-<!-- =========================
-     شاشة تسجيل الدخول
-========================= -->
-
 <section id="login-section" class="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-slate-950 via-slate-800 to-slate-900">
-
-    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-7 md:p-9">
-
-        <div class="text-center mb-8">
-            <div class="w-20 h-20 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center mx-auto mb-4 text-3xl">
-                <i class="fa-solid fa-vault"></i>
-            </div>
-
-            <h1 class="text-2xl font-black text-slate-900">
-                خزينة النخبة الشاملة
-            </h1>
-
-            <p class="text-slate-500 text-sm mt-2">
-                تسجيل الدخول إلى لوحة الإدارة المالية
-            </p>
-        </div>
-
-        <form id="login-form" class="space-y-5">
-
-            <div>
-                <label class="block text-sm font-bold mb-2">البريد الإلكتروني</label>
-                <input
-                    id="login-email"
-                    type="email"
-                    required
-                    autocomplete="username"
-                    placeholder="أدخل بريدك الإلكتروني"
-                    class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500 bg-slate-50">
-            </div>
-
-            <div>
-                <label class="block text-sm font-bold mb-2">كلمة المرور</label>
-                <input
-                    id="login-password"
-                    type="password"
-                    required
-                    autocomplete="current-password"
-                    placeholder="أدخل كلمة المرور"
-                    class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500 bg-slate-50">
-            </div>
-
-            <div id="login-error" class="hidden text-red-600 text-sm bg-red-50 p-3 rounded-xl"></div>
-
-            <button
-                id="login-button"
-                type="submit"
-                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition">
-                <i class="fa-solid fa-right-to-bracket ml-2"></i>
-                تسجيل الدخول
-            </button>
-
-        </form>
-
-        <p class="text-center text-xs text-slate-400 mt-7">
-            خزينة النخبة الشاملة © 2026
-        </p>
-
-    </div>
+<div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-7 md:p-9">
+<div class="text-center mb-8">
+<div class="w-20 h-20 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center mx-auto mb-4 text-3xl"><i class="fa-solid fa-vault"></i></div>
+<h1 class="text-2xl font-black text-slate-900">خزينة النخبة الشاملة</h1>
+<p class="text-slate-500 text-sm mt-2">تسجيل الدخول إلى لوحة الإدارة</p>
+</div>
+<form id="login-form" class="space-y-5">
+<div><label class="block text-sm font-bold mb-2">البريد الإلكتروني</label><input id="login-email" type="email" required autocomplete="username" placeholder="أدخل بريدك الإلكتروني" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none bg-slate-50"></div>
+<div><label class="block text-sm font-bold mb-2">كلمة المرور</label><input id="login-password" type="password" required autocomplete="current-password" placeholder="أدخل كلمة المرور" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none bg-slate-50"></div>
+<div id="login-error" class="hidden text-red-600 text-sm bg-red-50 p-3 rounded-xl"></div>
+<button id="login-button" type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl"><i class="fa-solid fa-right-to-bracket ml-2"></i> تسجيل الدخول</button>
+</form>
+<p class="text-center text-xs text-slate-400 mt-7">خزينة النخبة الشاملة © 2026</p>
+</div>
 </section>
 
-
-<!-- =========================
-     لوحة الإدارة
-========================= -->
-
 <div id="admin-section" class="hidden-section">
-
-    <header class="bg-gradient-to-r from-slate-950 via-slate-800 to-slate-900 text-white shadow-lg">
-
-        <div class="max-w-6xl mx-auto px-4 py-5 flex flex-wrap items-center justify-between gap-4">
-
-            <div>
-                <h1 class="text-xl md:text-2xl font-black flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-amber-400"></i>
-                    لوحة إدارة خزينة النخبة
-                </h1>
-
-                <p class="text-slate-300 text-xs mt-1">
-                    إدارة العمليات المالية واحتياجات القاعات
-                </p>
-            </div>
-
-            <div class="flex items-center gap-2 flex-wrap">
-
-                <span id="user-role" class="text-xs bg-white/10 px-3 py-2 rounded-lg">
-                    المستخدم
-                </span>
-
-                <a href="index.html"
-                   class="bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg text-sm">
-                    <i class="fa-solid fa-house ml-1"></i>
-                    الموقع العام
-                </a>
-
-                <button onclick="logout()"
-                        class="bg-red-500/20 hover:bg-red-500/40 text-white px-3 py-2 rounded-lg text-sm">
-                    <i class="fa-solid fa-right-from-bracket ml-1"></i>
-                    خروج
-                </button>
-
-            </div>
-
-        </div>
-    </header>
-
-
-    <main class="max-w-6xl mx-auto px-4 mt-8 space-y-8">
-
-        <!-- حالة الاتصال -->
-
-        <div id="connection-status" class="bg-white border border-slate-200 rounded-xl p-4 text-sm flex items-center gap-2">
-            <i class="fa-solid fa-circle-notch fa-spin text-amber-700"></i>
-            جاري تحميل بيانات الخزينة...
-        </div>
-
-
-        <!-- =========================
-             الملخص المالي
-        ========================= -->
-
-        <section>
-
-            <div class="flex items-center justify-between mb-5">
-                <div>
-                    <h2 class="text-xl font-black text-slate-900">
-                        الموقف المالي
-                    </h2>
-                    <p class="text-xs text-slate-500 mt-1">
-                        الأرقام الحالية من قاعدة البيانات
-                    </p>
-                </div>
-
-                <button onclick="loadDashboard()"
-                        class="text-amber-800 bg-amber-50 hover:bg-amber-100 px-4 py-2 rounded-xl text-sm font-bold">
-                    <i class="fa-solid fa-rotate ml-1"></i>
-                    تحديث
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
-                <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-xs text-slate-500 font-bold">إجمالي الوارد</p>
-                    <h3 id="total-income" class="text-2xl font-black text-emerald-600 mt-3">--</h3>
-                    <p class="text-xs text-slate-400 mt-2">جنيه سوداني</p>
-                </div>
-
-                <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-xs text-slate-500 font-bold">إجمالي المصروفات</p>
-                    <h3 id="total-expenses" class="text-2xl font-black text-red-600 mt-3">--</h3>
-                    <p class="text-xs text-slate-400 mt-2">جنيه سوداني</p>
-                </div>
-
-                <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-xs text-slate-500 font-bold">الرصيد الحالي</p>
-                    <h3 id="current-balance" class="text-2xl font-black text-amber-800 mt-3">--</h3>
-                    <p class="text-xs text-slate-400 mt-2">جنيه سوداني</p>
-                </div>
-
-                <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-xs text-slate-500 font-bold">الهدف المالي</p>
-                    <h3 id="target-amount" class="text-2xl font-black text-amber-600 mt-3">--</h3>
-                    <p class="text-xs text-slate-400 mt-2">جنيه سوداني</p>
-                </div>
-
-            </div>
-
-            <div class="bg-white rounded-2xl p-5 mt-4 shadow-sm border border-slate-100">
-
-                <div class="flex justify-between items-center mb-3">
-                    <span class="font-bold text-sm">نسبة تحقيق الهدف</span>
-                    <span id="goal-percentage" class="font-black text-amber-800">--</span>
-                </div>
-
-                <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
-                    <div id="goal-progress"
-                         class="bg-amber-500 h-full rounded-full transition-all duration-500"
-                         style="width:0%">
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             تسجيل عملية مالية
-        ========================= -->
-
-        <section class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 md:p-8">
-
-            <div class="mb-6 border-b border-slate-100 pb-4">
-
-                <h2 class="text-xl font-black text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-money-bill-transfer text-amber-700"></i>
-                    تسجيل عملية مالية جديدة
-                </h2>
-
-                <p class="text-slate-500 text-xs mt-2">
-                    أضف إيراداً أو مصروفاً وسيتم تحديث الحسابات تلقائياً.
-                </p>
-
-            </div>
-
-
-            <form id="transaction-form" class="space-y-5">
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">نوع العملية *</label>
-
-                        <select id="transaction-type" required
-                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-
-                            <option value="income">إيراد / مساهمة</option>
-                            <option value="expense">مصروف</option>
-
-                        </select>
-                    </div>
-
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">المبلغ بالجنيه السوداني *</label>
-
-                        <input id="transaction-amount"
-                               type="number"
-                               min="1"
-                               step="1"
-                               required
-                               placeholder="مثال: 10000"
-                               class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-                    </div>
-
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">التصنيف</label>
-
-                        <input id="transaction-category"
-                               type="text"
-                               placeholder="مثال: مساهمات، قاعات، طباعة..."
-                               class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-                    </div>
-
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">تاريخ العملية *</label>
-
-                        <input id="transaction-date"
-                               type="date"
-                               required
-                               class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-                    </div>
-
-
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold mb-2">وصف العملية *</label>
-
-                        <textarea id="transaction-description"
-                                  rows="3"
-                                  required
-                                  placeholder="اكتب تفاصيل العملية..."
-                                  class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500"></textarea>
-                    </div>
-
-                </div>
-
-
-                <div id="contributor-field">
-                    <label class="block text-xs font-bold mb-2">اسم المساهم (اختياري - للإدارة فقط)</label>
-
-                    <input id="contributor-name"
-                           type="text"
-                           placeholder="اسم المساهم"
-                           class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-                </div>
-
-
-                <button id="save-transaction-button"
-                        type="submit"
-                        class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition">
-
-                    <i class="fa-solid fa-floppy-disk ml-2"></i>
-                    حفظ العملية المالية
-
-                </button>
-
-            </form>
-
-        </section>
-
-
-        <!-- =========================
-             سجل العمليات
-        ========================= -->
-
-        <section class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 md:p-8">
-
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-slate-100 pb-4">
-
-                <div>
-                    <h2 class="text-xl font-black text-slate-800">
-                        سجل العمليات المالية
-                    </h2>
-                    <p class="text-xs text-slate-500 mt-1">
-                        العمليات الجديدة والسابقة المسجلة بعد ربط النظام
-                    </p>
-                </div>
-
-                <button onclick="loadTransactions()"
-                        class="text-amber-800 bg-amber-50 px-4 py-2 rounded-xl text-sm font-bold">
-                    <i class="fa-solid fa-rotate ml-1"></i>
-                    تحديث السجل
-                </button>
-
-            </div>
-
-
-            <div class="overflow-x-auto">
-
-                <table class="w-full text-sm text-right min-w-[650px]">
-
-                    <thead class="bg-slate-50 text-slate-600">
-                        <tr>
-                            <th class="p-3">التاريخ</th>
-                            <th class="p-3">النوع</th>
-                            <th class="p-3">التصنيف والوصف</th>
-                            <th class="p-3">المبلغ</th>
-                            <th class="p-3">الإجراءات</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="transactions-list">
-
-                        <tr>
-                            <td colspan="5" class="p-5 text-center text-slate-400">
-                                جاري تحميل العمليات...
-                            </td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <p class="text-xs text-slate-400 mt-4">
-                الأرصدة الافتتاحية السابقة محفوظة بصورة مستقلة، ولا تظهر كعمليات وهمية في هذا السجل.
-            </p>
-
-        </section>
-
-
-        <!-- =========================
-             احتياجات القاعات
-        ========================= -->
-
-        <section class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 md:p-8">
-
-            <div class="mb-6 border-b border-slate-100 pb-4">
-
-                <h2 class="text-xl font-black text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-list-check text-amber-700"></i>
-                    إدارة احتياجات القاعات والنواقص
-                </h2>
-
-                <p class="text-slate-500 text-xs mt-2">
-                    أضف الاحتياجات ليتمكن الطلاب من الاطلاع عليها.
-                </p>
-
-            </div>
-
-
-            <form id="issue-add-form" class="space-y-4">
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">البند / القاعة *</label>
-
-                        <input id="new-location"
-                               type="text"
-                               required
-                               placeholder="مثال: قاعة 2 أو السبورة"
-                               class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-                    </div>
-
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">حالة البند *</label>
-
-                        <select id="new-status"
-                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-
-                            <option value="pending">قيد التوفير</option>
-                            <option value="in_progress">قيد التنفيذ</option>
-                            <option value="completed">تم الإنجاز</option>
-
-                        </select>
-                    </div>
-
-
-                    <div>
-                        <label class="block text-xs font-bold mb-2">التكلفة التقديرية (اختياري)</label>
-
-                        <input id="new-cost"
-                               type="number"
-                               min="0"
-                               placeholder="المبلغ بالجنيه"
-                               class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500">
-                    </div>
-
-                </div>
-
-
-                <div>
-                    <label class="block text-xs font-bold mb-2">تفاصيل الاحتياج *</label>
-
-                    <textarea id="new-desc"
-                              rows="3"
-                              required
-                              placeholder="اكتب وصف الاحتياج أو العطل..."
-                              class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-amber-500"></textarea>
-                </div>
-
-
-                <button id="save-issue-button"
-                        type="submit"
-                        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition">
-
-                    <i class="fa-solid fa-plus ml-2"></i>
-                    إضافة البند للسجل العام
-
-                </button>
-
-            </form>
-
-
-            <div class="mt-8">
-
-                <h3 class="font-black mb-4">الاحتياجات المسجلة</h3>
-
-                <div id="issues-list" class="space-y-3">
-
-                    <p class="text-center text-slate-400 text-sm">
-                        جاري تحميل الاحتياجات...
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        
-
-        <!-- تنبيه أمني -->
-
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900">
-
-            <i class="fa-solid fa-shield-halved ml-1"></i>
-
-            هذه لوحة خاصة بالإدارة والأمين المالي. لا تشارك بيانات الدخول مع الآخرين.
-
-        </div>
-
-    </main>
-
-
-    <footer class="mt-12 text-center text-slate-400 text-xs">
-        خزينة النخبة الشاملة © 2026 - لوحة الإدارة الخاصة
-    </footer>
-
+<header class="bg-gradient-to-r from-slate-950 via-slate-800 to-slate-900 text-white shadow-lg">
+<div class="max-w-6xl mx-auto px-4 py-5 flex flex-wrap items-center justify-between gap-4">
+<div>
+<h1 class="text-xl md:text-2xl font-black"><i class="fa-solid fa-user-shield text-amber-400 ml-2"></i>لوحة إدارة خزينة النخبة</h1>
+<p class="text-slate-300 text-xs mt-1">إدارة الخزينة والمنصة الطلابية</p>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<span id="user-role" class="text-xs bg-white/10 px-3 py-2 rounded-lg">المستخدم</span>
+<a href="index.html" class="bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg text-sm"><i class="fa-solid fa-house ml-1"></i> الموقع العام</a>
+<button onclick="logout()" class="bg-red-500/20 hover:bg-red-500/40 px-3 py-2 rounded-lg text-sm"><i class="fa-solid fa-right-from-bracket ml-1"></i> خروج</button>
+</div>
+</div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 mt-8 space-y-8">
+
+<div id="connection-status" class="bg-white border border-slate-200 rounded-xl p-4 text-sm">جاري تحميل بيانات الخزينة...</div>
+
+<section>
+<div class="flex items-center justify-between mb-5">
+<div><h2 class="text-xl font-black">الموقف المالي</h2><p class="text-xs text-slate-500 mt-1">الأرقام الحالية من قاعدة البيانات</p></div>
+<button onclick="loadDashboard()" class="text-amber-800 bg-amber-50 px-4 py-2 rounded-xl text-sm font-bold"><i class="fa-solid fa-rotate ml-1"></i> تحديث</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="stat-card bg-white p-5 rounded-2xl shadow-sm"><p class="text-xs text-slate-500 font-bold">إجمالي الوارد</p><h3 id="total-income" class="text-2xl font-black text-emerald-600 mt-3">--</h3><p class="text-xs text-slate-400 mt-2">جنيه سوداني</p></div>
+<div class="stat-card bg-white p-5 rounded-2xl shadow-sm"><p class="text-xs text-slate-500 font-bold">إجمالي المصروفات</p><h3 id="total-expenses" class="text-2xl font-black text-red-600 mt-3">--</h3><p class="text-xs text-slate-400 mt-2">جنيه سوداني</p></div>
+<div class="stat-card bg-white p-5 rounded-2xl shadow-sm"><p class="text-xs text-slate-500 font-bold">الرصيد الحالي</p><h3 id="current-balance" class="text-2xl font-black text-amber-800 mt-3">--</h3><p class="text-xs text-slate-400 mt-2">جنيه سوداني</p></div>
+<div class="stat-card bg-white p-5 rounded-2xl shadow-sm"><p class="text-xs text-slate-500 font-bold">الهدف المالي</p><h3 id="target-amount" class="text-2xl font-black text-amber-600 mt-3">--</h3><p class="text-xs text-slate-400 mt-2">جنيه سوداني</p></div>
+</div>
+<div class="bg-white rounded-2xl p-5 mt-4 shadow-sm">
+<div class="flex justify-between items-center mb-3"><span class="font-bold text-sm">نسبة تحقيق الهدف</span><span id="goal-percentage" class="font-black text-amber-800">--</span></div>
+<div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden"><div id="goal-progress" class="bg-amber-500 h-full rounded-full" style="width:0%"></div></div>
+</div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-black mb-2"><i class="fa-solid fa-money-bill-transfer text-amber-700 ml-2"></i>تسجيل عملية مالية جديدة</h2>
+<p class="text-slate-500 text-xs mb-6">أضف إيراداً أو مصروفاً وسيتم تحديث الحسابات تلقائياً.</p>
+<form id="transaction-form" class="space-y-5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div><label class="block text-xs font-bold mb-2">نوع العملية *</label><select id="transaction-type" required class="w-full bg-slate-50 border rounded-xl px-4 py-3"><option value="income">إيراد / مساهمة</option><option value="expense">مصروف</option></select></div>
+<div><label class="block text-xs font-bold mb-2">المبلغ بالجنيه السوداني *</label><input id="transaction-amount" type="number" min="1" step="1" required class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="مثال: 10000"></div>
+<div><label class="block text-xs font-bold mb-2">التصنيف</label><input id="transaction-category" class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="مساهمات، قاعات، طباعة..."></div>
+<div><label class="block text-xs font-bold mb-2">تاريخ العملية *</label><input id="transaction-date" type="date" required class="w-full bg-slate-50 border rounded-xl px-4 py-3"></div>
+<div class="md:col-span-2"><label class="block text-xs font-bold mb-2">وصف العملية *</label><textarea id="transaction-description" rows="3" required class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="اكتب تفاصيل العملية..."></textarea></div>
+</div>
+<div id="contributor-field"><label class="block text-xs font-bold mb-2">اسم المساهم (اختياري - للإدارة فقط)</label><input id="contributor-name" class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="اسم المساهم"></div>
+<button id="save-transaction-button" type="submit" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl"><i class="fa-solid fa-floppy-disk ml-2"></i> حفظ العملية المالية</button>
+</form>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+<div class="flex flex-wrap justify-between gap-3 mb-6"><div><h2 class="text-xl font-black">سجل العمليات المالية</h2><p class="text-xs text-slate-500 mt-1">العمليات المسجلة في قاعدة البيانات</p></div><button onclick="loadTransactions()" class="text-amber-800 bg-amber-50 px-4 py-2 rounded-xl text-sm font-bold">تحديث السجل</button></div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-right min-w-[650px]">
+<thead class="bg-slate-50"><tr><th class="p-3">التاريخ</th><th class="p-3">النوع</th><th class="p-3">التصنيف والوصف</th><th class="p-3">المبلغ</th><th class="p-3">الإجراءات</th></tr></thead>
+<tbody id="transactions-list"><tr><td colspan="5" class="p-5 text-center">جاري التحميل...</td></tr></tbody>
+</table>
+</div>
+<p class="text-xs text-slate-400 mt-4">الأرصدة الافتتاحية محفوظة بصورة مستقلة.</p>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-black mb-2"><i class="fa-solid fa-list-check text-amber-700 ml-2"></i>إدارة احتياجات القاعات والنواقص</h2>
+<p class="text-slate-500 text-xs mb-6">أضف الاحتياجات ليتمكن الطلاب من الاطلاع عليها.</p>
+<form id="issue-add-form" class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div><label class="block text-xs font-bold mb-2">البند / القاعة *</label><input id="new-location" required class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="مثال: قاعة 2 أو السبورة"></div>
+<div><label class="block text-xs font-bold mb-2">حالة البند *</label><select id="new-status" class="w-full bg-slate-50 border rounded-xl px-4 py-3"><option value="pending">قيد التوفير</option><option value="in_progress">قيد التنفيذ</option><option value="completed">تم الإنجاز</option></select></div>
+<div><label class="block text-xs font-bold mb-2">التكلفة التقديرية</label><input id="new-cost" type="number" min="0" class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="المبلغ بالجنيه"></div>
+</div>
+<div><label class="block text-xs font-bold mb-2">تفاصيل الاحتياج *</label><textarea id="new-desc" rows="3" required class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="اكتب وصف الاحتياج أو العطل..."></textarea></div>
+<button id="save-issue-button" type="submit" class="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl">إضافة البند للسجل العام</button>
+</form>
+<div class="mt-8"><h3 class="font-black mb-4">الاحتياجات المسجلة</h3><div id="issues-list" class="space-y-3">جاري التحميل...</div></div>
+</section>
+
+<!-- إدارة الإعلانات -->
+<section class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-black mb-2"><i class="fa-solid fa-bullhorn text-amber-700 ml-2"></i>إدارة إعلانات المنصة</h2>
+<p class="text-slate-500 text-xs mb-6">أضف إعلاناً ليظهر في الموقع العام، ويمكنك تعديله أو إيقاف نشره.</p>
+<form id="announcement-form" class="space-y-4">
+<input type="hidden" id="announcement-id">
+<div><label class="block text-xs font-bold mb-2">عنوان الإعلان *</label><input id="announcement-title" required maxlength="200" class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="عنوان الإعلان"></div>
+<div><label class="block text-xs font-bold mb-2">محتوى الإعلان *</label><textarea id="announcement-content" rows="4" required class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="اكتب تفاصيل الإعلان..."></textarea></div>
+<label class="flex items-center gap-2 text-sm"><input id="announcement-active" type="checkbox" checked> نشر الإعلان مباشرة</label>
+<div class="flex flex-wrap gap-2">
+<button id="announcement-save" type="submit" class="flex-1 bg-slate-900 text-white font-bold py-3 rounded-xl">حفظ الإعلان</button>
+<button type="button" onclick="resetAnnouncementForm()" class="bg-slate-100 px-5 py-3 rounded-xl">إلغاء</button>
+</div>
+</form>
+<div class="mt-8"><h3 class="font-black mb-4">الإعلانات المسجلة</h3><div id="announcements-list" class="space-y-3">جاري تحميل الإعلانات...</div></div>
+</section>
+
+<!-- إدارة الإنجازات -->
+<section class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+<h2 class="text-xl font-black mb-2"><i class="fa-solid fa-trophy text-amber-600 ml-2"></i>إدارة إنجازات الدفعة</h2>
+<p class="text-slate-500 text-xs mb-6">سجّل إنجازات الدفعة لتظهر في الموقع العام.</p>
+<form id="achievement-form" class="space-y-4">
+<input type="hidden" id="achievement-id">
+<div><label class="block text-xs font-bold mb-2">عنوان الإنجاز *</label><input id="achievement-title" required maxlength="200" class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="عنوان الإنجاز"></div>
+<div><label class="block text-xs font-bold mb-2">تفاصيل الإنجاز *</label><textarea id="achievement-description" rows="3" required class="w-full bg-slate-50 border rounded-xl px-4 py-3" placeholder="اكتب تفاصيل الإنجاز..."></textarea></div>
+<div><label class="block text-xs font-bold mb-2">تاريخ الإنجاز</label><input id="achievement-date" type="date" class="w-full bg-slate-50 border rounded-xl px-4 py-3"></div>
+<div class="flex flex-wrap gap-2">
+<button id="achievement-save" type="submit" class="flex-1 bg-slate-900 text-white font-bold py-3 rounded-xl">حفظ الإنجاز</button>
+<button type="button" onclick="resetAchievementForm()" class="bg-slate-100 px-5 py-3 rounded-xl">إلغاء</button>
+</div>
+</form>
+<div class="mt-8"><h3 class="font-black mb-4">الإنجازات المسجلة</h3><div id="achievements-list" class="space-y-3">جاري تحميل الإنجازات...</div></div>
+</section>
+
+<div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900"><i class="fa-solid fa-shield-halved ml-1"></i> هذه لوحة خاصة بالإدارة والأمين المالي.</div>
+</main>
+<footer class="mt-12 text-center text-slate-400 text-xs">خزينة النخبة الشاملة © 2026 - لوحة الإدارة الخاصة</footer>
 </div>
 
-
-<!-- =========================
-     الاتصال بقاعدة البيانات
-========================= -->
-
 <script>
+const SUPABASE_URL='https://cglezfkobtnfvgzdtjhi.supabase.co';
+const SUPABASE_KEY='sb_publishable_BlMI-s9QSTDFrSyjiMz_8g_zLld2_9U';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let currentUser=null;
+let currentRole=null;
 
-// بيانات مشروع Supabase
-const SUPABASE_URL = 'https://cglezfkobtnfvgzdtjhi.supabase.co';
-
-const SUPABASE_KEY = 'sb_publishable_BlMI-s9QSTDFrSyjiMz_8g_zLld2_9U';
-
-// إنشاء الاتصال
-const db = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-let currentUser = null;
-let currentRole = null;
-
-
-// أدوات مساعدة
-
-function formatMoney(value) {
-    return Number(value || 0).toLocaleString('en-US') + ' ج.س';
+function formatMoney(value){return Number(value||0).toLocaleString('en-US')+' ج.س';}
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function today(){const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);}
+function showConnection(message,type='info'){
+const el=document.getElementById('connection-status');
+const colors={info:'bg-slate-50 text-slate-800 border-slate-200',success:'bg-emerald-50 text-emerald-800 border-emerald-200',error:'bg-red-50 text-red-800 border-red-200'};
+el.className='border rounded-xl p-4 text-sm '+colors[type];el.textContent=message;
 }
 
-function escapeHTML(value) {
-    return String(value ?? '').replace(/[&<>"']/g, function(char) {
-        return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        }[char];
-    });
-}
-
-function showConnection(message, type = 'info') {
-
-    const element = document.getElementById('connection-status');
-
-    const colors = {
-        info: 'bg-slate-50 text-slate-800 border-slate-200',
-        success: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-        error: 'bg-red-50 text-red-800 border-red-200'
-    };
-
-    element.className = 'border rounded-xl p-4 text-sm ' + colors[type];
-
-    element.textContent = message;
-}
-
-function today() {
-    const date = new Date();
-    const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-    return localDate.toISOString().slice(0, 10);
-}
-
-
-// =========================
-// تسجيل الدخول
-// =========================
-
-document.getElementById('login-form').addEventListener('submit', async function(e) {
-
-    e.preventDefault();
-
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-
-    const button = document.getElementById('login-button');
-    const errorBox = document.getElementById('login-error');
-
-    button.disabled = true;
-    button.textContent = 'جاري التحقق...';
-    errorBox.classList.add('hidden');
-
-    try {
-
-        const { data, error } = await db.auth.signInWithPassword({
-            email,
-            password
-        });
-
-        if (error) throw error;
-
-        await checkAuthorization(data.user);
-
-    } catch (error) {
-
-        errorBox.textContent = 'تعذر تسجيل الدخول: ' + error.message;
-        errorBox.classList.remove('hidden');
-
-    } finally {
-
-        button.disabled = false;
-        button.innerHTML = '<i class="fa-solid fa-right-to-bracket ml-2"></i> تسجيل الدخول';
-
-    }
-
+document.getElementById('login-form').addEventListener('submit',async e=>{
+e.preventDefault();
+const button=document.getElementById('login-button');
+const errorBox=document.getElementById('login-error');
+button.disabled=true;button.textContent='جاري التحقق...';errorBox.classList.add('hidden');
+try{
+const {data,error}=await db.auth.signInWithPassword({email:document.getElementById('login-email').value.trim(),password:document.getElementById('login-password').value});
+if(error)throw error;
+await checkAuthorization(data.user);
+}catch(error){errorBox.textContent='تعذر تسجيل الدخول: '+error.message;errorBox.classList.remove('hidden');}
+finally{button.disabled=false;button.innerHTML='<i class="fa-solid fa-right-to-bracket ml-2"></i> تسجيل الدخول';}
 });
 
-
-// =========================
-// التحقق من الصلاحيات
-// =========================
-
-async function checkAuthorization(user) {
-
-    const { data: profile, error } = await db
-        .from('profiles')
-        .select('id, full_name, role')
-        .eq('id', user.id)
-        .maybeSingle();
-
-    if (error) {
-        throw new Error('تعذر التحقق من صلاحيات الحساب: ' + error.message);
-    }
-
-    if (!profile || !['admin', 'treasurer'].includes(profile.role)) {
-
-        await db.auth.signOut();
-
-        document.getElementById('login-error').textContent =
-            'هذا الحساب لا يملك صلاحية دخول لوحة الإدارة.';
-
-        document.getElementById('login-error').classList.remove('hidden');
-
-        return;
-    }
-
-    currentUser = user;
-    currentRole = profile.role;
-
-    document.getElementById('login-section').classList.add('hidden-section');
-    document.getElementById('admin-section').classList.remove('hidden-section');
-
-    document.getElementById('user-role').textContent =
-        profile.role === 'admin' ? 'مدير الخزينة' : 'الأمين المالي';
-
-    await loadDashboard();
-
+async function checkAuthorization(user){
+const {data:profile,error}=await db.from('profiles').select('id,full_name,role').eq('id',user.id).maybeSingle();
+if(error)throw new Error('تعذر التحقق من الصلاحيات: '+error.message);
+if(!profile||!['admin','treasurer'].includes(profile.role)){
+await db.auth.signOut();
+const box=document.getElementById('login-error');box.textContent='هذا الحساب لا يملك صلاحية دخول لوحة الإدارة.';box.classList.remove('hidden');return;
+}
+currentUser=user;currentRole=profile.role;
+document.getElementById('login-section').classList.add('hidden-section');
+document.getElementById('admin-section').classList.remove('hidden-section');
+document.getElementById('user-role').textContent=profile.role==='admin'?'مدير الخزينة':'الأمين المالي';
+await loadDashboard();
 }
 
-
-// =========================
-// التحقق من الجلسة الحالية
-// =========================
-
-async function initializeApp() {
-
-    try {
-
-        const { data: { session }, error } = await db.auth.getSession();
-
-        if (error) throw error;
-
-        if (session) {
-            await checkAuthorization(session.user);
-        }
-
-    } catch (error) {
-
-        showConnection(error.message, 'error');
-
-    }
-
+async function initializeApp(){
+try{const {data:{session},error}=await db.auth.getSession();if(error)throw error;if(session)await checkAuthorization(session.user);}
+catch(error){showConnection(error.message,'error');}
 }
-
 initializeApp();
 
+async function logout(){if(!confirm('هل تريد تسجيل الخروج؟'))return;await db.auth.signOut();location.reload();}
 
-// =========================
-// تسجيل الخروج
-// =========================
-
-async function logout() {
-
-    const confirmed = confirm('هل تريد تسجيل الخروج؟');
-
-    if (!confirmed) return;
-
-    await db.auth.signOut();
-
-    location.reload();
-
+async function loadDashboard(){
+showConnection('جاري تحميل بيانات الخزينة...');
+try{
+const {data,error}=await db.from('public_treasury_summary').select('*').single();
+if(error)throw error;
+const income=Number(data.total_income||0),expenses=Number(data.total_expenses||0),balance=Number(data.current_balance||0),target=Number(data.target_amount||0);
+document.getElementById('total-income').textContent=formatMoney(income);
+document.getElementById('total-expenses').textContent=formatMoney(expenses);
+document.getElementById('current-balance').textContent=formatMoney(balance);
+document.getElementById('target-amount').textContent=formatMoney(target);
+const percentage=target>0?Math.min(income/target*100,100):0;
+document.getElementById('goal-percentage').textContent=percentage.toFixed(2)+'%';
+document.getElementById('goal-progress').style.width=percentage+'%';
+await Promise.all([loadTransactions(),loadIssues(),loadAnnouncements(),loadAchievements()]);
+showConnection('تم الاتصال بقاعدة البيانات وتحميل البيانات بنجاح.','success');
+}catch(error){showConnection('حدث خطأ أثناء تحميل البيانات: '+error.message,'error');}
 }
 
-
-// =========================
-// تحميل الملخص المالي
-// =========================
-
-async function loadDashboard() {
-
-    showConnection('جاري تحميل بيانات الخزينة...', 'info');
-
-    try {
-
-        const { data, error } = await db
-            .from('public_treasury_summary')
-            .select('*')
-            .single();
-
-        if (error) throw error;
-
-        const income = Number(data.total_income || 0);
-        const expenses = Number(data.total_expenses || 0);
-        const balance = Number(data.current_balance || 0);
-        const target = Number(data.target_amount || 0);
-
-        document.getElementById('total-income').textContent = formatMoney(income);
-
-        document.getElementById('total-expenses').textContent = formatMoney(expenses);
-
-        document.getElementById('current-balance').textContent = formatMoney(balance);
-
-        document.getElementById('target-amount').textContent = formatMoney(target);
-
-        const percentage = target > 0
-            ? Math.min((income / target) * 100, 100)
-            : 0;
-
-        document.getElementById('goal-percentage').textContent =
-            percentage.toFixed(2) + '%';
-
-        document.getElementById('goal-progress').style.width =
-            percentage + '%';
-
-        await loadTransactions();
-        await loadIssues();
-        // تم إيقاف نظام الطلبات الطلابية؛ تُدار الاحتياجات يدوياً من لوحة الإدارة.
-
-        showConnection('تم الاتصال بقاعدة البيانات وتحميل البيانات بنجاح.', 'success');
-
-    } catch (error) {
-
-        showConnection('حدث خطأ أثناء تحميل البيانات: ' + error.message, 'error');
-
-    }
-
-}
-
-
-// =========================
-// تسجيل عملية مالية
-// =========================
-
-document.getElementById('transaction-form').addEventListener('submit', async function(e) {
-
-    e.preventDefault();
-
-    const button = document.getElementById('save-transaction-button');
-
-    const type = document.getElementById('transaction-type').value;
-    const amount = Number(document.getElementById('transaction-amount').value);
-    const category = document.getElementById('transaction-category').value.trim();
-    const description = document.getElementById('transaction-description').value.trim();
-    const date = document.getElementById('transaction-date').value;
-    const contributor = document.getElementById('contributor-name').value.trim();
-
-    if (!Number.isSafeInteger(amount) || amount <= 0) {
-        alert('أدخل مبلغاً صحيحاً.');
-        return;
-    }
-
-    if (!description || !date) {
-        alert('أكمل البيانات المطلوبة.');
-        return;
-    }
-
-    if (!confirm('هل أنت متأكد من تسجيل هذه العملية؟')) return;
-
-    button.disabled = true;
-    button.textContent = 'جاري الحفظ...';
-
-    try {
-
-        const { error } = await db
-            .from('financial_transactions')
-            .insert({
-                transaction_type: type,
-                amount: amount,
-                category: category || null,
-                description: description,
-                transaction_date: date,
-                contributor_name: type === 'income' ? (contributor || null) : null,
-                created_by: currentUser.id
-            });
-
-        if (error) throw error;
-
-        alert('تم حفظ العملية المالية بنجاح.');
-
-        document.getElementById('transaction-form').reset();
-
-        document.getElementById('transaction-date').value = today();
-
-        await loadDashboard();
-
-    } catch (error) {
-
-        alert('تعذر حفظ العملية: ' + error.message);
-
-    } finally {
-
-        button.disabled = false;
-        button.innerHTML = '<i class="fa-solid fa-floppy-disk ml-2"></i> حفظ العملية المالية';
-
-    }
-
+document.getElementById('transaction-form').addEventListener('submit',async e=>{
+e.preventDefault();
+const button=document.getElementById('save-transaction-button');
+const type=document.getElementById('transaction-type').value;
+const amount=Number(document.getElementById('transaction-amount').value);
+const category=document.getElementById('transaction-category').value.trim();
+const description=document.getElementById('transaction-description').value.trim();
+const date=document.getElementById('transaction-date').value;
+const contributor=document.getElementById('contributor-name').value.trim();
+if(!Number.isSafeInteger(amount)||amount<=0){alert('أدخل مبلغاً صحيحاً.');return;}
+if(!description||!date){alert('أكمل البيانات المطلوبة.');return;}
+if(!confirm('هل أنت متأكد من تسجيل هذه العملية؟'))return;
+button.disabled=true;button.textContent='جاري الحفظ...';
+try{
+const {error}=await db.from('financial_transactions').insert({transaction_type:type,amount,category:category||null,description,transaction_date:date,contributor_name:type==='income'?(contributor||null):null,created_by:currentUser.id});
+if(error)throw error;
+alert('تم حفظ العملية المالية بنجاح.');
+document.getElementById('transaction-form').reset();
+document.getElementById('transaction-date').value=today();
+await loadDashboard();
+}catch(error){alert('تعذر حفظ العملية: '+error.message);}
+finally{button.disabled=false;button.innerHTML='<i class="fa-solid fa-floppy-disk ml-2"></i> حفظ العملية المالية';}
 });
 
-
-// إخفاء اسم المساهم عند اختيار المصروف
-
-document.getElementById('transaction-type').addEventListener('change', function() {
-
-    document.getElementById('contributor-field').style.display =
-        this.value === 'income' ? 'block' : 'none';
-
+document.getElementById('transaction-type').addEventListener('change',function(){
+document.getElementById('contributor-field').style.display=this.value==='income'?'block':'none';
 });
 
-
-// =========================
-// تحميل سجل العمليات
-// =========================
-
-async function loadTransactions() {
-
-    const list = document.getElementById('transactions-list');
-
-    list.innerHTML = `
-        <tr>
-            <td colspan="5" class="p-5 text-center text-slate-400">
-                جاري تحميل العمليات...
-            </td>
-        </tr>
-    `;
-
-    try {
-
-        const { data, error } = await db
-            .from('financial_transactions')
-            .select('id, transaction_type, amount, category, description, transaction_date')
-            .order('transaction_date', { ascending: false })
-            .order('created_at', { ascending: false })
-            .limit(100);
-
-        if (error) throw error;
-
-        if (!data || data.length === 0) {
-
-            list.innerHTML = `
-                <tr>
-                    <td colspan="5" class="p-5 text-center text-slate-400">
-                        لا توجد عمليات جديدة مسجلة حتى الآن.
-                    </td>
-                </tr>
-            `;
-
-            return;
-        }
-
-        list.innerHTML = data.map(item => {
-
-            const isIncome = item.transaction_type === 'income';
-
-            return `
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
-
-                    <td class="p-3">${escapeHTML(item.transaction_date)}</td>
-
-                    <td class="p-3">
-                        <span class="px-2 py-1 rounded-lg text-xs font-bold
-                        ${isIncome ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}">
-                            ${isIncome ? 'إيراد' : 'مصروف'}
-                        </span>
-                    </td>
-
-                    <td class="p-3">
-                        <div class="font-bold">${escapeHTML(item.category || 'عام')}</div>
-                        <div class="text-xs text-slate-500 mt-1">${escapeHTML(item.description)}</div>
-                    </td>
-
-                    <td class="p-3 font-black ${isIncome ? 'text-emerald-600' : 'text-red-600'}">
-                        ${formatMoney(item.amount)}
-                    </td>
-
-                    <td class="p-3">
-                        <div class="flex gap-2">
-
-                            <button onclick="editTransaction('${item.id}')"
-                                class="bg-amber-50 text-amber-700 px-3 py-2 rounded-lg text-xs">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-
-                            <button onclick="deleteTransaction('${item.id}')"
-                                class="bg-red-50 text-red-600 px-3 py-2 rounded-lg text-xs">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                        </div>
-                    </td>
-
-                </tr>
-            `;
-
-        }).join('');
-
-    } catch (error) {
-
-        list.innerHTML = `
-            <tr>
-                <td colspan="5" class="p-5 text-center text-red-600">
-                    ${escapeHTML(error.message)}
-                </td>
-            </tr>
-        `;
-
-    }
-
+async function loadTransactions(){
+const list=document.getElementById('transactions-list');list.innerHTML='<tr><td colspan="5" class="p-5 text-center">جاري التحميل...</td></tr>';
+try{
+const {data,error}=await db.from('financial_transactions').select('id,transaction_type,amount,category,description,transaction_date').order('transaction_date',{ascending:false}).order('created_at',{ascending:false}).limit(100);
+if(error)throw error;
+if(!data?.length){list.innerHTML='<tr><td colspan="5" class="p-5 text-center text-slate-400">لا توجد عمليات مسجلة.</td></tr>';return;}
+list.innerHTML=data.map(item=>{
+const inc=item.transaction_type==='income';
+return `<tr class="border-b hover:bg-slate-50">
+<td class="p-3">${escapeHTML(item.transaction_date)}</td>
+<td class="p-3"><span class="px-2 py-1 rounded-lg text-xs ${inc?'bg-emerald-50 text-emerald-700':'bg-red-50 text-red-700'}">${inc?'إيراد':'مصروف'}</span></td>
+<td class="p-3"><b>${escapeHTML(item.category||'عام')}</b><div class="text-xs text-slate-500 mt-1">${escapeHTML(item.description)}</div></td>
+<td class="p-3 font-black ${inc?'text-emerald-600':'text-red-600'}">${formatMoney(item.amount)}</td>
+<td class="p-3"><div class="flex gap-2"><button onclick="editTransaction('${item.id}')" class="bg-amber-50 text-amber-700 px-3 py-2 rounded-lg"><i class="fa-solid fa-pen"></i></button><button onclick="deleteTransaction('${item.id}')" class="bg-red-50 text-red-600 px-3 py-2 rounded-lg"><i class="fa-solid fa-trash"></i></button></div></td>
+</tr>`;
+}).join('');
+}catch(error){list.innerHTML=`<tr><td colspan="5" class="p-5 text-center text-red-600">${escapeHTML(error.message)}</td></tr>`;}
 }
 
-
-// =========================
-// تعديل عملية مالية
-// =========================
-
-async function editTransaction(id) {
-
-    try {
-
-        const { data: item, error } = await db
-            .from('financial_transactions')
-            .select('*')
-            .eq('id', id)
-            .single();
-
-        if (error) throw error;
-
-        const amountInput = prompt('أدخل المبلغ الجديد:', item.amount);
-
-        if (amountInput === null) return;
-
-        const amount = Number(amountInput);
-
-        if (!Number.isSafeInteger(amount) || amount <= 0) {
-            alert('المبلغ غير صحيح.');
-            return;
-        }
-
-        const description = prompt('أدخل وصف العملية الجديد:', item.description);
-
-        if (description === null || !description.trim()) return;
-
-        const category = prompt('أدخل التصنيف الجديد:', item.category || '');
-
-        if (category === null) return;
-
-        const confirmed = confirm('هل تريد حفظ التعديلات؟');
-
-        if (!confirmed) return;
-
-        const { error: updateError } = await db
-            .from('financial_transactions')
-            .update({
-                amount: amount,
-                description: description.trim(),
-                category: category.trim() || null
-            })
-            .eq('id', id);
-
-        if (updateError) throw updateError;
-
-        alert('تم تعديل العملية بنجاح.');
-
-        await loadDashboard();
-
-    } catch (error) {
-
-        alert('تعذر تعديل العملية: ' + error.message);
-
-    }
-
+async function editTransaction(id){
+try{
+const {data:item,error}=await db.from('financial_transactions').select('*').eq('id',id).single();if(error)throw error;
+const amountInput=prompt('أدخل المبلغ الجديد:',item.amount);if(amountInput===null)return;
+const amount=Number(amountInput);if(!Number.isSafeInteger(amount)||amount<=0){alert('المبلغ غير صحيح.');return;}
+const description=prompt('أدخل وصف العملية الجديد:',item.description);if(description===null||!description.trim())return;
+const category=prompt('أدخل التصنيف الجديد:',item.category||'');if(category===null)return;
+if(!confirm('هل تريد حفظ التعديلات؟'))return;
+const {error:updateError}=await db.from('financial_transactions').update({amount,description:description.trim(),category:category.trim()||null}).eq('id',id);
+if(updateError)throw updateError;alert('تم تعديل العملية بنجاح.');await loadDashboard();
+}catch(error){alert('تعذر تعديل العملية: '+error.message);}
 }
 
-
-// =========================
-// حذف عملية مالية
-// =========================
-
-async function deleteTransaction(id) {
-
-    if (!confirm('هل أنت متأكد من حذف هذه العملية؟ سيتم تعديل الرصيد بناءً على ذلك.')) {
-        return;
-    }
-
-    try {
-
-        const { error } = await db
-            .from('financial_transactions')
-            .delete()
-            .eq('id', id);
-
-        if (error) throw error;
-
-        alert('تم حذف العملية بنجاح.');
-
-        await loadDashboard();
-
-    } catch (error) {
-
-        alert('تعذر حذف العملية: ' + error.message);
-
-    }
-
+async function deleteTransaction(id){
+if(!confirm('هل أنت متأكد من حذف هذه العملية؟'))return;
+try{const {error}=await db.from('financial_transactions').delete().eq('id',id);if(error)throw error;alert('تم حذف العملية.');await loadDashboard();}
+catch(error){alert('تعذر حذف العملية: '+error.message);}
 }
 
-
-// =========================
-// إضافة احتياج جديد
-// =========================
-
-document.getElementById('issue-add-form').addEventListener('submit', async function(e) {
-
-    e.preventDefault();
-
-    const button = document.getElementById('save-issue-button');
-
-    const location = document.getElementById('new-location').value.trim();
-    const status = document.getElementById('new-status').value;
-    const description = document.getElementById('new-desc').value.trim();
-    const cost = Number(document.getElementById('new-cost').value || 0);
-
-    if (!location || !description || !Number.isSafeInteger(cost) || cost < 0) {
-        alert('تأكد من صحة البيانات.');
-        return;
-    }
-
-    button.disabled = true;
-    button.textContent = 'جاري الحفظ...';
-
-    try {
-
-        const { error } = await db
-            .from('hall_needs')
-            .insert({
-                item_name: location,
-                status: status,
-                description: description,
-                estimated_cost: cost
-            });
-
-        if (error) throw error;
-
-        alert('تمت إضافة الاحتياج بنجاح.');
-
-        document.getElementById('issue-add-form').reset();
-
-        await loadIssues();
-
-    } catch (error) {
-
-        alert('تعذر إضافة الاحتياج: ' + error.message);
-
-    } finally {
-
-        button.disabled = false;
-        button.innerHTML = '<i class="fa-solid fa-plus ml-2"></i> إضافة البند للسجل العام';
-
-    }
-
+document.getElementById('issue-add-form').addEventListener('submit',async e=>{
+e.preventDefault();
+const button=document.getElementById('save-issue-button');
+const location=document.getElementById('new-location').value.trim();
+const status=document.getElementById('new-status').value;
+const description=document.getElementById('new-desc').value.trim();
+const cost=Number(document.getElementById('new-cost').value||0);
+if(!location||!description||!Number.isSafeInteger(cost)||cost<0){alert('تأكد من صحة البيانات.');return;}
+button.disabled=true;button.textContent='جاري الحفظ...';
+try{
+const {error}=await db.from('hall_needs').insert({item_name:location,status,description,estimated_cost:cost});
+if(error)throw error;alert('تمت إضافة الاحتياج بنجاح.');document.getElementById('issue-add-form').reset();await loadIssues();
+}catch(error){alert('تعذر إضافة الاحتياج: '+error.message);}
+finally{button.disabled=false;button.textContent='إضافة البند للسجل العام';}
 });
 
-
-// =========================
-// تحميل احتياجات القاعات
-// =========================
-
-async function loadIssues() {
-
-    const list = document.getElementById('issues-list');
-
-    list.innerHTML = '<p class="text-center text-slate-400 text-sm">جاري التحميل...</p>';
-
-    try {
-
-        const { data, error } = await db
-            .from('hall_needs')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (error) throw error;
-
-        if (!data || data.length === 0) {
-
-            list.innerHTML = '<p class="text-center text-slate-400 text-sm">لا توجد احتياجات مسجلة.</p>';
-
-            return;
-        }
-
-        const statusNames = {
-            pending: 'قيد التوفير',
-            in_progress: 'قيد التنفيذ',
-            completed: 'تم الإنجاز'
-        };
-
-        list.innerHTML = data.map(item => `
-
-            <div class="border border-slate-200 rounded-xl p-4 flex flex-wrap justify-between gap-3">
-
-                <div class="flex-1 min-w-[180px]">
-
-                    <h4 class="font-black">${escapeHTML(item.item_name)}</h4>
-
-                    <p class="text-sm text-slate-500 mt-1">${escapeHTML(item.description || '')}</p>
-
-                    <p class="text-xs text-slate-400 mt-2">
-                        التكلفة التقديرية: ${formatMoney(item.estimated_cost)}
-                    </p>
-
-                </div>
-
-                <div class="flex items-center gap-2">
-
-                    <select onchange="updateIssueStatus('${item.id}', this.value)"
-                            class="border border-slate-200 rounded-lg px-2 py-2 text-xs">
-
-                        <option value="pending" ${item.status === 'pending' ? 'selected' : ''}>قيد التوفير</option>
-                        <option value="in_progress" ${item.status === 'in_progress' ? 'selected' : ''}>قيد التنفيذ</option>
-                        <option value="completed" ${item.status === 'completed' ? 'selected' : ''}>تم الإنجاز</option>
-
-                    </select>
-
-                    <button onclick="deleteIssue('${item.id}')"
-                            class="bg-red-50 text-red-600 rounded-lg px-3 py-2 text-xs">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-        `).join('');
-
-    } catch (error) {
-
-        list.innerHTML = `
-            <p class="text-red-600 text-sm">
-                تعذر تحميل الاحتياجات: ${escapeHTML(error.message)}
-            </p>
-        `;
-
-    }
-
+async function loadIssues(){
+const list=document.getElementById('issues-list');list.innerHTML='جاري التحميل...';
+try{
+const {data,error}=await db.from('hall_needs').select('*').order('created_at',{ascending:false});if(error)throw error;
+if(!data?.length){list.innerHTML='<p class="text-center text-slate-400">لا توجد احتياجات مسجلة.</p>';return;}
+list.innerHTML=data.map(item=>`<div class="border rounded-xl p-4 flex flex-wrap justify-between gap-3">
+<div class="flex-1 min-w-[180px]"><h4 class="font-black">${escapeHTML(item.item_name)}</h4><p class="text-sm text-slate-500 mt-1">${escapeHTML(item.description||'')}</p><p class="text-xs text-slate-400 mt-2">التكلفة التقديرية: ${formatMoney(item.estimated_cost)}</p></div>
+<div class="flex items-center gap-2"><select onchange="updateIssueStatus('${item.id}',this.value)" class="border rounded-lg px-2 py-2 text-xs">
+<option value="pending" ${item.status==='pending'?'selected':''}>قيد التوفير</option><option value="in_progress" ${item.status==='in_progress'?'selected':''}>قيد التنفيذ</option><option value="completed" ${item.status==='completed'?'selected':''}>تم الإنجاز</option></select>
+<button onclick="deleteIssue('${item.id}')" class="bg-red-50 text-red-600 rounded-lg px-3 py-2"><i class="fa-solid fa-trash"></i></button></div></div>`).join('');
+}catch(error){list.innerHTML=`<p class="text-red-600">${escapeHTML(error.message)}</p>`;}
 }
 
-
-// =========================
-// تحديث حالة الاحتياج
-// =========================
-
-async function updateIssueStatus(id, status) {
-
-    try {
-
-        const { error } = await db
-            .from('hall_needs')
-            .update({ status })
-            .eq('id', id);
-
-        if (error) throw error;
-
-        alert('تم تحديث حالة الاحتياج.');
-
-        await loadIssues();
-
-    } catch (error) {
-
-        alert('تعذر تحديث الحالة: ' + error.message);
-
-    }
-
+async function updateIssueStatus(id,status){
+try{const {error}=await db.from('hall_needs').update({status}).eq('id',id);if(error)throw error;await loadIssues();}
+catch(error){alert('تعذر تحديث الحالة: '+error.message);}
+}
+async function deleteIssue(id){
+if(!confirm('هل تريد حذف هذا الاحتياج؟'))return;
+try{const {error}=await db.from('hall_needs').delete().eq('id',id);if(error)throw error;await loadIssues();}
+catch(error){alert('تعذر الحذف: '+error.message);}
 }
 
-
-// =========================
-// حذف احتياج
-// =========================
-
-async function deleteIssue(id) {
-
-    if (!confirm('هل تريد حذف هذا الاحتياج؟')) return;
-
-    try {
-
-        const { error } = await db
-            .from('hall_needs')
-            .delete()
-            .eq('id', id);
-
-        if (error) throw error;
-
-        alert('تم حذف الاحتياج.');
-
-        await loadIssues();
-
-    } catch (error) {
-
-        alert('تعذر الحذف: ' + error.message);
-
-    }
-
+/* إدارة الإعلانات */
+function resetAnnouncementForm(){
+document.getElementById('announcement-form').reset();
+document.getElementById('announcement-id').value='';
+document.getElementById('announcement-active').checked=true;
+document.getElementById('announcement-save').textContent='حفظ الإعلان';
+}
+document.getElementById('announcement-form').addEventListener('submit',async e=>{
+e.preventDefault();
+const id=document.getElementById('announcement-id').value;
+const payload={
+title:document.getElementById('announcement-title').value.trim(),
+content:document.getElementById('announcement-content').value.trim(),
+is_active:document.getElementById('announcement-active').checked
+};
+if(!payload.title||!payload.content){alert('أكمل عنوان ومحتوى الإعلان.');return;}
+const button=document.getElementById('announcement-save');button.disabled=true;button.textContent='جاري الحفظ...';
+try{
+const result=id?await db.from('announcements').update(payload).eq('id',id):await db.from('announcements').insert(payload);
+if(result.error)throw result.error;
+alert(id?'تم تعديل الإعلان.':'تمت إضافة الإعلان.');
+resetAnnouncementForm();await loadAnnouncements();
+}catch(error){alert('تعذر حفظ الإعلان: '+error.message);}
+finally{button.disabled=false;button.textContent='حفظ الإعلان';}
+});
+async function loadAnnouncements(){
+const list=document.getElementById('announcements-list');list.textContent='جاري تحميل الإعلانات...';
+try{
+const {data,error}=await db.from('announcements').select('*').order('created_at',{ascending:false});if(error)throw error;
+if(!data?.length){list.innerHTML='<p class="text-center text-slate-400">لا توجد إعلانات مسجلة.</p>';return;}
+list.innerHTML=data.map(item=>`<div class="border rounded-xl p-4">
+<div class="flex flex-wrap justify-between gap-2"><div class="flex-1"><h4 class="font-black">${escapeHTML(item.title)}</h4><p class="text-sm text-slate-600 mt-2 whitespace-pre-wrap">${escapeHTML(item.content)}</p><span class="inline-block mt-3 text-xs px-3 py-1 rounded-full ${item.is_active?'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-600'}">${item.is_active?'منشور':'متوقف'}</span></div>
+<div class="flex gap-2 items-start"><button onclick="editAnnouncement('${item.id}')" class="bg-amber-50 text-amber-700 px-3 py-2 rounded-lg"><i class="fa-solid fa-pen"></i></button><button onclick="toggleAnnouncement('${item.id}',${!item.is_active})" class="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg" title="تغيير حالة النشر"><i class="fa-solid fa-toggle-${item.is_active?'on':'off'}"></i></button><button onclick="deleteAnnouncement('${item.id}')" class="bg-red-50 text-red-600 px-3 py-2 rounded-lg"><i class="fa-solid fa-trash"></i></button></div></div></div>`).join('');
+}catch(error){list.innerHTML=`<p class="text-red-600">${escapeHTML(error.message)}</p>`;}
+}
+async function editAnnouncement(id){
+try{
+const {data,error}=await db.from('announcements').select('*').eq('id',id).single();if(error)throw error;
+document.getElementById('announcement-id').value=data.id;
+document.getElementById('announcement-title').value=data.title||'';
+document.getElementById('announcement-content').value=data.content||'';
+document.getElementById('announcement-active').checked=!!data.is_active;
+document.getElementById('announcement-save').textContent='حفظ التعديلات';
+document.getElementById('announcement-form').scrollIntoView({behavior:'smooth',block:'center'});
+}catch(error){alert('تعذر تحميل الإعلان: '+error.message);}
+}
+async function toggleAnnouncement(id,active){
+try{const {error}=await db.from('announcements').update({is_active:active}).eq('id',id);if(error)throw error;await loadAnnouncements();}
+catch(error){alert('تعذر تغيير حالة الإعلان: '+error.message);}
+}
+async function deleteAnnouncement(id){
+if(!confirm('هل تريد حذف هذا الإعلان نهائياً؟'))return;
+try{const {error}=await db.from('announcements').delete().eq('id',id);if(error)throw error;await loadAnnouncements();}
+catch(error){alert('تعذر حذف الإعلان: '+error.message);}
 }
 
+/* إدارة الإنجازات */
+function resetAchievementForm(){
+document.getElementById('achievement-form').reset();
+document.getElementById('achievement-id').value='';
+document.getElementById('achievement-date').value=today();
+document.getElementById('achievement-save').textContent='حفظ الإنجاز';
+}
+document.getElementById('achievement-form').addEventListener('submit',async e=>{
+e.preventDefault();
+const id=document.getElementById('achievement-id').value;
+const payload={
+title:document.getElementById('achievement-title').value.trim(),
+description:document.getElementById('achievement-description').value.trim(),
+achievement_date:document.getElementById('achievement-date').value||today()
+};
+if(!payload.title||!payload.description){alert('أكمل عنوان وتفاصيل الإنجاز.');return;}
+const button=document.getElementById('achievement-save');button.disabled=true;button.textContent='جاري الحفظ...';
+try{
+const result=id?await db.from('achievements').update(payload).eq('id',id):await db.from('achievements').insert(payload);
+if(result.error)throw result.error;
+alert(id?'تم تعديل الإنجاز.':'تمت إضافة الإنجاز.');
+resetAchievementForm();await loadAchievements();
+}catch(error){alert('تعذر حفظ الإنجاز: '+error.message);}
+finally{button.disabled=false;button.textContent='حفظ الإنجاز';}
+});
+async function loadAchievements(){
+const list=document.getElementById('achievements-list');list.textContent='جاري تحميل الإنجازات...';
+try{
+const {data,error}=await db.from('achievements').select('*').order('achievement_date',{ascending:false});if(error)throw error;
+if(!data?.length){list.innerHTML='<p class="text-center text-slate-400">لا توجد إنجازات مسجلة.</p>';return;}
+list.innerHTML=data.map(item=>`<div class="border rounded-xl p-4 flex flex-wrap justify-between gap-3">
+<div class="flex-1"><h4 class="font-black">${escapeHTML(item.title)}</h4><p class="text-sm text-slate-600 mt-2 whitespace-pre-wrap">${escapeHTML(item.description||'')}</p><p class="text-xs text-slate-400 mt-2">التاريخ: ${escapeHTML(item.achievement_date||'')}</p></div>
+<div class="flex gap-2 items-start"><button onclick="editAchievement('${item.id}')" class="bg-amber-50 text-amber-700 px-3 py-2 rounded-lg"><i class="fa-solid fa-pen"></i></button><button onclick="deleteAchievement('${item.id}')" class="bg-red-50 text-red-600 px-3 py-2 rounded-lg"><i class="fa-solid fa-trash"></i></button></div></div>`).join('');
+}catch(error){list.innerHTML=`<p class="text-red-600">${escapeHTML(error.message)}</p>`;}
+}
+async function editAchievement(id){
+try{
+const {data,error}=await db.from('achievements').select('*').eq('id',id).single();if(error)throw error;
+document.getElementById('achievement-id').value=data.id;
+document.getElementById('achievement-title').value=data.title||'';
+document.getElementById('achievement-description').value=data.description||'';
+document.getElementById('achievement-date').value=data.achievement_date||today();
+document.getElementById('achievement-save').textContent='حفظ التعديلات';
+document.getElementById('achievement-form').scrollIntoView({behavior:'smooth',block:'center'});
+}catch(error){alert('تعذر تحميل الإنجاز: '+error.message);}
+}
+async function deleteAchievement(id){
+if(!confirm('هل تريد حذف هذا الإنجاز نهائياً؟'))return;
+try{const {error}=await db.from('achievements').delete().eq('id',id);if(error)throw error;await loadAchievements();}
+catch(error){alert('تعذر حذف الإنجاز: '+error.message);}
+}
 
-// تاريخ اليوم الافتراضي
-
-document.getElementById('transaction-date').value = today();
-
+document.getElementById('transaction-date').value=today();
+document.getElementById('achievement-date').value=today();
 </script>
-
 </body>
 </html>
